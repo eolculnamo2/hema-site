@@ -11,7 +11,7 @@ let rules = ["Article submissions should be on the topic of Renaissance Martial 
 const Row2 = () => {
     return(
         <div className="row2-wrap">
-            <img src='/images/teacher.jpg' />
+            <img src='https://image.ibb.co/mrQgDd/teacher.jpg' />
             <div className="side2-wrap">
                 <h4 className="subtitle">
                     Guidelines

@@ -1,5 +1,5 @@
 import React from 'react'
-import DocumentMeta from 'react-document-meta';
+import { Helmet } from 'react-helmet'
 import TitleRow from './subcomponents/TitleRow'
 import ArticleBody from './subcomponents/ArticleBody'
 import RecommendedArticles from './subcomponents/RecommendedArticles'
@@ -33,18 +33,14 @@ class Article extends React.Component {
 
     render() {
         if(this.state.currentArticle.body != undefined) {
-            const meta = {
-                title: this.state.currentArticle.title,
-                description: 'An article by ' + this.state.currentArticle.author,
-                meta: {
-                    charset: 'utf-8',
-                    name: {
-                    keywords: this.state.currentArticle.title+',hema, arma, longsword, renaissance, knights, fighting, martial arts'
-                    }
-                }
-            }    
         return (
-            <DocumentMeta {...meta}>
+            <div>
+                <Helmet>
+                    <title>{this.state.currentArticle.title}</title>
+                    <meta name="description" content={'An article by ' + this.state.currentArticle.author} />
+                    <link rel="icon" href="https://image.ibb.co/c76tRy/head_icon.png" sizes="16x16 32x32" type="image/png" /> 
+                    <meta name="keywords" content={this.state.currentArticle.title+',hema, arma, longsword, renaissance, knights, fighting, martial arts'} />
+                </Helmet>
                 <TitleRow title={this.state.currentArticle.title} />
                 <div className="flex-body">
                     <RecommendedArticles x={rec} />
@@ -61,7 +57,7 @@ class Article extends React.Component {
                                      update={this.updateArticle}  />
                     </div>
                 </div>    
-            </DocumentMeta>
+            </div>
         )
         }
         else{

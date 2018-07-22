@@ -43,7 +43,6 @@ router.post('/get-article', (req,res) => {
 
 router.get('/get-all-articles',(req,res) => {
     Article.find({}, (err,result)=>{
-        console.log(result)
         res.send(result)
     })
 })
