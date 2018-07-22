@@ -7,6 +7,7 @@
     @media(max-width: $medium) {
         padding: 15px;
         flex-direction: column-reverse;
+        border-bottom: 1px solid $darker3;
     }
 
     div {

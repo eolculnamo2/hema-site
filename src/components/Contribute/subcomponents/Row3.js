@@ -31,13 +31,14 @@ class Row3 extends React.Component {
     render(){
         return(
             <div className="submission-box">
+                <form>
                 <h4 className="subtitle">
                     Article Submission
                 </h4>
                 <em>
                     Please read contributor guidelines before submission.
                 </em>
-                <div className="flex-submission-inputs">
+                <div className="flex-submission-inputs">    
                     <div>
                         <label>
                             Title
@@ -71,6 +72,7 @@ class Row3 extends React.Component {
                     </label>
                     <textarea id="body" />
                 </div>
+                <div style={{margin: 'auto'}} class="g-recaptcha" data-sitekey="6Lexs2UUAAAAAOCNpqiw_2MBMpWa2JxQ_fU8SCDa"></div>
                 <button style={{display: this.state.sent ? 'none' : 'block'}} onClick={this.makeSubmission.bind(this)}
                         type="button"
                         className={this.state.sending ? "submissions-button submissions-button--sending" : "submissions-button"}>
@@ -79,6 +81,7 @@ class Row3 extends React.Component {
                 <em style={{display: this.state.sent ? 'block' : 'none'}}>
                     Thank you for your submission! We will be in contact upon review of your post.
                 </em>
+                </form>
             </div>
         )
     }
