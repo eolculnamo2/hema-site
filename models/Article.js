@@ -8,7 +8,8 @@ let Article = new Schema({
     body: Array,
     date_written: String,
     comments: Array,
-    likes: Number
+    likes: Number,
+    type: String
 })
 
 module.exports = mongoose.model('articles', Article)

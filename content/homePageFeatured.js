@@ -8,12 +8,12 @@ module.exports = [
         linkId: '5b53609c1886ab51b6b32247'
     },
     {
-        title: "Defence, A Forgotten Martial Art And Science(1500s-1800s)",
-        author: "Dale A. Bertram",
-        preview: "We have all in all a lot of perceptions of the British that are not at all true in the sense of how they fought. I have asked questions to people their perceptions of how British people fight and all they say is , “brawling.” However, by all my experience in MARE(Martial Arts of Renaissance Europe, I’ve been studying MARE for almost 12 years)and snooping around into later eras of martial arts that I cannot help but to refute that this is further from the truth.",
-        image: "/images/closing-dagger2.png",
+        title: "HEMA Beginner's Guide",
+        author: "Sword Point",
+        preview: "Getting started in Historical European Martial Arts (HEMA) can be hard. Not only do you need to learn new skills, you also have to find good information and guidance -- both of which are difficult to locate. The good news is that this short guide offers advice that will help point you in the right direction.",
+        image: "https://images.pexels.com/photos/25755/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
         color: "#97AABD",
-        linkId: '5b4ebc861b0ec939e792f114'
+        linkId: '5b54246e5be0224195a7d1f4'
     },
     {
         title: "Unarmed VS Armed Combat Training: A Case For The Sword",

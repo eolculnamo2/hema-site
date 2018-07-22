@@ -15,7 +15,8 @@ router.post('/new-article', (req,res) => {
         body: req.body.body,
         date_written: new Date(),
         comments: [],
-        likes: 0
+        likes: 0,
+        type: ""
     }).save().then(() => {
         return res.send('saved')
     })
@@ -38,6 +39,13 @@ router.post('/get-article', (req,res) => {
     else {
         return res.send('Invalid url')
     }
+})
+
+router.get('/get-all-articles',(req,res) => {
+    Article.find({}, (err,result)=>{
+        console.log(result)
+        res.send(result)
+    })
 })
 
 router.post('/add-article-comment', (req,res) => {

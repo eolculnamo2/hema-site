@@ -49,9 +49,12 @@ class Article extends React.Component {
                 <div className="flex-body">
                     <RecommendedArticles x={rec} />
                     <div className="article-body-wrap">
-                    <ArticleBody body={this.state.currentArticle.body}
+                    <ArticleBody
+                                 title={this.state.currentArticle.title} 
+                                 body={this.state.currentArticle.body}
                                  image={this.state.currentArticle.imgUrl}
-                                 author={this.state.currentArticle.author} />
+                                 author={this.state.currentArticle.author}
+                                 type={this.state.currentArticle.type} />
                     <ArticleComments comments={this.state.currentArticle.comments}
                                      likes={this.state.currentArticle.likes}
                                      id={this.props.match.params.article}

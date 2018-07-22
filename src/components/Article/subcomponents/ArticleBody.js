@@ -1,19 +1,37 @@
 import React from 'react'
 
-const ArticleBody = props => {
-    return(
-        <div>
-            <p>
-               By: {props.author}
-            </p>
-            <img src={props.image} />
+class ArticleBody extends React.Component {
+    componentDidMount(){
+        if(this.props.type === "HTML"){
+            document.getElementById('html-article').innerHTML=this.props.body
+        }
+    }
+    render(){
+        if(this.props.type === ""){
+        return(
             <div>
-                {props.body.map( x => {
-                    return(<p>{x}</p>)
-                })}
+                <p>
+                By: {this.props.author}
+                </p>
+                <img src={this.props.image} alt={this.props.title} />
+                <div>
+                    {this.props.body.map( x => {
+                        return(<p>{x}</p>)
+                    })}
+                </div>
             </div>
-        </div>
-    )
+        )
+        }
+        else if(this.props.type === "HTML"){
+            return(
+                <div>
+                    <img src={this.props.image} alt={this.props.title}/>
+                    <div id="html-article">
+                    </div>
+                </div>
+            )
+        }
+    }
 }
 
 export default ArticleBody

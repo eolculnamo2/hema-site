@@ -1,9 +1,9 @@
 import React from 'react'
 
-const ArticlePreview2 = props => {
-    return(
+const ArticlePreview2 = props => { 
+        return(
         <div className="article-preview2-wrap">
-            <a href={'/article/'+props.content.linkId}>
+            <a href={'/article/'+props.content['_id']}>
                 <div className="preview-header">
                     {props.content.title}
                 </div>
