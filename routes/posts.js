@@ -1,10 +1,9 @@
 const express = require('express')
-const Recaptcha = require('express-recaptcha').Recaptcha
+const request = require('request');
 const router = express.Router()
 const bodyParser = require('body-parser')
 const Article = require('../models/Article')
 const mailer = require('../services/mailer')
-let recaptcha = new Recaptcha(process.env.CAP_SITE, process.env.CAP_SECRET)
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: true}));
@@ -71,19 +70,21 @@ router.post('/add-article-comment', (req,res) => {
     }
 })
 
-router.post('/process-submission',recaptcha.middleware.verify,(req,res) => {
-    console.log(req.recaptcha.error)
-    if(!req.recaptcha.error){
-    mailer.notifyOfEmail(req.body.title,
-                         req.body.author, 
-                         req.body.email, 
-                         req.body.image, 
-                         req.body.body)
-        return res.send({data: "sent"})
-    }
-    else{
-        return res.send({data: 'Please Try Again'})
-    }
-})
+router.post('/process-submission',(req,res) => {
+    var verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" + process.env.CAP_SECRET + "&response=" + req.body['g-recaptcha-response']
+    request(verificationUrl,function(error,response,body) {
+        if(response.body.success == true){
+            mailer.notifyOfEmail(req.body.title,
+                                 req.body.author, 
+                                 req.body.email, 
+                                 req.body.image, 
+                                 req.body.body)
+                return res.send({data: "sent"})
+            }
+            else{
+                return res.send({data: 'Please Try Again'})
+            }
+        })
+    })
 
 module.exports = router
