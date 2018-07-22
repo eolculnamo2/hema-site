@@ -73,7 +73,8 @@ router.post('/add-article-comment', (req,res) => {
 router.post('/process-submission',(req,res) => {
     var verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" + process.env.CAP_SECRET + "&response=" + req.body['g-recaptcha-response']
     request(verificationUrl,function(error,response,body) {
-        if(response.body.success == true){
+        let x = JSON.parse(body)
+        if(x.success == true){
             mailer.notifyOfEmail(req.body.title,
                                  req.body.author, 
                                  req.body.email, 
