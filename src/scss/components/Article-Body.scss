@@ -158,7 +158,12 @@
     }
 }
 
-.html-article {
+#html-article {
     color: $darker3;
     line-height: 1.5;
+
+    a{
+        color: $faded-blue;
+        text-decoration: underline;
+    }
 }
