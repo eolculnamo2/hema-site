@@ -15,7 +15,8 @@ class Row3 extends React.Component {
             email: document.getElementById('email').value,
             author: document.getElementById('author').value,
             image: document.getElementById('image').value,
-            body: document.getElementById('body').value
+            body: document.getElementById('body').value,
+            captcha: document.getElementsByName('g-recaptcha-response')[0].value
         }
         fetch('/posts/process-submission',{
             method: "POST",
