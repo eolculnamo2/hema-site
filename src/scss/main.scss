@@ -1,0 +1,43 @@
+@import './global_variables';
+@import './components/index';
+
+body {
+    margin: 0;
+    font-family: $font1;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.sp-input {
+    border-radius: 3px;
+    padding: .75em 1em;
+    border: 1px solid grey;
+    width: 200px;
+    outline: none;
+
+    &:focus {   
+        border: 1px solid $faded-blue;
+    }
+    @media (max-width: $medium) {
+        width: 95%;
+    }
+}
+
+.subtitle {
+    font-size: $subtitleSize;
+    text-align: center;
+    font-weight: 500;
+
+    &--rule{
+        margin: .9em 0;
+        min-width: 150px;
+        text-align: left;
+
+        @media (max-width: $medium){
+            margin-bottom: 0;
+        }
+    }
+}

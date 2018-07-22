@@ -1,0 +1,58 @@
+.article-wrap {
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    color: $darker3;
+
+    @media(max-width: $medium) {
+        padding: 15px;
+        flex-direction: column-reverse;
+    }
+
+    div {
+        width: 100%;
+        margin: 40px;
+
+        @media(max-width: $medium) {
+            margin: 0;
+        }
+    }
+    h4 {
+        font-size: $titleSize;
+        margin: 0;
+
+        &:hover {
+            text-decoration: underline;
+        }
+
+        @media(max-width: $medium) {
+            font-size: 20px;
+        }
+    }
+
+    p {
+        line-height: 2;
+        font-size: $quoteSize;
+
+        @media(max-width: $medium) {
+            font-size: 12px;
+        }
+    }
+    .image {
+        img {
+            width: 90%;
+            border: 5px solid $light-gray;
+            display: block;
+            margin: auto;
+        }
+    }
+
+    &__right {
+        text-align: right;
+
+        @media(max-width: $medium) {
+            text-align: left;
+            flex-direction: column;
+        }
+    }
+}

@@ -1,0 +1,17 @@
+.home-hero {
+    margin: 2em 0;
+    width: 100vw;
+    height: 55vh;
+    background-image: url('../../assets/dist/images/homehero.png');
+    background-size: cover;
+    background-position: center;
+
+    @media(max-width: $medium) {
+        height: 30vh;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    @media(max-width: $small) {
+        height: 20vh;
+    }
+}

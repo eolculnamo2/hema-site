@@ -1,0 +1,64 @@
+.submission-box {
+    border-top: 1px solid $darker3;
+    padding: 1em 20%;
+    color: $darker3;
+
+    em{
+        text-align: center;
+        display: block;
+        margin-bottom: 3em;
+    }
+
+    label{
+        display: block;
+        padding: 5px 0;
+    }
+
+    .subtitle {
+        font-size: $subtitleSize;
+        text-align: center;
+        font-weight: 500;
+        margin-bottom: .1em;
+    }
+
+    @media (max-width: $medium) {
+        padding: 1em;
+    }
+
+    textarea {
+        width: 100%;
+        height: 200px;
+    }
+}
+
+.flex-submission-inputs {
+    display: flex;
+    justify-content: space-between;
+
+    @media (max-width: $medium) {
+        flex-direction: column;
+    }
+}
+
+.submissions-button {
+    margin: .5em auto;
+    display: block;
+    padding: 1em 2em;
+    border-radius: 6px;
+    background: #c0e8b2;
+    border: 0;
+    cursor: pointer;
+
+    &:hover {
+        opacity: .7;
+    }
+
+    &--sending{
+        background: $light-gray;
+    }
+
+    @media (max-width: $medium){
+        width: 100%;
+    }
+
+}
