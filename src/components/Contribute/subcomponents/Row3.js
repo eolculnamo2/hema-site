@@ -25,7 +25,7 @@ class Row3 extends React.Component {
         })
         .then( res => res.json())
         .then( data => {
-            this.setState({sending: false, sent: true})
+            this.setState({sending: false, sent: data.data === "sent" ? true : false})
         })
     }
     render(){
