@@ -72,7 +72,7 @@ class Row3 extends React.Component {
                     </label>
                     <textarea id="body" />
                 </div>
-                <div style={{margin: 'auto'}} class="g-recaptcha" data-sitekey="6Lexs2UUAAAAAOCNpqiw_2MBMpWa2JxQ_fU8SCDa"></div>
+                <div class="g-recaptcha" data-sitekey="6Lexs2UUAAAAAOCNpqiw_2MBMpWa2JxQ_fU8SCDa"></div>
                 <button style={{display: this.state.sent ? 'none' : 'block'}} onClick={this.makeSubmission.bind(this)}
                         type="button"
                         className={this.state.sending ? "submissions-button submissions-button--sending" : "submissions-button"}>
