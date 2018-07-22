@@ -15,4 +15,8 @@ routes.forEach( x => {
     })
 })
 
+router.get('/sitemap',(req,res) => {
+    res.sendFile(path.join(__dirname,'..','/assets/dist/sitemap.xml'))
+})
+
 module.exports = router
