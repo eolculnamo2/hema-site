@@ -15,7 +15,7 @@ class Articles extends React.Component {
         fetch('/posts/get-all-articles')
         .then( res => res.json())
         .then( data => {
-            this.setState({articles: data},()=>{console.log(JSON.stringify(data,null,3))})
+            this.setState({articles: data})
         })
     }
     render() {

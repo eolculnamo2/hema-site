@@ -165,5 +165,8 @@
     a{
         color: $faded-blue;
         text-decoration: underline;
+        &:hover{
+            color: $dark-navy;
+        }
     }
 }

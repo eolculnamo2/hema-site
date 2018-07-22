@@ -8,18 +8,23 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: true}));
 
 router.post('/new-article', (req,res) => {
-    new Article({
-        title: req.body.title,
-        author: req.body.author,
-        imgUrl: req.body.imgUrl,
-        body: req.body.body,
-        date_written: new Date(),
-        comments: [],
-        likes: 0,
-        type: ""
-    }).save().then(() => {
-        return res.send('saved')
-    })
+    if(req.body.test === process.env.ADMINPASS){
+        new Article({
+            title: req.body.title,
+            author: req.body.author,
+            imgUrl: req.body.imgUrl,
+            body: req.body.body,
+            date_written: new Date(),
+            comments: [],
+            likes: 0,
+            type: ""
+        }).save().then(() => {
+            return res.send({data:'saved'})
+        })
+    }
+    else{
+        return res.send({data: "failed"})
+    }
 })
 
 router.post('/get-article', (req,res) => {
