@@ -9,6 +9,7 @@ let routes = ['/',
               '/article/:article',
               '/contribute',
               '/gear-list',
+              '/profile',
               '/admin']
 
 routes.forEach( x => {

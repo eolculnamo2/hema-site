@@ -53,6 +53,7 @@ class Header extends React.Component {
                                 <Link to='/'><span>Home</span></Link>
                                 <Link to='/articles'><span>Articles</span></Link>
                                 <Link to='/contribute'><span>Contribute</span></Link>
+                                <Link to='/profile'><span>Profile</span></Link>
                                 {/*<Link to='/gear-list'><span>Gear List</span></Link>*/}
                 </div>
             </div>

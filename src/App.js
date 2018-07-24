@@ -9,6 +9,7 @@ import LandingPage from './components/LandingPage/LandingPage';
 import Articles from './components/Articles/Articles'
 import Article from './components/Article/Article'
 import Contribute from './components/Contribute/Contribute';
+import Profile from './components/Profile/Profile';
 import Admin from './components/Admin/Admin';
 
 class App extends React.Component {
@@ -26,11 +27,14 @@ class App extends React.Component {
                     <Route exact path='/' component={LandingPage} />
                     <Route exact path='/articles' component={Articles} />
                     <Route exact path='/contribute' component={Contribute} />
+                    {/* <Route exact path='/profile/:user' render={ props => (
+                        <Profile {...props} />
+                    )} /> */}
+                    <Route exact path='/profile' component={Profile} />
                     <Route exact path='/article/:article' render={ props => (
                         <Article {...props} />
                     )} />
                     <Route exact path='/admin' render={ () => (
-                        //prompt('Please enter password')
                         <Admin />
                     )} />
                 <Footer />
