@@ -12,7 +12,7 @@ const Row1 = props => {
                         Add Contact
                     </button>
                 </div>
-                <p className="no-margin-top">
+                <p className="headline">
                     {props.user.headline}
                 </p>
             </div>
