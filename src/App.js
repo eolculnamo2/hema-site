@@ -23,13 +23,18 @@ class App extends React.Component {
         }
     }
     componentWillMount(){
-        fetch('/authenticate/checkLogin')
-        .then(res => res.json())
-        .then(data => {
-            if (data.loggedIn) {
-                this.setState({loggedIn: true})
-            }
-        })
+        fetch('/authenticate/checkLogin',{
+            method: "POST",
+            body: null,
+            headers: { "Content-Type": "application/json" },
+            credentials: "same-origin"
+            })
+            .then( res => res.json())
+            .then( data => {
+                if (data.loggedIn) {
+                    this.setState({loggedIn: true})
+                }
+            })
     }
     render() {
         return(

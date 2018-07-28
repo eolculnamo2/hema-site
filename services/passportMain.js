@@ -71,7 +71,7 @@ router.post('/login', passport.authenticate('local'),(req, res) => {
 //Logout
 router.get('/logout',(req,res) => {
   req.logout();
-  res.send({name: 'success'})
+  res.send({data: 'You are logged out.'})
 })
 
 router.post('/checkLogin',(req,res) => {

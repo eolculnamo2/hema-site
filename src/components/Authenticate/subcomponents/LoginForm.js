@@ -1,20 +1,38 @@
 import React from 'react'
 
 class LoginForm extends React.Component {
+    componentWillMount(){
+        window.addEventListener('keypress', e => {
+            if (e.which === 13 || e.keyCode === 13) {
+                this.login()
+            }
+        })
+    }
     login(){
         //need to add front end validations
         let payload = {
             username: document.getElementById('username').value.toLowerCase().trim(),
-            password: document.getElementsById('password').value.trim()
+            password: document.getElementById('password').value.trim()
         }
-
+        if(payload.username.trim().length === 0){
+            alert("Please enter your username.")
+        }
+        else if (payload.password.trim().length === 0) {
+            alert("Please enter your password.")
+        }
+        else {
         fetch('/authenticate/login',{
             method: "POST",
             body: JSON.stringify(payload),
-            headers: { "Content-Type": "application/json" }
+            headers: { "Content-Type": "application/json" },
+            credentials: "same-origin"
             })
             .then( res => res.json())
-            .then( data => alert(data.data))
+            .then( data => {
+                alert(data.data)
+                document.location.replace("https://www.sword-point.com/")
+            })
+        }
     }
     render(){
         return(
@@ -34,7 +52,7 @@ class LoginForm extends React.Component {
                             <p>
                                 Password
                             </p>
-                            <input id="password" className="sp-input" />
+                            <input id="password" className="sp-input" type="password" />
                         </div>
                    <button type="button" 
                             style={{marginBottom: "12em"}}
