@@ -53,7 +53,14 @@ class Header extends React.Component {
                                 <Link to='/'><span>Home</span></Link>
                                 <Link to='/articles'><span>Articles</span></Link>
                                 <Link to='/contribute'><span>Contribute</span></Link>
-                                <Link to='/profile'><span>Profile</span></Link>
+                                <span id="dropdown-wrap">
+                                <span id='dropdown-name'>Profile</span>
+                                <ul className="dropdown-links">
+                                    <li><Link to='/profile'>My Profile</Link></li>
+                                    <li><Link to='/profile'>Edit Profile</Link></li>
+                                    <li><Link to='/profile'>Log Out</Link></li>
+                                </ul>
+                                </span>
                                 {/*<Link to='/gear-list'><span>Gear List</span></Link>*/}
                 </div>
             </div>

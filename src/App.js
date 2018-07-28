@@ -11,6 +11,8 @@ import Article from './components/Article/Article'
 import Contribute from './components/Contribute/Contribute';
 import Profile from './components/Profile/Profile';
 import Admin from './components/Admin/Admin';
+import Register from './components/Authenticate/Register'
+
 
 class App extends React.Component {
     render() {
@@ -31,6 +33,7 @@ class App extends React.Component {
                         <Profile {...props} />
                     )} /> */}
                     <Route exact path='/profile' component={Profile} />
+                    <Route exact path='/register' component={Register} />
                     <Route exact path='/article/:article' render={ props => (
                         <Article {...props} />
                     )} />
