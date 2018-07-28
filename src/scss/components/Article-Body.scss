@@ -25,6 +25,12 @@
     }
 }
 
+.author-link {
+    &:hover {
+        color: $faded-blue;
+    }
+}
+
 .recommended-wrap {
     color: $darker3;
     border: 1px solid $darker3;

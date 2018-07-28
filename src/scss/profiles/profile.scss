@@ -1,0 +1,136 @@
+.flex-start{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.add-button {
+    background: #c0e8b2;
+    padding: 1em 4em;
+    border-radius: 6px;
+    border: 0;
+    cursor: pointer;
+    margin-left: 2.5em;
+    max-height: 4em;
+
+    &:hover{
+        opacity: .7;
+    }
+
+    @media (max-width: 945px) {
+        width: 100%;
+        margin: 0;
+    }
+}
+
+.headline{
+    margin-top: 0;
+    margin-bottom: 0;
+    font-style: italic;
+}
+
+.profile-body-wrap{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 1em 70px;
+    color: $darker3;
+
+    @media (max-width: $mediumSmall) {
+        margin: 1em 20px;
+    }
+}
+
+.profile-picture {
+    width: 380px;
+    border: 4px solid $light-gray;
+
+    @media (max-width: $medium) {
+        width: 350px;
+        margin: auto;
+        display: block;
+    }
+}
+
+.profile-flexed-item {
+    margin-right: 3.5em;
+    min-height: 400px;
+
+    @media (max-width: $medium) {
+        min-height: 200px;
+    }
+
+    &--nested-flex{
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        flex-wrap: wrap;
+
+        @media (max-width: $medium) {
+            justify-content: space-between;
+            flex-direction: row;
+        }
+    }
+}
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 3em;
+    flex-wrap: wrap;
+    min-width: 175px;
+    text-transform: capitalize;
+
+    @media (max-width: $medium) {
+        margin-bottom: 0;
+        justify-content: flex-start;
+    }
+
+    h3 {
+        margin: 0;
+        margin-bottom: .25em;
+        text-decoration: underline;
+    }
+    p {
+        margin: 0;
+    }
+    a {
+        &:hover {
+            text-decoration: underline;
+            color: $faded-blue;
+        }
+    }
+}
+
+.flex-img-details {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.contact-box-wrap {
+    h3 {
+        margin: 0;
+        margin-bottom: .55em;
+        text-decoration: underline;
+    }
+}
+.contact-flex {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    width: 350px;
+}
+
+.contact-image-parent {
+    border: 1px solid $light-gray;
+    width: 75px;
+    height: 75px;
+    overflow: hidden;
+    cursor: pointer;
+}
+.contact-image {
+    width: 75px;
+}

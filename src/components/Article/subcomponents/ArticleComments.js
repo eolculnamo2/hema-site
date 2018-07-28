@@ -1,33 +1,57 @@
 import React from 'react'
 
 class ArticleComments extends React.Component {
-    addComment() {
-        this.buttonsEnabled(false)
-
-        let payload = {
-            idString: this.props.id,
-            comment: document.getElementById('comment').value.trim(),
-            name: document.getElementById('name').value.trim()
+    constructor(){
+        super()
+        this.state = {
+            userProfile: {}
         }
-
-        fetch('/posts/add-article-comment',{
+    }
+    componentWillMount(){
+        fetch('/authenticate/getUserProfile',{
             method: "POST",
-            body: JSON.stringify(payload),
-            headers: { "Content-Type": "application/json" }
+            body: null,
+            headers: { "Content-Type": "application/json" },
+            credentials: "same-origin"
             })
             .then( res => res.json())
             .then( data => {
-                if(data.status === "sent") {
-                    alert('Comment Posted')
-                    document.getElementById('comment').value = ''
-                    document.getElementById('name').value = ''              
+                if (data.data !== false) {
+                    this.setState({userProfile: data.data})
                 }
-                else {
-                    alert("Something went wrong.")
-                }
-                this.props.update()
-                this.buttonsEnabled(true)
-            })
+            })         
+    }
+    addComment() {
+        if(this.state.userProfile.username) {
+            this.buttonsEnabled(false)
+
+            let payload = {
+                idString: this.props.id,
+                comment: document.getElementById('comment').value.trim(),
+                name: this.state.userProfile.username
+            }
+
+            fetch('/posts/add-article-comment',{
+                method: "POST",
+                body: JSON.stringify(payload),
+                headers: { "Content-Type": "application/json" }
+                })
+                .then( res => res.json())
+                .then( data => {
+                    if(data.status === "sent") {
+                        alert('Comment Posted')
+                        document.getElementById('comment').value = ''             
+                    }
+                    else {
+                        alert("Something went wrong.")
+                    }
+                    this.props.update()
+                    this.buttonsEnabled(true)
+                })
+        }
+        else {
+            alert("Must be logged in to post a comment.")
+        }
     }
 
 
@@ -45,7 +69,6 @@ class ArticleComments extends React.Component {
             }
         })
     }
-
     render() {
         return(
             <div>
@@ -53,16 +76,11 @@ class ArticleComments extends React.Component {
                     <h3 className="title title--comments">
                         {"Comments ("+ this.props.comments.length+")"}
                     </h3>
-                    <div className="name-box">
-                        <span className="name">
-                            Name: 
-                        </span>
-                        <input id="name" />
-                    </div>
                     <br/>
                     <textarea id="comment" />
                     <br/>
-                    <button className='reset'>
+                    <button className='reset'
+                    onClick={()=>{document.getElementById('comment').value = ''}}>
                         Reset
                     </button>
                     <button onClick={this.addComment.bind(this)} className='submit'>

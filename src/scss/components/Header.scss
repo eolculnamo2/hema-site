@@ -84,6 +84,38 @@
     }
 }
 
+#dropdown-wrap {
+    position: relative;
+    &:hover {
+        .dropdown-links {
+            display: block;
+        }
+    }
+    
+}
+
+.dropdown-links {
+    display: none;
+    position: absolute;
+    padding: 0;
+    margin: 0;
+
+    @media (max-width: $medium) {
+        position: static;
+    }
+    li {
+        padding: .5em 1.5em;
+        list-style-type: none;
+        background: $faded-blue;
+        border-radius: 3px;
+        color: $dark-navy;
+        &:hover {
+           background: $dark-navy;
+           color: white;
+        }
+    }
+}
+
 @keyframes slide {
     from {
         transform: translateY(-100px)

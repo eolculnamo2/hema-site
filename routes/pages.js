@@ -7,9 +7,13 @@ let recaptcha = new Recaptcha(process.env.CAP_SITE, process.env.CAP_SECRET)
 let routes = ['/',
               '/articles',
               '/article/:article',
+              '/profile/:profile',
               '/contribute',
               '/gear-list',
-              '/admin']
+              '/profile',
+              '/admin',
+              '/register',
+              '/login']
 
 routes.forEach( x => {
     router.get(x,(req,res) => {

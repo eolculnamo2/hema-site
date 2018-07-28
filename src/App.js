@@ -9,9 +9,33 @@ import LandingPage from './components/LandingPage/LandingPage';
 import Articles from './components/Articles/Articles'
 import Article from './components/Article/Article'
 import Contribute from './components/Contribute/Contribute';
+import Profile from './components/Profile/Profile';
 import Admin from './components/Admin/Admin';
+import Register from './components/Authenticate/Register'
+import Login from './components/Authenticate/Login';
+
 
 class App extends React.Component {
+    constructor(){
+        super()
+        this.state = {
+            loggedIn: false
+        }
+    }
+    componentWillMount(){
+        fetch('/authenticate/checkLogin',{
+            method: "POST",
+            body: null,
+            headers: { "Content-Type": "application/json" },
+            credentials: "same-origin"
+            })
+            .then( res => res.json())
+            .then( data => {
+                if (data.loggedIn) {
+                    this.setState({loggedIn: true})
+                }
+            })
+    }
     render() {
         return(
             <div>
@@ -26,11 +50,16 @@ class App extends React.Component {
                     <Route exact path='/' component={LandingPage} />
                     <Route exact path='/articles' component={Articles} />
                     <Route exact path='/contribute' component={Contribute} />
+                    <Route exact path='/profile' component={Profile} />
+                    <Route exact path='/register' component={Register} />
+                    <Route exact path='/login' component={Login} />
                     <Route exact path='/article/:article' render={ props => (
                         <Article {...props} />
                     )} />
+                    {<Route exact path='/profile/:profile' render={ props => (
+                        <Profile {...props} />
+                    )} />}
                     <Route exact path='/admin' render={ () => (
-                        //prompt('Please enter password')
                         <Admin />
                     )} />
                 <Footer />

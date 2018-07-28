@@ -4,7 +4,7 @@ var path = require('path')
 var fs = require('fs')
 
 module.exports = {
-    notifyOfEmail: function(title, author, email, image, body) {
+    notifyOfEmail: function(title, author, username, email, image, body) {
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
@@ -18,7 +18,7 @@ module.exports = {
             to: process.env.ADMINMAIL,
             subject: "New Article Submission Request",
             text: "New Article Submission Request",
-            html: '<div>Title: '+title+'<br>Author: '+author+'<br>Email: '+email+'<br>Image Src: '+image+'<br>Body: '+body+'</div>'
+            html: '<div>Title: '+title+'<br>Author: '+author+ '<br>Username: '+username+'<br>Email: '+email+'<br>Image Src: '+image+'<br>Body: '+body+'</div>'
         }
         transporter.sendMail(mailOptions, (err, info) => {
             if(err)
@@ -26,8 +26,8 @@ module.exports = {
             else
                 console.log(title);
             });
-    },
-    welcomeUser: function(userEmail, name){
+    }
+  /*   welcomeUser: function(userEmail, name){
 
         var transporter = nodemailer.createTransport({
             service: 'gmail',
@@ -56,6 +56,6 @@ module.exports = {
             else
                 console.log(payload);
             });
-        });
-    }
+        }); 
+    } */
 }
