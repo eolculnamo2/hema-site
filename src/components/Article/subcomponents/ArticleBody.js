@@ -10,9 +10,11 @@ class ArticleBody extends React.Component {
         if(this.props.type === ""){
         return(
             <div>
-                <p>
-                By: {this.props.author}
-                </p>
+                <a href={"https://www.sword-point.com/profile/"+this.props.username}>
+                    <p className="author-link">
+                    By: {this.props.author}
+                    </p>
+                </a>
                 <img src={this.props.image} alt={this.props.title} />
                 <div>
                     {this.props.body.map( x => {

@@ -79,8 +79,8 @@ class Header extends React.Component {
                     <span id="dropdown-wrap">
                     <span id='dropdown-name'>Profile</span>
                     <ul className="dropdown-links">
-                        <li><Link to='/profile'>My Profile</Link></li>
-                        <li><Link to='/profile'>Edit Profile</Link></li>
+                        <Link to='/profile'><li>My Profile</li></Link>
+                        {/*<Link to='/profile'><li>Edit Profile</li></Link>*/}
                         <li onClick={this.logout.bind(this)}>Log Out</li>
                     </ul>
                     </span>
@@ -96,8 +96,8 @@ class Header extends React.Component {
                     <span id="dropdown-wrap">
                     <span id='dropdown-name'>Account</span>
                     <ul className="dropdown-links">
-                        <li><Link to='/login'>Login</Link></li>
-                        <li><Link to='/register'>Register</Link></li>
+                        <Link to='/login'><li>Login</li></Link>
+                        <Link to='/register'><li>Register</li></Link>
                     </ul>
                     </span>
                 </div>

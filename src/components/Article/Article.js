@@ -50,6 +50,7 @@ class Article extends React.Component {
                                  body={this.state.currentArticle.body}
                                  image={this.state.currentArticle.imgUrl}
                                  author={this.state.currentArticle.author}
+                                 username={this.state.currentArticle.username}
                                  type={this.state.currentArticle.type} />
                     <ArticleComments comments={this.state.currentArticle.comments}
                                      likes={this.state.currentArticle.likes}

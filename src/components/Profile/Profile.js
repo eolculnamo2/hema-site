@@ -2,33 +2,65 @@ import React from 'react'
 import Row1 from './subcomponents/Row1'
 import ProfileBody from './subcomponents/ProfileBody'
 
-let dummyUser = {
-    username: 'rbertram8',
-    displayName: 'Rob Bertram',
-    headline: 'Men are born, live, and die all in accordance with the same rules',
-    profileImage: 'https://scontent-dfw5-1.xx.fbcdn.net/v/t1.0-9/532906_10204962638530796_7958069283236317946_n.jpg?_nc_cat=0&oh=7f4ee6198bb3c2cc21743fbe1991c82c&oe=5BC92923',
-    location: 'Plano, TX',
-    group: 'ARMA Denton',
-    bestThree: ["Longsword", "Sword and Buckler", "Ringen"],
-    articles: [{title: "HEMA Beginner's Guide with Longsword", link: '/article/5b54246e5be0224195a7d1f4'},{title: "HEMA Beginner's Guide with Longsword", link: '/article/5b54246e5be0224195a7d1f4'}],
-    likedArticles: [],
-    contacts: [{image: "https://scontent-dfw5-1.xx.fbcdn.net/v/t1.0-9/36904785_10210620160934856_2083339715888545792_o.jpg?_nc_cat=0&oh=fccf0027f2325d315cb57980e1a8e557&oe=5BD73139"},
-                {image: "https://scontent-dfw5-1.xx.fbcdn.net/v/t1.0-9/36904785_10210620160934856_2083339715888545792_o.jpg?_nc_cat=0&oh=fccf0027f2325d315cb57980e1a8e557&oe=5BD73139"},
-                {image: "https://scontent-dfw5-1.xx.fbcdn.net/v/t1.0-9/36904785_10210620160934856_2083339715888545792_o.jpg?_nc_cat=0&oh=fccf0027f2325d315cb57980e1a8e557&oe=5BD73139"},
-                {image: "https://scontent-dfw5-1.xx.fbcdn.net/v/t1.0-9/36904785_10210620160934856_2083339715888545792_o.jpg?_nc_cat=0&oh=fccf0027f2325d315cb57980e1a8e557&oe=5BD73139"},
-                {image: "https://scontent-dfw5-1.xx.fbcdn.net/v/t1.0-9/36904785_10210620160934856_2083339715888545792_o.jpg?_nc_cat=0&oh=fccf0027f2325d315cb57980e1a8e557&oe=5BD73139"},
-                {image: "https://scontent-dfw5-1.xx.fbcdn.net/v/t1.0-9/36904785_10210620160934856_2083339715888545792_o.jpg?_nc_cat=0&oh=fccf0027f2325d315cb57980e1a8e557&oe=5BD73139"}],
-    groupMembers: []
-}
-
 class Profile extends React.Component {
+    constructor(){
+        super()
+        this.state={
+            userProfile: {},
+            isContact: true
+        }
+    }
+    componentWillMount(){
+        if(!this.props.match.params.profile){
+        fetch('/authenticate/getUserProfile',{
+            method: "POST",
+            body: null,
+            headers: { "Content-Type": "application/json" },
+            credentials: "same-origin"
+            })
+            .then( res => res.json())
+            .then( data => {
+                if (data.data !== false) {
+                    this.setState({userProfile: data.data})
+                }
+                else {
+                    window.location.replace("https://www.sword-point.com/")
+                }
+            })
+        }
+        else if(this.props.match.params.profile) {
+            fetch('/authenticate/getProfile',{
+                method: "POST",
+                body: JSON.stringify({profile: this.props.match.params.profile}),
+                headers: { "Content-Type": "application/json" },
+                credentials: "same-origin"
+                })
+                .then( res => res.json())
+                .then( data => {
+                    if (data.data !== false) {
+                        this.setState({userProfile: data.data, isContact: data.isContact})
+                    }
+                    else {
+                        alert("Profile Not Found!")
+                        window.location.replace("https://www.sword-point.com/")
+                    }
+                })
+            }
+        }
+
     render(){
+        if (this.state.userProfile.username) {
         return(
             <div>
-                <Row1 user={dummyUser} />
-                <ProfileBody user={dummyUser} />
+                <Row1 user={this.state.userProfile}
+                      isContact={this.state.isContact} />
+                <ProfileBody user={this.state.userProfile} />
             </div>
         )
+        }
+        else{
+            return(<div></div>)
+        }
     }
 }
 

@@ -7,6 +7,7 @@ let recaptcha = new Recaptcha(process.env.CAP_SITE, process.env.CAP_SECRET)
 let routes = ['/',
               '/articles',
               '/article/:article',
+              '/profile/:profile',
               '/contribute',
               '/gear-list',
               '/profile',

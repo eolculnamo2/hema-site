@@ -3,6 +3,7 @@ const request = require('request');
 const router = express.Router()
 const bodyParser = require('body-parser')
 const Article = require('../models/Article')
+const User = require('../models/User')
 const mailer = require('../services/mailer')
 
 router.use(bodyParser.json());
@@ -13,14 +14,18 @@ router.post('/new-article', (req,res) => {
         new Article({
             title: req.body.title,
             author: req.body.author,
+            username: req.body.username,
             imgUrl: req.body.imgUrl,
             body: req.body.body,
             date_written: new Date(),
             comments: [],
             likes: 0,
             type: ""
-        }).save().then(() => {
-            return res.send({data:'saved'})
+        }).save((err,article) => {
+            console.log(JSON.stringify(article))
+            User.findOneAndUpdate({username: req.body.username}, {$push: {articles: article}}, (err, response) => {
+                return res.send({data:'saved'})
+            })
         })
     }
     else{
@@ -76,7 +81,8 @@ router.post('/process-submission',(req,res) => {
         let x = JSON.parse(body)
         if(x.success == true){
             mailer.notifyOfEmail(req.body.title,
-                                 req.body.author, 
+                                 req.body.author,
+                                 req.body.username, 
                                  req.body.email, 
                                  req.body.image, 
                                  req.body.body)

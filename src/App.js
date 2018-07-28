@@ -50,15 +50,15 @@ class App extends React.Component {
                     <Route exact path='/' component={LandingPage} />
                     <Route exact path='/articles' component={Articles} />
                     <Route exact path='/contribute' component={Contribute} />
-                    {/* <Route exact path='/profile/:user' render={ props => (
-                        <Profile {...props} />
-                    )} /> */}
                     <Route exact path='/profile' component={Profile} />
                     <Route exact path='/register' component={Register} />
                     <Route exact path='/login' component={Login} />
                     <Route exact path='/article/:article' render={ props => (
                         <Article {...props} />
                     )} />
+                    {<Route exact path='/profile/:profile' render={ props => (
+                        <Profile {...props} />
+                    )} />}
                     <Route exact path='/admin' render={ () => (
                         <Admin />
                     )} />

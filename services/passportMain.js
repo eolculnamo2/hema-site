@@ -83,4 +83,49 @@ router.post('/checkLogin',(req,res) => {
   }
 })
 
+router.post('/getUserProfile',(req,res) => {
+  if(req.user){
+    res.json({data: req.user})
+  }
+  else if(!req.user){
+    res.json({data: false})
+  }
+})
+
+router.post('/getProfile', (req,res) => {
+  User.findOne({username: req.body.profile}, (err,response) => {
+    let isContact = false
+    if(req.user) {
+      for(let i=0; i<req.user.contacts.length; i++) {
+        if(response.username === req.user.contacts[i].username) {
+          isContact = true
+          break
+        }
+      }
+      if (req.user.username === response.username) {
+        isContact = true
+      }
+    }
+      if(response === null){
+          res.json({data: false})
+      }
+      else {
+          res.json({data: response, isContact: isContact})
+      }
+  })
+})
+
+router.post('/add-contact',(req,res) => {
+  if(req.user){
+    User.findOneAndUpdate({username: req.user.username}, {$push: {contacts:{
+      username: req.body.username,
+      image:req.body.image
+    }}}, (err,repsonse) => {
+      res.json({data: true})
+    })
+  }
+  else if(!req.user){
+    res.json({data: false})
+  }
+})
 module.exports = router

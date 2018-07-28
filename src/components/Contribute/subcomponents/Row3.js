@@ -4,30 +4,51 @@ class Row3 extends React.Component {
         super()
         this.state = {
             sending: false,
-            sent: false
+            sent: false,
+            userProfile: {}
         }
     }
-    makeSubmission(){
-        this.setState({sending: true})
-
-        let payload = {
-            title: document.getElementById('title').value,
-            email: document.getElementById('email').value,
-            author: document.getElementById('author').value,
-            image: document.getElementById('image').value,
-            body: document.getElementById('body').value,
-            captcha: document.getElementsByName('g-recaptcha-response')[0].value
-        }
-        fetch('/posts/process-submission',{
+    componentWillMount(){
+        fetch('/authenticate/getUserProfile',{
             method: "POST",
-            body: JSON.stringify(payload),
+            body: null,
             headers: { "Content-Type": "application/json" },
             credentials: "same-origin"
-        })
-        .then( res => res.json())
-        .then( data => {
-            this.setState({sending: false, sent: data.data === "sent" ? true : false})
-        })
+            })
+            .then( res => res.json())
+            .then( data => {
+                if (data.data !== false) {
+                    this.setState({userProfile: data.data})
+                }
+            })         
+    }
+    makeSubmission(){
+        if(this.state.userProfile.username) {
+            this.setState({sending: true})
+
+            let payload = {
+                title: document.getElementById('title').value,
+                email: this.state.userProfile.email,
+                author: this.state.userProfile.displayName,
+                username: this.state.userProfile.username,
+                image: document.getElementById('image').value,
+                body: document.getElementById('body').value,
+                captcha: document.getElementsByName('g-recaptcha-response')[0].value
+            }
+            fetch('/posts/process-submission',{
+                method: "POST",
+                body: JSON.stringify(payload),
+                headers: { "Content-Type": "application/json" },
+                credentials: "same-origin"
+            })
+            .then( res => res.json())
+            .then( data => {
+                this.setState({sending: false, sent: data.data === "sent" ? true : false})
+            })
+        }
+        else {
+            alert("Must be logged in to make article submission.")
+        }
     }
     render(){
         return(
@@ -45,20 +66,6 @@ class Row3 extends React.Component {
                             Title
                         </label>
                         <input id="title" className="sp-input" />
-                    </div>
-                    <div>
-                        <label>
-                            Email
-                        </label>
-                        <input id="email" className="sp-input" />
-                    </div>
-                </div>
-                <div className="flex-submission-inputs">
-                    <div>
-                        <label>
-                            Your Name
-                        </label>
-                        <input id="author" className="sp-input" />
                     </div>
                     <div>
                         <label>

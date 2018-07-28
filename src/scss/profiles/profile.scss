@@ -81,6 +81,7 @@
     margin-bottom: 3em;
     flex-wrap: wrap;
     min-width: 175px;
+    text-transform: capitalize;
 
     @media (max-width: $medium) {
         margin-bottom: 0;
