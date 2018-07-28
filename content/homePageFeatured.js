@@ -17,7 +17,7 @@ module.exports = [
     },
     {
         title: "Unarmed VS Armed Combat Training: A Case For The Sword",
-        author: "Allan Wissen",
+        author: "Tal Silver",
         preview: "Every martial art has an emphasis on one or two aspects of combat. Some focus on grappling while others focus on striking. Some focus on sword, others focus on fist and so on. However, all aspects of martial arts are important. One cannot learn one aspect without learning the other or else the art is incomplete. Though it is important to train in all aspects, armed combat (especially with the long sword either single edged or double edged) should be the focus of all martial arts training.",
         image: "https://image.ibb.co/ef0ReJ/tal_armor.jpg",
         color: "#C96567",

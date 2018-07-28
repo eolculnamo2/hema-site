@@ -29,4 +29,8 @@ router.get('/sitemap',(req,res) => {
     res.sendFile(path.join(__dirname,'..','/assets/dist/sitemap.xml'))
 })
 
+router.get('/googleae3ac4f178c3c8ea.html', (req,res) => {
+    res.sendFile(path.join(__dirname,'..','/public/googleae3ac4f178c3c8ea.html'))
+})
+
 module.exports = router
