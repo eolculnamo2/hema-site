@@ -11,7 +11,8 @@ let routes = ['/',
               '/gear-list',
               '/profile',
               '/admin',
-              '/register']
+              '/register',
+              '/login']
 
 routes.forEach( x => {
     router.get(x,(req,res) => {

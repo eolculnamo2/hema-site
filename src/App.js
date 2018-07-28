@@ -12,9 +12,25 @@ import Contribute from './components/Contribute/Contribute';
 import Profile from './components/Profile/Profile';
 import Admin from './components/Admin/Admin';
 import Register from './components/Authenticate/Register'
+import Login from './components/Authenticate/Login';
 
 
 class App extends React.Component {
+    constructor(){
+        super()
+        this.state = {
+            loggedIn: false
+        }
+    }
+    componentWillMount(){
+        fetch('/authenticate/checkLogin')
+        .then(res => res.json())
+        .then(data => {
+            if (data.loggedIn) {
+                this.setState({loggedIn: true})
+            }
+        })
+    }
     render() {
         return(
             <div>
@@ -34,6 +50,7 @@ class App extends React.Component {
                     )} /> */}
                     <Route exact path='/profile' component={Profile} />
                     <Route exact path='/register' component={Register} />
+                    <Route exact path='/login' component={Login} />
                     <Route exact path='/article/:article' render={ props => (
                         <Article {...props} />
                     )} />

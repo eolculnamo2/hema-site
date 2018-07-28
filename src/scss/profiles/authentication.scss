@@ -16,6 +16,11 @@
     justify-content: space-between;
     flex-wrap: wrap;
 
+    &--login {
+        flex-direction: column;
+        align-items: center;
+    }
+
     @media (max-width: $medium) {
         justify-content: space-around;
         flex-direction: column;
@@ -28,6 +33,7 @@
 
 .registration__explain {
     display: block;
+    margin: 0;
     text-align: center;
 }
 

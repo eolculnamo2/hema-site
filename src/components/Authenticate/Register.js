@@ -6,7 +6,7 @@ class Authenticate extends React.Component {
     render(){
         return(
             <div>
-                <Row1 />
+                <Row1 heading="Create Profile" />
                 <RegistrationForm />
             </div>
         )

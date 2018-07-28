@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Row1 = () => {
+const Row1 = props => {
     return(
         <div className='row1-wrapper'>
             <div>
                 <h3 className="title">
-                    Create Profile
+                    {props.heading}
                 </h3>
                 <p>
                     Rediscovering the Martial Arts of Renaissance Europe

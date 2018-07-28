@@ -21,9 +21,18 @@ passport.deserializeUser(User.deserializeUser());
 router.post('/register', (req, res) => {
   if(req.body.password === req.body.confirmPassword){
     User.register(new User({
-                             username : req.body.username.trim(),
-                             email: req.body.email.trim(),
-                             projects: [],
+                            username: req.body.username,
+                            email: req.body.email,
+                            displayName: req.body.displayName,
+                            headline: req.body.headline,
+                            profileImage: req.body.imageUrl,
+                            location: req.body.location,
+                            group: req.body.studyGroup,
+                            bestThree: [req.body.skill1,req.body.skill2,req.body.skill3],
+                            articles: [],
+                            likedArticles: [],
+                            contacts: [],
+                            groupMembers: []
                              }), req.body.password.trim(), (err, account) => {
         if (err) {
             console.log(err.message)
@@ -32,13 +41,13 @@ router.post('/register', (req, res) => {
         else{
         passport.authenticate('local')(req, res, () => {
             mailer.welcomeUser(req.body.email, req.body.username)
-            res.send({name: 'authenticated', user: req.user.username.trim()})
+            res.send({name: 'authenticated', user: req.user.username.trim(), data: "Registration Successful!"})
         })
         }
     })
   }
   else{
-    res.send({name: "invalid-credentials"});
+    res.send({data: "Passwords Do Not Match"});
   }
 })
 
@@ -46,13 +55,15 @@ router.post('/register', (req, res) => {
 router.post('/login', passport.authenticate('local'),(req, res) => {
   if (!req.user) {
     res.send({
-      name: 'invalid-credentials'
+      name: 'invalid-credentials',
+      data: "Login Failed. Please try Again."
     })
   }
   else if (req.user) {
       res.send({
         name: 'authenticated',
-        user: req.user.username.trim()
+        user: req.user.username.trim(),
+        data: "Login Successful!"
       })
   }
 })
@@ -65,10 +76,10 @@ router.get('/logout',(req,res) => {
 
 router.post('/checkLogin',(req,res) => {
   if(req.user){
-    res.json({name: true, user: req.user.username.trim()})
+    res.json({loggedIn: true, user: req.user.username.trim()})
   }
   else if(!req.user){
-    res.json({name: false})
+    res.json({loggedIn: false})
   }
 })
 
