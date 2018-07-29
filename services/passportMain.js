@@ -36,11 +36,10 @@ router.post('/register', (req, res) => {
                              }), req.body.password.trim(), (err, account) => {
         if (err) {
             console.log(err.message)
-            res.send(err.message)
+            res.send({data: err.message})
         }
         else{
         passport.authenticate('local')(req, res, () => {
-            mailer.welcomeUser(req.body.email, req.body.username)
             res.send({name: 'authenticated', user: req.user.username.trim(), data: "Registration Successful!"})
         })
         }
