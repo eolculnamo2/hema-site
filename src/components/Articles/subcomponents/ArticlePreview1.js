@@ -4,7 +4,7 @@ const ArticlePreview1 = props => {
     return(
         <div className="article-preview1-wrap">
             <div className="preview-header" style={{background: props.content.color}}>
-                <a href={'/article/'+props.content.linkId}>
+                <a className="a-no-color" href={'/article/'+props.content.linkId}>
                     {props.content.title}
                 </a>
             </div>
