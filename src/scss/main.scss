@@ -30,6 +30,12 @@ a {
     @media (max-width: $medium) {
         width: 95%;
     }
+
+    &--maintain-width {
+        @media (max-width: $medium) {
+            width: 200px;
+        }
+    }
 }
 
 .subtitle {

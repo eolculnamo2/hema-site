@@ -46,13 +46,13 @@ class LoginForm extends React.Component {
                             <p>
                                 Username
                             </p>
-                            <input id="username" className="sp-input" />
+                            <input id="username" className="sp-input sp-input--maintain-width" />
                         </div>
                         <div className="registration__input">
                             <p>
                                 Password
                             </p>
-                            <input id="password" className="sp-input" type="password" />
+                            <input id="password" className="sp-input sp-input--maintain-width" type="password" />
                         </div>
                    <button type="button" 
                             style={{marginBottom: "12em"}}
