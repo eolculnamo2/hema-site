@@ -25,9 +25,13 @@
         padding: 1em;
     }
 
+    input{
+        margin: 5px
+    }
+
     textarea {
+        margin: 5px;
         width: 100%;
-        height: 200px;
     }
 }
 
@@ -61,4 +65,49 @@
         width: 100%;
     }
 
+}
+
+//Start Preview
+.preview__wrap{
+    width: 90%;
+    border: 1px solid $darker3;
+    font-size: 10px;
+    padding: 1em;
+    
+    h3{
+        font-size: 12px;
+    }
+    .full{
+        margin: auto;
+        display: block;
+    }
+
+    .float-right {
+        width: 25%;
+        float: right;
+    }
+    .float-left {
+        width: 25%;
+        float: left;
+    }
+}
+
+.add-el-button{
+    background: $fl-green;
+    display: block;
+}
+
+.el-option-button{
+    background: $dark-navy;
+    color: white;
+}
+.new-li{
+    display: block
+}
+
+.preview__item{
+    cursor: pointer;
+    &:hover{
+        opacity: .7;
+    }  
 }
