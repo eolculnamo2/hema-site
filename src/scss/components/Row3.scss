@@ -26,12 +26,13 @@
     }
 
     input{
-        margin: 5px
+        margin: 5px 0;
     }
 
     textarea {
-        margin: 5px;
-        width: 100%;
+        margin: 5px 0;
+        width: 99%;
+        height: 75px;
     }
 }
 
@@ -95,6 +96,33 @@
 .add-el-button{
     background: $fl-green;
     display: block;
+    padding: 1em;
+    border: 0;
+    border-radius: 3px;
+    cursor: pointer;
+    outline: none;
+    margin: 2px 0;
+    margin-right: 2px;
+
+    &:hover{
+        opacity: .7;
+    }
+}
+
+.blue-option-buttons {
+    background: $dark-navy;
+    padding: 1em;
+    border: 0;
+    border-radius: 3px;
+    color: white;
+    cursor: pointer;
+    outline: none;
+    margin: 2px 0;
+    margin-right: 2px;
+
+    &:hover{
+        opacity: .7;
+    }
 }
 
 .el-option-button{
@@ -110,4 +138,26 @@
     &:hover{
         opacity: .7;
     }  
+}
+
+.submission__flex {
+    display: flex;
+    width: 100%;
+    font-size: 14px;
+
+    button {
+        width: 100%;
+        padding: 1em;
+        outline: none;
+        cursor: pointer;
+
+        &:hover{
+            opacity: .7;
+        }
+    }
+}
+
+.submission__selected-option {
+    background: $faded-blue;
+    text-decoration: underline;
 }
