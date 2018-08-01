@@ -89,7 +89,7 @@ class Row3 extends React.Component {
             <div>
                 <textarea class="new-p" />
                 <button className="add-el-button" type="button" onClick={this.addElement.bind(this,'p',document.getElementsByClassName('new-p'))}>
-                    +Add Paragraph+
+                    Add Paragraph
                 </button>
             </div>)
         }
@@ -98,7 +98,7 @@ class Row3 extends React.Component {
             <div>
                 <input class="sp-input new-h" />
                 <button className="add-el-button" type="button" onClick={this.addElement.bind(this,'h3',document.getElementsByClassName('new-h'))}>
-                    +Add Header+
+                    Add Header
                 </button>
             </div>)
         }
@@ -106,27 +106,38 @@ class Row3 extends React.Component {
             return( 
             <div>
                 <p>
-                    Image Type: {this.state.imageType}
+                    Image Type: {this.state.imageType === 'full' ? "Full"
+                                    : this.state.imageType === 'float-right' ? "Float Right"
+                                        : "Float Left"}
                 </p>
                 <p>
-                    Image Width: {this.state.width}
+                    Image Width: {this.state.width + "%"} 
                 </p>
                 <input placeholder="Enter Image Url" className="sp-input new-img" /><br/>
-                <input className="sp-input" placeholder={"width: "+this.state.width} id="adjust-width"/><br/>
-                <button type="button" onClick={()=>{this.setState({width: document.getElementById('adjust-width').value})}}>
-                    Update Width
+                <input className="sp-input" placeholder={"width: "+this.state.width} id="adjust-width" type="number" min="0" max="100" />
+                <button type="button" 
+                        className="blue-option-buttons"
+                        onClick={()=>{this.setState({width: parseInt(document.getElementById('adjust-width').value) !== NaN ? document.getElementById('adjust-width').value : 25})}}>
+                    Set Width
                 </button>
-                <button type="button" onClick={()=>{this.setState({imageType: 'full'})}}>
-                    Standard Image
+                <br/>
+                <button type="button" 
+                        className={this.state.imageType === 'full' ? 'blue-option-buttons submission__selected-option' : 'blue-option-buttons'}
+                        onClick={()=>{this.setState({imageType: 'full'})}}>
+                    Full
                 </button>
-                <button type="button" onClick={()=>{this.setState({imageType: 'float-right'})}}>
+                <button type="button" 
+                        className={this.state.imageType === 'float-right' ? 'blue-option-buttons submission__selected-option' : 'blue-option-buttons'}
+                        onClick={()=>{this.setState({imageType: 'float-right'})}}>
                     Float Right
                 </button>
-                <button type="button" onClick={()=>{this.setState({imageType: 'float-left'})}}>
+                <button type="button" 
+                        className={this.state.imageType === 'float-left' ? 'blue-option-buttons submission__selected-option' : 'blue-option-buttons'}
+                        onClick={()=>{this.setState({imageType: 'float-left'})}}>
                     Float Left
                 </button>
                 <button className="add-el-button" type="button" onClick={this.addElement.bind(this,'img',document.getElementsByClassName('new-img'))}>
-                    +Add Image+
+                    Add Image
                 </button>
             </div>)
         }
@@ -137,14 +148,18 @@ class Row3 extends React.Component {
                    return(<input className="sp-input new-li"/>)
                 })}
                 
-                <button type="button" onClick={this.addOrDeleteListItem.bind(this,true)}>
+                <button className="blue-option-buttons" 
+                        type="button" 
+                        onClick={this.addOrDeleteListItem.bind(this,true)}>
                     Add Item
                 </button>
-                <button type="button" onClick={this.addOrDeleteListItem.bind(this,false)}>
+                <button type="button" 
+                        className="blue-option-buttons"
+                        onClick={this.addOrDeleteListItem.bind(this,false)}>
                     Delete Item
                 </button>
                 <button className="add-el-button" type="button" onClick={this.addElement.bind(this,'li',document.getElementsByClassName('new-li'))}>
-                    +Add List+
+                    Add List
                 </button>
             </div>)
         }
@@ -205,18 +220,28 @@ class Row3 extends React.Component {
                         <input id="title" className="sp-input" />
                     </div>
                 </div>
-                <button className="el-option-button" type="button" onClick={()=>{this.setState({currentElement: 'h3'})}}>
-                    Add Header
-                </button>
-                <button className="el-option-button" type="button" onClick={()=>{this.setState({currentElement: 'p'})}}>
-                    Add Paragraph
-                </button>
-                <button className="el-option-button" type="button" onClick={()=>{this.setState({currentElement: 'img'})}}>
-                    Add Image
-                </button>
-                <button className="el-option-button" type="button" onClick={()=>{this.setState({currentElement: 'li'})}}>
-                    Add List
-                </button>
+                <div className="submission__flex">
+                    <button className={this.state.currentElement === 'h3' ? 'submission__selected-option el-option-button' : "el-option-button"}
+                            type="button" 
+                            onClick={()=>{this.setState({currentElement: 'h3'})}}>
+                        Add Header
+                    </button>
+                    <button className={this.state.currentElement === 'p' ? 'submission__selected-option el-option-button' : "el-option-button"} 
+                            type="button" 
+                            onClick={()=>{this.setState({currentElement: 'p'})}}>
+                        Add Paragraph
+                    </button>
+                    <button className={this.state.currentElement === 'img' ? 'submission__selected-option el-option-button' : "el-option-button"} 
+                            type="button" 
+                            onClick={()=>{this.setState({currentElement: 'img'})}}>
+                        Add Image
+                    </button>
+                    <button className={this.state.currentElement === 'li' ? 'submission__selected-option el-option-button' : "el-option-button"} 
+                            type="button" 
+                            onClick={()=>{this.setState({currentElement: 'li'})}}>
+                        Add List
+                    </button>
+                </div>
 
                 {this.showCurrentElement()}
                 {this.previewUI()}
