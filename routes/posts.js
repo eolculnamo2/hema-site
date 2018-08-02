@@ -79,12 +79,13 @@ router.post('/process-submission',(req,res) => {
     let verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" + process.env.CAP_SECRET + "&response=" + req.body.captcha
     request(verificationUrl,function(error,response,body) {
         let x = JSON.parse(body)
+        console.log(x.success)
         if(x.success == true){
             mailer.notifyOfEmail(req.body.title,
                                  req.body.author,
                                  req.body.username, 
                                  req.body.email, 
-                                 req.body.image, 
+                                 "", 
                                  req.body.body)
                 return res.send({data: "sent"})
             }
