@@ -70,14 +70,6 @@ class Row3 extends React.Component {
         }
         this.setState({addedElements: x})
     }
-    askDelete(i){
-        let x = confirm("Do you want to delete this element?")
-        if(x){
-            let arr = this.state.addedElements
-            arr.splice(i,1)
-            this.setState({addedElements: arr})
-        }
-    }
     addOrDeleteListItem(add){
         let arr = this.state.items
         add ? arr.push(1) : arr.splice(arr.length-1,1)
@@ -167,26 +159,24 @@ class Row3 extends React.Component {
     previewUI(){
         return(
             <div className="preview__wrap"
-                 style={{display: this.state.addedElements.length === 0 ? 'none' : 'block'}}>
+                 style={{display: this.state.addedElements.length === 0 ? 'none' : 'block'}}
+                 contenteditable="true">
             {this.state.addedElements.map( (x,i) => {
                 if(x.type === 'img') {
-                    return (<img onClick={this.askDelete.bind(this,i)}
+                    return (<img
                                 style={{width: x.imageWidth+'%'}} 
                                 className={x.imageType+' preview__item'} 
                                 src={x.value}/>)
                 }
                 else if(x.type === 'p'){
-                    return (<p className="preview__item"
-                               onClick={this.askDelete.bind(this,i)}>{x.value}</p>)
+                    return (<p className="preview__item">{x.value}</p>)
                 }
                 else if(x.type === 'h3'){
-                    return (<h3 className="preview__item"
-                               onClick={this.askDelete.bind(this,i)}>{x.value}</h3>)
+                    return (<h3 className="preview__item">{x.value}</h3>)
                 }
                 else if(x.type === 'li'){
                     return(
-                    <ul className="preview__item"
-                    onClick={this.askDelete.bind(this,i)}>
+                    <ul className="preview__item">
                         {x.values.map(y => {
                             return ( <li>{y}</li>)
                         })}

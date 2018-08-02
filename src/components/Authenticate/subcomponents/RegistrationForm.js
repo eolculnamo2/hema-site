@@ -114,7 +114,7 @@ class RegistrationForm extends React.Component {
                     <h3 className="registration__header">
                         Top 3
                     </h3>
-                    <em className="registration__explain">What are you best at (i.e. Longsword, Sword and Buckler, Ringer)</em>
+                    <em className="registration__explain">What are you best at (i.e. Longsword, Sword and Buckler, Ringen)</em>
                     <div className="registration__flex-inputs">
                         <div className="registration__input">
                             <p>
