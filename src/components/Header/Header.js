@@ -50,9 +50,11 @@ class Header extends React.Component {
     }
     logout(){
         fetch('/authenticate/logout',{
+            method: "POST",
+            body: null,
             headers: { "Content-Type": "application/json" },
             credentials: "same-origin"
-        })
+            })
         .then(res => res.json())
         .then(data => {
             alert(data.data)

@@ -27,7 +27,14 @@ class LoginForm extends React.Component {
             headers: { "Content-Type": "application/json" },
             credentials: "same-origin"
             })
-            .then( res => res.json())
+            .then( res => {
+                if(res.status === 200){
+                    return res.json()
+                }
+                else {
+                    alert("Login Failed")
+                }
+            })
             .then( data => {
                 alert(data.data)
                 document.location.replace("https://www.sword-point.com/")
@@ -55,7 +62,7 @@ class LoginForm extends React.Component {
                             <input id="password" className="sp-input sp-input--maintain-width" type="password" />
                         </div>
                    <button type="button" 
-                            style={{marginBottom: "12em"}}
+                           style={{marginBottom: "12em"}}
                            className="registration__button"
                            onClick={this.login.bind(this)}
                             >

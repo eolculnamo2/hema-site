@@ -52,6 +52,7 @@ router.post('/register', (req, res) => {
 
 //Login
 router.post('/login', passport.authenticate('local'),(req, res) => {
+  console.log('here')
   if (!req.user) {
     res.send({
       name: 'invalid-credentials',
@@ -68,9 +69,9 @@ router.post('/login', passport.authenticate('local'),(req, res) => {
 })
 
 //Logout
-router.get('/logout',(req,res) => {
+router.post('/logout',(req,res) => {
   req.logout();
-  res.send({data: 'You are logged out.'})
+  return res.send({data: 'You are logged out.'})
 })
 
 router.post('/checkLogin',(req,res) => {
