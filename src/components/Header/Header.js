@@ -25,22 +25,12 @@ class Header extends React.Component {
     componentDidMount() {
         window.addEventListener('click', e => {
             if (window.innerWidth < 801) {
-                 if (e.target.id === 'arrow-wrapper') {
-                     this.menuVisible(true) 
-                 }
-                 else {
-                     this.menuVisible(false)
-                 }
+                e.target.id === 'arrow-wrapper' || e.target.className.split(" ")[0] === 'down-arrow' ? this.menuVisible(true) : this.menuVisible(false)
              }
         })
  
         window.addEventListener('resize', () => {
-             if (window.innerWidth < 801) {
-                 this.menuVisible(false)
-             }
-             else {
-                 this.menuVisible(true)
-             }
+             window.innerWidth < 801 ? this.menuVisible(false) : this.menuVisible(true)
         })
     }
     menuVisible(show) {

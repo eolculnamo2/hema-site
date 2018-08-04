@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { BrowserRouter as Router, Link, Route, withRouter, Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Link, Route, withRouter, Redirect, Switch } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
@@ -13,6 +13,7 @@ import Profile from './components/Profile/Profile';
 import Admin from './components/Admin/Admin';
 import Register from './components/Authenticate/Register'
 import Login from './components/Authenticate/Login';
+import FourOhFour from './components/FourOhFour/FourOhFour'
 
 
 class App extends React.Component {
@@ -47,6 +48,7 @@ class App extends React.Component {
                     <meta name="keywords" content="HEMA, ARMA, longsword, spear, sword, buckler, pike, staff, mma, martial arts, wrestling, grappling, boxing, fighting, fight, learn, gear, fencing" />
                 </Helmet>
                 <Header />
+                <Switch>
                     <Route exact path='/' component={LandingPage} />
                     <Route exact path='/articles' component={Articles} />
                     <Route exact path='/contribute' component={Contribute} />
@@ -62,6 +64,8 @@ class App extends React.Component {
                     <Route exact path='/admin' render={ () => (
                         <Admin />
                     )} />
+                    <Route component={FourOhFour}/>
+                </Switch>
                 <Footer />
            </div>
         )
