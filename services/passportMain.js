@@ -52,7 +52,6 @@ router.post('/register', (req, res) => {
 
 //Login
 router.post('/login', passport.authenticate('local'),(req, res) => {
-  console.log('here')
   if (!req.user) {
     res.send({
       name: 'invalid-credentials',
