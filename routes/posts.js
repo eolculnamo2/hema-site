@@ -52,7 +52,7 @@ router.post('/get-article', (req,res) => {
     }
 })
 
-router.get('/get-all-articles',(req,res) => {
+router.post('/get-all-articles',(req,res) => {
     Article.find({}, (err,result)=>{
         res.send(result)
     })

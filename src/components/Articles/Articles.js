@@ -12,7 +12,12 @@ class Articles extends React.Component {
         }
     }
     componentWillMount(){
-        fetch('/posts/get-all-articles')
+        fetch('/posts/get-all-articles',{
+        method: "POST",
+        body: null,
+        headers: { "Content-Type": "application/json" },
+        credentials: "same-origin"
+        })
         .then( res => res.json())
         .then( data => {
             this.setState({articles: data})
