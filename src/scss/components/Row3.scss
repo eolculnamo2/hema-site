@@ -62,6 +62,10 @@
         background: $light-gray;
     }
 
+    &--reset{
+        background: $danger-red;
+    }
+
     @media (max-width: $medium){
         width: 100%;
     }

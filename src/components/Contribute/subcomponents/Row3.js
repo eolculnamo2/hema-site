@@ -5,7 +5,7 @@ class Row3 extends React.Component {
         this.state = {
             sending: false,
             sent: false,
-            addedElements: [],
+            addedElements: JSON.parse(sessionStorage.getItem('addedElements')) || [],
             items: [1],
             currentElement: 'p',
             imageType: 'full',
@@ -156,7 +156,15 @@ class Row3 extends React.Component {
             </div>)
         }
     }
+    resetArticle(){
+        let test = confirm('Are you sure you want to delete your work?')
+        if (test) {
+            this.setState({addedElements: []})
+        }
+    }
+
     previewUI(){
+        sessionStorage.setItem("addedElements", JSON.stringify(this.state.addedElements));
         return(
             <div className="preview__wrap"
                  style={{display: this.state.addedElements.length === 0 ? 'none' : 'block'}}
@@ -241,6 +249,10 @@ class Row3 extends React.Component {
                         type="button"
                         className={this.state.sending ? "submissions-button submissions-button--sending" : "submissions-button"}>
                     Submit Article
+                </button>
+                <button onClick={this.resetArticle.bind(this)}
+                        className={this.state.sending ? "submissions-button submissions--reset submissions-button--sending" : "submissions-button submissions-button--reset"}>
+                    Reset Article
                 </button>
                 <em style={{display: this.state.sent ? 'block' : 'none'}}>
                     Thank you for your submission! We will be in contact upon review of your post.
