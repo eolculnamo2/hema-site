@@ -57,3 +57,9 @@ a {
 .underline{
     text-decoration: underline;
 }
+
+.validation-error {
+    display: none;
+    color: $faded-red;
+    font-size: 12px;
+}

@@ -1,38 +1,55 @@
 import React from 'react'
 
 class RegistrationForm extends React.Component {
+    checkRequired(){
+        //required validations.
+       let validated = true;
+       let required = document.getElementsByClassName('register-required');
+       let validationError = document.getElementsByClassName('validation-error');
+       Array.prototype.forEach.call(required,(x,i) => {
+           if(x.value === '' || x.value === undefined || x.value === null) {
+                validationError[i].style.display = 'block';
+                validated = false;
+           }
+           else {
+            validationError[i].style.display = 'none';
+           }
+       })
+       return validated;
+    }
     createUser(){
-        //need to add front end validations
-        let payload = {
-            username: document.getElementById('username').value.toLowerCase().trim(),
-            email: document.getElementById('email').value.trim(),
-            confirmEmail: document.getElementById('confirmEmail').value.trim(),
-            password: document.getElementById('password').value.trim(),
-            confirmPassword: document.getElementById('confirmPassword').value.trim(),
-            displayName: document.getElementById('displayName').value.toLowerCase().trim(),
-            imageUrl: document.getElementById('imageUrl').value.trim(),
-            location: document.getElementById('location').value.trim(),
-            studyGroup: document.getElementById('studyGroup').value.toLowerCase().trim(),
-            headline: document.getElementById('headline').value.trim(),
-            skill1: document.getElementById('skill1').value.toLowerCase().trim(),
-            skill2: document.getElementById('skill2').value.toLowerCase().trim(),
-            skill3: document.getElementById('skill3').value.toLowerCase().trim(),
-        }
+        if(this.checkRequired()){
+            let payload = {
+                username: document.getElementById('username').value.toLowerCase().trim(),
+                email: document.getElementById('email').value.trim(),
+                confirmEmail: document.getElementById('confirmEmail').value.trim(),
+                password: document.getElementById('password').value.trim(),
+                confirmPassword: document.getElementById('confirmPassword').value.trim(),
+                displayName: document.getElementById('displayName').value.toLowerCase().trim(),
+                imageUrl: document.getElementById('imageUrl').value.trim(),
+                location: document.getElementById('location').value.trim(),
+                studyGroup: document.getElementById('studyGroup').value.toLowerCase().trim(),
+                headline: document.getElementById('headline').value.trim(),
+                skill1: document.getElementById('skill1').value.toLowerCase().trim(),
+                skill2: document.getElementById('skill2').value.toLowerCase().trim(),
+                skill3: document.getElementById('skill3').value.toLowerCase().trim(),
+            }
 
-        if(payload.email !== payload.confirmEmail) {
-            alert("Email and Confirm Email Must Match")
-        }
-        else if(payload.password !== payload.confirmPassword) {
-            alert("Password and Confirm Password Must Match")
-        }
-        else {
-        fetch('/authenticate/register',{
-            method: "POST",
-            body: JSON.stringify(payload),
-            headers: { "Content-Type": "application/json" }
-            })
-            .then( res => res.json())
-            .then( data => alert(data.data))
+            if(payload.email !== payload.confirmEmail) {
+                alert("Email and Confirm Email Must Match")
+            }
+            else if(payload.password !== payload.confirmPassword) {
+                alert("Password and Confirm Password Must Match")
+            }
+            else {
+            fetch('/authenticate/register',{
+                method: "POST",
+                body: JSON.stringify(payload),
+                headers: { "Content-Type": "application/json" }
+                })
+                .then( res => res.json())
+                .then( data => alert(data.data))
+            }
         }
     }
     render(){
@@ -45,39 +62,45 @@ class RegistrationForm extends React.Component {
                     <div className="registration__flex-inputs">
                         <div className="registration__input">
                             <p>
-                                Username
+                                Username*
                             </p>
-                            <input id="username" className="sp-input" />
+                            <input id="username" className="sp-input register-required" />
+                            <br/><span class='validation-error'>This field is required</span>
                         </div>
                         <div className="registration__input">
                             <p>
-                                Display Name
+                                Display Name*
                             </p>
-                            <input id="displayName" className="sp-input" placeholder="FirstName LastName" />
+                            <input id="displayName" className="sp-input register-required" placeholder="FirstName LastName" />
+                            <br/><span class='validation-error'>This field is required</span>
                         </div>
                         <div className="registration__input">
                             <p>
-                                Email
+                                Email*
                             </p>
-                            <input id="email" className="sp-input" />
+                            <input id="email" className="sp-input register-required" />
+                            <br/><span class='validation-error'>This field is required</span>
                         </div>
                         <div className="registration__input">
                             <p>
-                                Confirm Email
+                                Confirm Email*
                             </p>
-                            <input id="confirmEmail" className="sp-input" />
+                            <input id="confirmEmail" className="sp-input register-required" />
+                            <br/><span class='validation-error'>This field is required</span>
                         </div>
                         <div className="registration__input">
                             <p>
-                                Password
+                                Password*
                             </p>
-                            <input id="password" className="sp-input" type="password" />
+                            <input id="password" className="sp-input register-required" type="password" />
+                            <br/><span class='validation-error'>This field is required</span>
                         </div>
                         <div className="registration__input">
                             <p>
-                                Confirm Password
+                                Confirm Password*
                             </p>
-                            <input id="confirmPassword" className="sp-input" type="password" />
+                            <input id="confirmPassword" className="sp-input register-required" type="password" />
+                            <br/><span class='validation-error'>This field is required</span>
                         </div>
                     </div>
                 </div>
