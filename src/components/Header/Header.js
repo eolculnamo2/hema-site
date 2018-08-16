@@ -66,8 +66,24 @@ class Header extends React.Component {
             return(
                 <div className="links">
                     <Link to='/'><span>Home</span></Link>
-                    <Link to='/articles'><span>Articles</span></Link>
-                    <Link to='/contribute'><span>Contribute</span></Link>
+                    <span id="dropdown-wrap">
+                        <span id='dropdown-name'>Articles</span>
+                        <ul className="dropdown-links">
+                            <Link to='/articles'><li>View All</li></Link>
+                            <Link to='/contribute'><li>Contribute</li></Link>
+                        </ul>
+                    </span>
+
+                    <span id="dropdown-wrap">
+                        <span id='dropdown-name'>Tournaments</span>
+                        <ul className="dropdown-links">
+                            <Link to='/about-tournaments'><li>About</li></Link>
+                            <Link to='/contribute'><li>Current Events</li></Link>
+                            <Link to='/articles'><li>Host Event</li></Link>
+                            <Link to='/contribute'><li>Stats</li></Link>
+                        </ul>
+                    </span>
+                    
                     <span id="dropdown-wrap">
                     <span id='dropdown-name'>Profile</span>
                     <ul className="dropdown-links">
@@ -83,14 +99,30 @@ class Header extends React.Component {
             return(
                 <div className="links">
                     <Link to='/'><span>Home</span></Link>
-                    <Link to='/articles'><span>Articles</span></Link>
-                    <Link to='/contribute'><span>Contribute</span></Link>
                     <span id="dropdown-wrap">
-                    <span id='dropdown-name'>Account</span>
-                    <ul className="dropdown-links">
-                        <Link to='/login'><li>Login</li></Link>
-                        <Link to='/register'><li>Register</li></Link>
-                    </ul>
+                        <span id='dropdown-name'>Articles</span>
+                        <ul className="dropdown-links">
+                            <Link to='/articles'><li>View All</li></Link>
+                            <Link to='/contribute'><li>Contribute</li></Link>
+                        </ul>
+                    </span>
+
+                    <span id="dropdown-wrap">
+                        <span id='dropdown-name'>Tournaments</span>
+                        <ul className="dropdown-links">
+                            <Link to='/about-tournaments'><li>About</li></Link>
+                            <Link to='/contribute'><li>Current Events</li></Link>
+                            <Link to='/articles'><li>Host Event</li></Link>
+                            <Link to='/contribute'><li>Stats</li></Link>
+                        </ul>
+                    </span>
+                    
+                    <span id="dropdown-wrap">
+                        <span id='dropdown-name'>Account</span>
+                        <ul className="dropdown-links">
+                            <Link to='/login'><li>Login</li></Link>
+                            <Link to='/register'><li>Register</li></Link>
+                        </ul>
                     </span>
                 </div>
             )
