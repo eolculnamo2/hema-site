@@ -78,7 +78,7 @@ class Header extends React.Component {
                         <span id='dropdown-name'>Tournaments</span>
                         <ul className="dropdown-links">
                             <Link to='/about-tournaments'><li>About</li></Link>
-                            <Link to='/contribute'><li>Current Events</li></Link>
+                            <Link to='/create-tournaments'><li>Manage Events</li></Link>
                             <Link to='/articles'><li>Host Event</li></Link>
                             <Link to='/contribute'><li>Stats</li></Link>
                         </ul>
@@ -111,7 +111,7 @@ class Header extends React.Component {
                         <span id='dropdown-name'>Tournaments</span>
                         <ul className="dropdown-links">
                             <Link to='/about-tournaments'><li>About</li></Link>
-                            <Link to='/contribute'><li>Current Events</li></Link>
+                            <Link to='/create-tournaments'><li>Manage Events</li></Link>
                             <Link to='/articles'><li>Host Event</li></Link>
                             <Link to='/contribute'><li>Stats</li></Link>
                         </ul>
