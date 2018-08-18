@@ -9,7 +9,7 @@ let navButtons = [
     },
     {
         text: "Registration",
-        link: "/create-tournaments"
+        link: "/event-registration"
     }
 ]
 
@@ -51,7 +51,6 @@ const AboutTournaments = () => {
                     <RightInfo />
                 </div>
             </div>
-            
         </div>
     )
 }

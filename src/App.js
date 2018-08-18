@@ -15,6 +15,7 @@ import Register from './components/Authenticate/Register'
 import Login from './components/Authenticate/Login'
 import AboutTournaments from './components/Tournaments/AboutTournaments/AboutTournaments'
 import CreateTournament from './components/Tournaments/ManageEvents/CreateTournament'
+import RegisterForEvent from './components/Tournaments/RegisterForEvent/RegisterForEvent'
 import FourOhFour from './components/FourOhFour/FourOhFour'
 
 
@@ -59,6 +60,7 @@ class App extends React.Component {
                     <Route exact path='/login' component={Login} />
                     <Route exact path='/about-tournaments' component={AboutTournaments} />
                     <Route exact path='/create-tournaments' component={CreateTournament} />
+                    <Route exact path='/event-registration' component={RegisterForEvent} />
                     <Route exact path='/article/:article' render={ props => (
                         <Article {...props} />
                     )} />

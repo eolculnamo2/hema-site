@@ -1,5 +1,5 @@
 import React from 'react'
-import TournamentCard from './TournamentCard'
+import TournamentCard from '../../accessories/TournamentCard'
 
 let activeEvents = [
     {
