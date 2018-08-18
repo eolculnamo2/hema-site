@@ -1,5 +1,17 @@
 import React from 'react'
 import RightInfo from './subcomponents/RightInfo'
+import TopBar from '../accessories/TopBar';
+
+let navButtons = [
+    {
+        text: "Host Event",
+        link: "/create-tournaments"
+    },
+    {
+        text: "Registration",
+        link: "/create-tournaments"
+    }
+]
 
 const AboutTournaments = () => {
     return(
@@ -31,18 +43,13 @@ const AboutTournaments = () => {
                         Build tournament rosters and manage registration to events.
                     </li>
                 </ul>
-                <div className="tournaments__description-button-wrap">
-                    <button className="tournaments__description-button">
-                        Host Event
-                    </button>
-                    <button className="tournaments__description-button">
-                        Registration
-                    </button>
-                </div>
             </div>
             {/* Flexed Panel Two */}
-            <div className="tournaments__right-info">
-                <RightInfo />
+            <div>
+                <TopBar buttons={navButtons}/>
+                <div className="tournaments__right-info">
+                    <RightInfo />
+                </div>
             </div>
             
         </div>

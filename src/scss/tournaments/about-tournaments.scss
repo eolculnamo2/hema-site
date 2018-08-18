@@ -3,6 +3,10 @@
     @media(max-width: 950px) {
         flex-wrap: wrap;
     }
+
+    &--bg-gray {
+        background: $light-gray3;
+    }
 }
 //LEFT PANEL
 .tournaments__left-panel {
@@ -43,11 +47,12 @@
     border: 0;
     padding: 10px 15px;
     border-radius: 3px;
-    display: block;
     margin: auto;
     font-size: 14px;
-    width: 100%;
-    margin: .5em 0;
+    width: 200px;
+    margin: .5em;
+    outline: none;
+    
     &:hover {
         opacity: .7;
     }
@@ -61,6 +66,10 @@
 
 .tournaments__event-headings {
     font-weight: 400;
+
+    &--padded{
+        padding: .5em;
+    }
 }
 
 .tournament__tournament-card {
@@ -93,3 +102,10 @@
     }
 }
 
+.tournament__flex-navbar {
+    display: flex;
+    justify-content: space-between;
+    background: $light-gray3;
+    border-bottom: 1px solid $light-gray2;
+    align-items: center;
+}

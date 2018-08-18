@@ -19,3 +19,41 @@
         text-decoration: underline;
     }
 }
+
+.c-Tournament__form {
+    width: 700px;
+    border-right: 1px solid $light-gray2;
+    color: $darker3;
+}
+
+.c-Tournament__section {
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.c-Tournament-white-bg {
+    background: white;
+}
+
+.c-Tournament-input  {
+    width: 300px;
+    padding: 1em;
+    outline: 0;
+    border: 1px solid $light-gray2;
+    border-radius: 3px;
+
+    &:focus {
+        border: 1px solid $dark-navy;
+    }
+
+    &--radio {
+        width: 50px;
+    }
+}
+
+.c-Tournament-description {
+    width: 300px;
+    height: 200px;
+}
