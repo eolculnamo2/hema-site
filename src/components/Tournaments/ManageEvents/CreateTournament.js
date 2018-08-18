@@ -94,10 +94,19 @@ class CreateTournament extends React.Component {
                             <div className="c-Tournament__section">
                                 <div>
                                     <h2 className="tournaments__event-headings">
-                                        Tournament Logo
+                                        Tournament Logo URL
                                     </h2>
                                     <input className="c-Tournament-input" id="logo" placeholder="Optional" />
                                 </div>
+                            </div>
+
+                            <div className="c-Tournament__section c-Tournament__section--flex-start">
+                                <button type="button" className='c-Tournament-button c-Tournament-button--reset'>
+                                    Reset
+                                </button>
+                                <button type="button" className='c-Tournament-button c-Tournament-button--submit'>
+                                    Submit
+                                </button>
                             </div>
 
                         </div>
