@@ -21,7 +21,8 @@ router.post('/new-tournament',(req,res) => {
         cost: req.body.cost,
         description: req.body.description,
         logoUrl: req.body.logoUrl,
-        adminProfile: "TODO"
+        adminProfile: "TODO",
+        registeredParticipants: []
     }).save().then(() => res.send("check"))
 })
 

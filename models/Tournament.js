@@ -13,7 +13,8 @@ var Tournament = new Schema({
     cost: Number,
     description: String,
     logoUrl: String,
-    adminProfile: String
+    adminProfile: String,
+    registeredParticipants: Array
 })
 
 module.exports = mongoose.model('tournaments', Tournament)
