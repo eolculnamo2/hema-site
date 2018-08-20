@@ -3,6 +3,44 @@ import ManageLeftPanel from './ManageLeftPanel'
 import TopBar from '../accessories/TopBar'
 
 class CreateTournament extends React.Component {
+    submitForm(){
+        let payload = {
+            name: document.getElementById('tournament-name').value,
+            location: document.getElementById('tournament-location').value,
+            startDate: document.getElementById('start-date').value,
+            endDate: document.getElementById('end-date').value,
+            useSPRegistration: document.querySelector('input[name="use-registration"]:checked').value,
+            useKey: document.querySelector('input[name="use-key"]:checked').value,
+            cost: document.getElementById('registration-cost').value,
+            description: document.getElementById('description').value,
+            logo: document.getElementById('logo').value
+        }
+        
+        fetch('/tournaments/new-tournament',{
+            method: "POST",
+            body: JSON.stringify(payload),
+            headers: { "Content-Type": "application/json" },
+            credentials: "same-origin"
+            })
+        .then( res => res.json())
+        .then( data => {
+            alert('Tournament Created')
+            this.resetForm(true);
+        })
+    }
+    resetForm(x){
+        let test = confirm("Are you sure you want to reset your form?")
+
+        if(test || x) {
+            let els = document.getElementsByTagName('input')
+            Array.prototype.forEach.call(els, x => x.value = '')
+
+            let radios = document.getElementsByClassName('c-Tournament-input--radio')
+            Array.prototype.forEach.call(radios, x => x.checked = false)
+
+            document.getElementsByTagName('textarea')[0].value =''
+        }
+    }
     render(){
         return(
             <div className = "tournaments__main-wrap tournaments__main-wrap--bg-gray"> 
@@ -78,7 +116,7 @@ class CreateTournament extends React.Component {
                                     <h2 className="tournaments__event-headings">
                                         Registration Cost (USD)
                                     </h2>
-                                    <input className="c-Tournament-input" id="registration-cost" />
+                                    <input type="number" className="c-Tournament-input" id="registration-cost" />
                                 </div>
                             </div>
                             
@@ -101,14 +139,17 @@ class CreateTournament extends React.Component {
                             </div>
 
                             <div className="c-Tournament__section c-Tournament__section--flex-start">
-                                <button type="button" className='c-Tournament-button c-Tournament-button--reset'>
+                                <button type="button"
+                                        onClick={this.resetForm.bind(this)}
+                                        className='c-Tournament-button c-Tournament-button--reset'>
                                     Reset
                                 </button>
-                                <button type="button" className='c-Tournament-button c-Tournament-button--submit'>
+                                <button type="button" 
+                                        onClick={this.submitForm.bind(this)}
+                                        className='c-Tournament-button c-Tournament-button--submit'>
                                     Submit
                                 </button>
                             </div>
-
                         </div>
                     </div>
                 </div>

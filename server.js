@@ -12,6 +12,7 @@ app.use(helmet())
 const pages = require('./routes/pages')
 const posts = require('./routes/posts')
 const authenticate = require('./services/passportMain')
+const tournaments = require('./routes/tournaments')
 
 mongoose.connect(process.env.DB)
 mongoose.connection.once('open',()=>{
@@ -37,6 +38,7 @@ app.use(passport.session());
 app.use('/', pages)
 app.use('/posts', posts)
 app.use('/authenticate', authenticate)
+app.use('/tournaments', tournaments)
 
 app.listen(8080,() => {
     console.log("ON")

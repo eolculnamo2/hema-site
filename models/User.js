@@ -16,7 +16,10 @@ var User = new Schema({
     articles: Array,
     likedArticles: Array,
     contacts: Array,
-    groupMembers: Array
+    groupMembers: Array,
+    //Tournaments
+    hosting: Array,
+    registeredFor: Array
 })
 
 User.plugin(passportLocalMongoose);

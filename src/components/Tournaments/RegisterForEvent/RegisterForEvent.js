@@ -45,6 +45,7 @@ class RegisterForEvent extends React.Component {
                 <div className="c-Tournament-white-bg">
                     <TopBar title="Upcoming Events" buttons={[]}/>
                     <div className="tournaments__right-info">
+                        <em>Select An Event</em>
                         <div className="tournaments__flex-cards">
                             {upcomingTournaments.map((x,i) => {
                                 return (<div onClick={()=>{this.setState({selectedEvent: x, selectedIndex: i})}} 
