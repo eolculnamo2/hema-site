@@ -6,7 +6,9 @@ class CreateTournament extends React.Component {
     submitForm(){
         let payload = {
             name: document.getElementById('tournament-name').value,
-            location: document.getElementById('tournament-location').value,
+            city: document.getElementById('tournament-city').value,
+            state: document.getElementById('tournament-state').value,
+            country: document.getElementById('tournament-country').value,
             startDate: document.getElementById('start-date').value,
             endDate: document.getElementById('end-date').value,
             useSPRegistration: document.querySelector('input[name="use-registration"]:checked').value,
@@ -15,7 +17,7 @@ class CreateTournament extends React.Component {
             description: document.getElementById('description').value,
             logo: document.getElementById('logo').value
         }
-        
+
         fetch('/tournaments/new-tournament',{
             method: "POST",
             body: JSON.stringify(payload),
@@ -29,7 +31,11 @@ class CreateTournament extends React.Component {
         })
     }
     resetForm(x){
-        let test = confirm("Are you sure you want to reset your form?")
+        let test = false
+        
+        if(!x){
+             test = confirm("Are you sure you want to reset your form?")
+        }
 
         if(test || x) {
             let els = document.getElementsByTagName('input')
@@ -58,11 +64,26 @@ class CreateTournament extends React.Component {
                                     </h2>
                                     <input className="c-Tournament-input" id="tournament-name" />
                                 </div>
+                            </div>
+
+                            <div className="c-Tournament__section">
                                 <div>
                                     <h2 className="tournaments__event-headings">
-                                        Tournament Location
+                                        City
                                     </h2>
-                                    <input className="c-Tournament-input" id="tournament-location" placeholder="city, state, country" />
+                                    <input className="c-Tournament-input" id="tournament-city" />
+                                </div>
+                                <div>
+                                    <h2 className="tournaments__event-headings">
+                                        State/Province/Region
+                                    </h2>
+                                    <input className="c-Tournament-input" id="tournament-state" />
+                                </div>
+                                <div>
+                                    <h2 className="tournaments__event-headings">
+                                        Country
+                                    </h2>
+                                    <input className="c-Tournament-input" id="tournament-country" />
                                 </div>
                             </div>
 
