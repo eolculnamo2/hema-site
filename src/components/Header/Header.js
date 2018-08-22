@@ -112,7 +112,7 @@ class Header extends React.Component {
                         <ul className="dropdown-links">
                             <Link to='/about-tournaments'><li>About</li></Link>
                             <Link to='/event-registration'><li>Registration</li></Link>
-                            <Link to='/create-tournaments'><li>Manage Events</li></Link>
+                            <Link to='/create-tournament'><li>Manage Events</li></Link>
                             <Link to='/contribute'><li>Stats</li></Link>
                         </ul>
                     </span>

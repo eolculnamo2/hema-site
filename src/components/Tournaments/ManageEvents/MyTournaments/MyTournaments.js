@@ -40,7 +40,8 @@ class MyTournaments extends React.Component {
     selectedOption(){
         if(this.state.selectedTournament !== '') {
             if(this.state.option === 'events') {
-                return <MyEvents events={['Longsword', 'Sword and Buckler', 'Ringen']} />
+                return <MyEvents events={['Longsword', 'Sword and Buckler', 'Ringen']}
+                                 card={dummyData[0]} />
             }
             else if(this.state.option === 'participants') {
                 return <MyParticipants />

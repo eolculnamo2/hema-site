@@ -1,9 +1,11 @@
 import React from 'react'
+import TournamentCard from '../../../accessories/TournamentCard';
 
 const MyEvents = props => {
     return(
-        <div>
-            <div className="c-Tournament__section">
+        <div className="tournament__my-event">
+            <TournamentCard card={props.card} />
+            <div>
                 <p>
                     Events are the different competitions that will exist in your tournament.
                     For example, you may have an event for a longsword competition and a separate
@@ -11,10 +13,10 @@ const MyEvents = props => {
                 </p>
             </div>
 
-            <h2 className="tournament__my-event">
+            <h2>
                 Events
             </h2>
-            <div className="tournament__my-event">
+            <div>
                 {props.events.map( x => {
                    return (<h4> {x} </h4>)
                 })}
