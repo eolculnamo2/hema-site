@@ -159,6 +159,14 @@
             opacity: .7;
         }
     }
+
+    &--tournament-manager{
+        width: 600px;
+
+        button {
+            font-size: 14px;
+        }
+    }
 }
 
 .submission__selected-option {

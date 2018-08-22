@@ -5,14 +5,18 @@ import { Helmet } from 'react-helmet'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import './scss/main.scss'
-import LandingPage from './components/LandingPage/LandingPage';
+import LandingPage from './components/LandingPage/LandingPage'
 import Articles from './components/Articles/Articles'
 import Article from './components/Article/Article'
-import Contribute from './components/Contribute/Contribute';
-import Profile from './components/Profile/Profile';
-import Admin from './components/Admin/Admin';
+import Contribute from './components/Contribute/Contribute'
+import Profile from './components/Profile/Profile'
+import Admin from './components/Admin/Admin'
 import Register from './components/Authenticate/Register'
-import Login from './components/Authenticate/Login';
+import Login from './components/Authenticate/Login'
+import AboutTournaments from './components/Tournaments/AboutTournaments/AboutTournaments'
+import CreateTournament from './components/Tournaments/ManageEvents/CreateTournament'
+import RegisterForEvent from './components/Tournaments/RegisterForEvent/RegisterForEvent'
+import MyTournaments from './components/Tournaments/ManageEvents/MyTournaments/MyTournaments'
 import FourOhFour from './components/FourOhFour/FourOhFour'
 
 
@@ -55,6 +59,10 @@ class App extends React.Component {
                     <Route exact path='/profile' component={Profile} />
                     <Route exact path='/register' component={Register} />
                     <Route exact path='/login' component={Login} />
+                    <Route exact path='/about-tournaments' component={AboutTournaments} />
+                    <Route exact path='/create-tournament' component={CreateTournament} />
+                    <Route exact path='/event-registration' component={RegisterForEvent} />
+                    <Route exact path='/manage-tournaments' component={MyTournaments} />
                     <Route exact path='/article/:article' render={ props => (
                         <Article {...props} />
                     )} />

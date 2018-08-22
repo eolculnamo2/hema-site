@@ -1,0 +1,95 @@
+.c-Tournament__manage-button {
+    display: block;
+    width: 100%;
+    padding: 1.5em;
+    margin-top: 1em;
+    background: $dark-navy;
+    border: 0;
+    font-size: 16px;
+    outline: none;
+    color: white;
+    cursor: pointer;
+
+    &:hover {
+        opacity: .7;
+    }
+
+    &--selected {
+        background: $faded-blue;
+        text-decoration: underline;
+    }
+}
+
+.c-Tournament__form {
+    width: 700px;
+    border-right: 1px solid $light-gray2;
+    color: $darker3;
+
+    &--top-border {
+        border-top: 1px solid $light-gray2;
+        border-right: 0;
+        margin-top: 1em;
+    }
+}
+
+.c-Tournament__section {
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    &--flex-start {
+        justify-content: flex-start;
+    }
+
+    &--no-wrap {
+        flex-wrap: nowrap;
+    }
+}
+
+.c-Tournament-white-bg {
+    background: white;
+}
+
+.c-Tournament-input  {
+    width: 300px;
+    padding: 1em;
+    outline: 0;
+    border: 1px solid $light-gray2;
+    border-radius: 3px;
+
+    &:focus {
+        border: 1px solid $dark-navy;
+    }
+
+    &--radio {
+        width: 50px;
+    }
+}
+
+.c-Tournament-description {
+    width: 300px;
+    height: 200px;
+}
+
+.c-Tournament-button {
+    min-width: 150px;
+    padding: 1em 2em;
+    border: 0;
+    cursor: pointer;
+    margin-right: 2em;
+
+    &:hover {
+        opacity: .7;
+    }
+    &--reset {
+        background: $danger-red;
+    }
+    &--submit {
+        background: $fl-green;
+    }
+}
+
+.c-Tournament-pointer {
+    cursor: pointer;
+}
