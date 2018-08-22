@@ -8,6 +8,9 @@
         background: $light-gray3;
     }
 
+    &--full-width{
+        width: 100%;
+    }
     a{
         color: $faded-blue;
     }
@@ -42,6 +45,10 @@
 
 .tournaments__description-button-wrap {
     margin: 2em;
+}
+
+.tournament__my-event {
+    margin: 20px;
 }
 
 .tournaments__description-button {
@@ -112,4 +119,8 @@
     background: $light-gray3;
     border-bottom: 1px solid $light-gray2;
     align-items: center;
+}
+
+.tournaments__radio {
+    margin: 0 1em;
 }

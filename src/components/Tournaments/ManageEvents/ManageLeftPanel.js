@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { BrowserRouter as Router, Link, Route, withRouter, Redirect } from 'react-router-dom'
 
 let buttons = [
     {
@@ -7,7 +7,7 @@ let buttons = [
         name: 'Create Tournament'
     },
     {
-        link: '/create-tournament',
+        link: '/manage-tournaments',
         name: 'My Tournaments'
     },
     {
@@ -33,9 +33,11 @@ const ManageLeftPanel = props => {
             </h1>
             <div className="tournaments__description-button-wrap">
                 {buttons.map( x => {
-                    return(<button
-                                className={x.name === props.name ? "c-Tournament__manage-button c-Tournament__manage-button--selected" : "c-Tournament__manage-button"}
-                                onClick={x.link}>{x.name}</button>)
+                    return(<Link to={x.link}>
+                                <button className={x.name === props.name ? "c-Tournament__manage-button c-Tournament__manage-button--selected" : "c-Tournament__manage-button"}>
+                                    {x.name}
+                                </button>
+                            </Link>)
                 })}
             </div>
         </div>

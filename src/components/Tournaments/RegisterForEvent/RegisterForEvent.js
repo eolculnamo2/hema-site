@@ -42,7 +42,7 @@ class RegisterForEvent extends React.Component {
                     </p>
                 </div>
                 {/* Flexed Panel Two */}
-                <div className="c-Tournament-white-bg">
+                <div className="c-Tournament-white-bg tournaments__main-wrap--full-width">
                     <TopBar title="Upcoming Events" buttons={[]}/>
                     <div className="tournaments__right-info">
                         <em>Select An Event</em>
