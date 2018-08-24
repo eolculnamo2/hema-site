@@ -17,6 +17,7 @@ import AboutTournaments from './components/Tournaments/AboutTournaments/AboutTou
 import CreateTournament from './components/Tournaments/ManageEvents/CreateTournament'
 import RegisterForEvent from './components/Tournaments/RegisterForEvent/RegisterForEvent'
 import MyTournaments from './components/Tournaments/ManageEvents/MyTournaments/MyTournaments'
+import MyEventView from './components/Tournaments/ManageEvents/MyEventView/MyEventView'
 import FourOhFour from './components/FourOhFour/FourOhFour'
 
 
@@ -68,6 +69,9 @@ class App extends React.Component {
                     )} />
                     {<Route exact path='/profile/:profile' render={ props => (
                         <Profile {...props} />
+                    )} />}
+                    {<Route exact path='/manage-tournaments/:event' render={ props => (
+                        <MyEventView {...props} />
                     )} />}
                     <Route exact path='/admin' render={ () => (
                         <Admin />

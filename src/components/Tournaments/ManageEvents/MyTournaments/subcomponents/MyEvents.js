@@ -1,5 +1,7 @@
 import React from 'react'
-import TournamentCard from '../../../accessories/TournamentCard';
+import TournamentCard from '../../../accessories/TournamentCard'
+import { BrowserRouter as Router, Link, Route, withRouter, Redirect } from 'react-router-dom'
+
 
 const MyEvents = props => {
     return(
@@ -34,8 +36,10 @@ const MyEvents = props => {
                 </div>
             </div>
             <div className="c-Tournament__section c-Tournament__section--flex-start">
-                <button type="button" 
-                        className='c-Tournament-button c-Tournament-button--submit'>
+                <button type="button"
+                        onClick={props.addEvent} 
+                        className='c-Tournament-button c-Tournament-button--submit'
+                        >
                     Add Event
                 </button>
             </div>
