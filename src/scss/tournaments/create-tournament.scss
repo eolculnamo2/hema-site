@@ -45,6 +45,13 @@
     &--no-wrap {
         flex-wrap: nowrap;
     }
+    &--row {
+        padding: 0 .5em;
+        cursor: pointer;
+        &:hover {
+            background: $light-gray2;
+        }
+    }
 }
 
 .c-Tournament-white-bg {
@@ -92,4 +99,10 @@
 
 .c-Tournament-pointer {
     cursor: pointer;
+}
+
+
+.c-Tournament__chart-container {
+    background: #fafafa;
+    max-width: 584px;
 }

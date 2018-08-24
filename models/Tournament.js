@@ -9,12 +9,13 @@ var Tournament = new Schema({
     startDate: String,
     endDate: String,
     useSPRegistration: Boolean,
-    usRegistrationKey: Boolean,
+    useRegistrationKey: Boolean,
     cost: Number,
     description: String,
     logoUrl: String,
     adminProfile: String,
-    registeredParticipants: Array
+    registeredParticipants: Array,
+    events: Array
 })
 
 module.exports = mongoose.model('tournaments', Tournament)

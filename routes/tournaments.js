@@ -19,7 +19,7 @@ router.post('/new-tournament',(req,res) => {
         startDate: req.body.startDate,
         endDate: req.body.endDate,
         useSPRegistration: req.body.useSPRegistration,
-        usRegistrationKey: req.body.useKey,
+        useRegistrationKey: req.body.useKey,
         cost: req.body.cost,
         description: req.body.description,
         logoUrl: req.body.logoUrl,
@@ -40,6 +40,36 @@ router.post('/new-tournament',(req,res) => {
                     res.send({done: true})
                 }
             })
+        }
+    })
+})
+
+router.post('/get-tournaments',(req,res) => {
+    Tournament.find({}, (err,response) => {
+        res.send(response);
+    })
+})
+
+router.post('/get-my-tournaments',(req,res) => {
+    Tournament.find({}, (err,response) => {
+        let myTournaments = []
+        response.forEach( x => {
+            if(req.user.username === x.adminProfile) {
+                myTournaments.push(x)
+            }
+        })
+        console.log(myTournaments)
+        res.send(myTournaments);
+    })
+})
+
+router.post('/add-tournament-event', (req,res) => {
+    Tournament.findByIdAndUpdate({_id: req.body.tournamentId}, {$push: {events: req.body.event}}, (err,response)=> {
+        if(err) {
+            console.log(err)
+        }
+        else {
+            res.send({updated: true})
         }
     })
 })

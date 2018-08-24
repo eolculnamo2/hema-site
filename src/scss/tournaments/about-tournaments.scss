@@ -32,6 +32,9 @@
 .tournaments__heading {
     margin: 1em;
     font-weight: 500;
+    &--center {
+        text-align: center;
+    }
 }
 
 .tournaments__description-text {
@@ -123,4 +126,29 @@
 
 .tournaments__radio {
     margin: 0 1em;
+}
+
+.tournaments__center-numbers {
+    width: 50%;
+}
+
+.tournaments__table-wrap {
+    width: 95%;
+}
+
+.tournament__table--full-width {
+    div {
+        width: 100%;
+    }
+}
+
+.tournaments__table-head {
+    width: 100%;
+    border: 1px solid $light-gray2;
+    border-bottom : 0;
+    padding: .5em;
+    background: $dark-navy;
+    color: white;
+    display: flex;
+    justify-content: space-between;
 }

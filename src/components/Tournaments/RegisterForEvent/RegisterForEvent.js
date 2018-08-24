@@ -23,8 +23,18 @@ class RegisterForEvent extends React.Component {
     constructor(){
         super()
         this.state = {
-            selectedEvent: {}
+            selectedEvent: {},
+            tournaments: []
         }
+    }
+    componentDidMount(){
+        fetch('/tournaments/get-tournaments',{
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            credentials: "same-origin"
+            })
+        .then(res => res.json())
+        .then(data => this.setState({tournaments: data}))
     }
     render() {
         return(
@@ -43,11 +53,11 @@ class RegisterForEvent extends React.Component {
                 </div>
                 {/* Flexed Panel Two */}
                 <div className="c-Tournament-white-bg tournaments__main-wrap--full-width">
-                    <TopBar title="Upcoming Events" buttons={[]}/>
+                    <TopBar title="Upcoming Tournaments" buttons={[]}/>
                     <div className="tournaments__right-info">
                         <em>Select An Event</em>
                         <div className="tournaments__flex-cards">
-                            {upcomingTournaments.map((x,i) => {
+                            {this.state.tournaments.map((x,i) => {
                                 return (<div onClick={()=>{this.setState({selectedEvent: x, selectedIndex: i})}} 
                                              className="c-Tournament-pointer">
                                              <TournamentCard card = {x}

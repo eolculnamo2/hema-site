@@ -34,34 +34,52 @@ class MyTournaments extends React.Component {
         super()
         this.state = {
             selectedTournament: '',
-            option: 'events'
+            myTournaments: []
         }
+        this.addEvent = this.addEvent.bind(this)
     }
+    componentDidMount(){
+        fetch('/tournaments/get-my-tournaments',{
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            credentials: "same-origin"
+            })
+        .then(res => res.json())
+        .then(data => this.setState({myTournaments: data}))
+    } 
     selectedOption(){
         if(this.state.selectedTournament !== '') {
-            if(this.state.option === 'events') {
-                return <MyEvents events={['Longsword', 'Sword and Buckler', 'Ringen']}
-                                 card={dummyData[0]} />
-            }
-            else if(this.state.option === 'participants') {
-                return <MyParticipants />
-            }
-            else if(this.state.option === 'details') {
-                return <MyDetails />
-            }
+            return <MyEvents events={['Longsword', 'Sword and Buckler', 'Ringen']}
+                                card={dummyData[0]}
+                                addEvent={this.addEvent} />
         }
+    }
+    addEvent(x) {
+        let payload = {
+            //event-name lives in MyEvent.js
+            event: document.getElementById('event-name').value,
+            tournamentId: this.state.selectedTournament
+        }
+        fetch('/tournaments/add-tournament-event',{
+            method: "POST",
+            body: JSON.stringify(payload),
+            headers: { "Content-Type": "application/json" },
+            credentials: "same-origin"
+            })
+        .then(res => res.json())
+        .then(data => alert('Event Added'))
     }
     render(){
         return(
             <div className = "tournaments__main-wrap tournaments__main-wrap--bg-gray"> 
                 {/* Flexed Item 1*/}
-                <ManageLeftPanel />
+                <ManageLeftPanel name="My Tournaments" />
                 {/* Flexed Item 2*/}
                 <div className="c-Tournament-white-bg tournaments__main-wrap--full-width">
                 <TopBar title="My Tournaments" buttons={[]} />
                     <em className="c-Tournament__section">Select an Event</em>
                     <div className="c-Tournament__section c-Tournament__section--flex-start">
-                        {dummyData.map( x => {
+                        {this.state.myTournaments.map( x => {
                             return( <div>
                                         <input  type="radio" 
                                                 name="selectedTournament" 
@@ -70,25 +88,6 @@ class MyTournaments extends React.Component {
                                         <span className="tournaments__radio">{x.name}</span>
                                     </div>) 
                         })}
-                    </div>
-
-                    <div className="c-Tournament__section c-Tournament__section--no-wrap submission__flex submission__flex--tournament-manager"
-                         style={{display: this.state.selectedTournament === '' ? 'none' : 'flex'}}>
-                        <button className={this.state.option === 'events' ? 'submission__selected-option el-option-button' : "el-option-button"}
-                                type="button"
-                                onClick={()=>{this.setState({option: 'events'})}}>
-                            Events
-                        </button>
-                        <button className={this.state.option === 'participants' ? 'submission__selected-option el-option-button' : "el-option-button"}
-                                type="button"
-                                onClick={()=>{this.setState({option: 'participants'})}}>
-                            Participants
-                        </button>
-                        <button className={this.state.option === 'details' ? 'submission__selected-option el-option-button' : "el-option-button"}
-                                type="button"
-                                onClick={()=>{this.setState({option: 'details'})}}>
-                            Details
-                        </button>
                     </div>
                     {this.selectedOption()}
                 </div>
