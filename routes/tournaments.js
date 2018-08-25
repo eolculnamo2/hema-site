@@ -51,15 +51,21 @@ router.post('/get-tournaments',(req,res) => {
 })
 
 router.post('/get-my-tournaments',(req,res) => {
-    Tournament.find({}, (err,response) => {
-        let myTournaments = []
-        response.forEach( x => {
-            if(req.user.username === x.adminProfile) {
-                myTournaments.push(x)
-            }
+    if(req.user){
+        Tournament.find({}, (err,response) => {
+            let myTournaments = []
+            response.forEach( x => {
+                if(req.user.username === x.adminProfile) {
+                    myTournaments.push(x)
+                }
+            })
+            res.send(myTournaments);
         })
-        res.send(myTournaments);
-    })
+    }
+    else {
+        console.log('User not logged in')
+        res.end('error')
+    }
 })
 
 router.post('/add-tournament-event', (req,res) => {

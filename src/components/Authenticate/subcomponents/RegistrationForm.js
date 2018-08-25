@@ -48,7 +48,10 @@ class RegistrationForm extends React.Component {
                 headers: { "Content-Type": "application/json" }
                 })
                 .then( res => res.json())
-                .then( data => alert(data.data))
+                .then( data => {
+                    alert(data.data)
+                    document.location.replace("/profile")
+                })
             }
         }
     }

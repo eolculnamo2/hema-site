@@ -25,13 +25,13 @@ class App extends React.Component {
     constructor(){
         super()
         this.state = {
-            loggedIn: false
+            loggedIn: false,
+            loaded: false
         }
     }
     componentWillMount(){
         fetch('/authenticate/checkLogin',{
             method: "POST",
-            body: null,
             headers: { "Content-Type": "application/json" },
             credentials: "same-origin"
             })
@@ -40,47 +40,61 @@ class App extends React.Component {
                 if (data.loggedIn) {
                     this.setState({loggedIn: true})
                 }
+                this.setState({loaded: true})
             })
     }
     render() {
-        return(
-            <div>
-                <Helmet>
-                    <title>Sword Point </title>
-                    <script src='https://www.google.com/recaptcha/api.js'></script>
-                    <meta name="description" content="Read, share, discuss, and publish about Historical European Martials Arts (HEMA) also known as the Martial Arts of Renaissance Europe. Getting started with HEMA?  Check out our beginner's guides? Experienced renaissance martial artist? Why not submit an article?" />
-                    <link rel="icon" href="https://image.ibb.co/c76tRy/head_icon.png" sizes="16x16 32x32" type="image/png" /> 
-                    <meta name="keywords" content="HEMA, ARMA, longsword, spear, sword, buckler, pike, staff, mma, martial arts, wrestling, grappling, boxing, fighting, fight, learn, gear, fencing" />
-                </Helmet>
-                <Header />
-                <Switch>
-                    <Route exact path='/' component={LandingPage} />
-                    <Route exact path='/articles' component={Articles} />
-                    <Route exact path='/contribute' component={Contribute} />
-                    <Route exact path='/profile' component={Profile} />
-                    <Route exact path='/register' component={Register} />
-                    <Route exact path='/login' component={Login} />
-                    <Route exact path='/about-tournaments' component={AboutTournaments} />
-                    <Route exact path='/create-tournament' component={CreateTournament} />
-                    <Route exact path='/event-registration' component={RegisterForEvent} />
-                    <Route exact path='/manage-tournaments' component={MyTournaments} />
-                    <Route exact path='/article/:article' render={ props => (
-                        <Article {...props} />
-                    )} />
-                    {<Route exact path='/profile/:profile' render={ props => (
-                        <Profile {...props} />
-                    )} />}
-                    {<Route exact path='/manage-tournaments/:event' render={ props => (
-                        <MyEventView {...props} />
-                    )} />}
-                    <Route exact path='/admin' render={ () => (
-                        <Admin />
-                    )} />
-                    <Route component={FourOhFour}/>
-                </Switch>
-                <Footer />
-           </div>
-        )
+        if(this.state.loaded) {
+            return(
+                <div>
+                    <Helmet>
+                        <title>Sword Point </title>
+                        <script src='https://www.google.com/recaptcha/api.js'></script>
+                        <meta name="description" content="Read, share, discuss, and publish about Historical European Martials Arts (HEMA) also known as the Martial Arts of Renaissance Europe. Getting started with HEMA?  Check out our beginner's guides? Experienced renaissance martial artist? Why not submit an article?" />
+                        <link rel="icon" href="https://image.ibb.co/c76tRy/head_icon.png" sizes="16x16 32x32" type="image/png" /> 
+                        <meta name="keywords" content="HEMA, ARMA, longsword, spear, sword, buckler, pike, staff, mma, martial arts, wrestling, grappling, boxing, fighting, fight, learn, gear, fencing" />
+                    </Helmet>
+                    <div class="footer-at-bottom"> 
+                        <Header />
+                        <Switch>
+                            <Route exact path='/' component={LandingPage} />
+                            <Route exact path='/articles' component={Articles} />
+                            <Route exact path='/contribute' component={Contribute} />
+                            <Route exact path='/profile' component={Profile} />
+                            <Route exact path='/register' component={Register} />
+                            <Route exact path='/login' component={Login} />
+                            <Route exact path='/about-tournaments' component={AboutTournaments} />
+                            {<Route exact path='/create-tournament' render={ props => (
+                                this.state.loggedIn ? <CreateTournament /> : <Redirect to="/login"/>
+                            )} />}
+                            {<Route exact path='/event-registration' render={ props => (
+                                this.state.loggedIn ? <RegisterForEvent /> : <Redirect to="/login"/>
+                            )} />}
+                            {<Route exact path='/manage-tournaments' render={ props => (
+                                this.state.loggedIn ? <MyTournaments /> : <Redirect to="/login"/>
+                            )} />}
+                            <Route exact path='/article/:article' render={ props => (
+                                <Article {...props} />
+                            )} />
+                            {<Route exact path='/profile/:profile' render={ props => (
+                                <Profile {...props} />
+                            )} />}
+                            {<Route exact path='/manage-tournaments/:event' render={ props => (
+                                this.state.loggedIn ? <MyEventView {...props} /> : <Redirect to="/login"/>
+                            )} />}
+                            <Route exact path='/admin' render={ () => (
+                                <Admin />
+                            )} />
+                            <Route component={FourOhFour}/>
+                        </Switch>
+                    </div>
+                    <Footer />
+                </div>
+            )
+        }
+        else {
+            return <div></div>
+        }
     }
 }
 

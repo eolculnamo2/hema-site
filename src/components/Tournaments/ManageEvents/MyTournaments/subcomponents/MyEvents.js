@@ -20,11 +20,11 @@ const MyEvents = props => {
             </h2>
             <div>
                 {props.events.map( x => {
-                   return (<h4> {x.name} </h4>)
+                   return (<h4 className="tournaments__event-list-item"> {x.name} </h4>)
                 })}
             </div>
 
-            <div className="c-Tournament__section">
+            <div className="c-Tournament__section c-Tournament__section--add-event">
                 <div>
                     <h2 className="tournaments__event-headings">
                         Add Event
@@ -35,7 +35,7 @@ const MyEvents = props => {
                     <input className="c-Tournament-input" id="event-name" />
                 </div>
             </div>
-            <div className="c-Tournament__section c-Tournament__section--flex-start">
+            <div className="c-Tournament__section c-Tournament__section--add-event c-Tournament__section--flex-start">
                 <button type="button"
                         onClick={props.addEvent} 
                         className='c-Tournament-button c-Tournament-button--submit'

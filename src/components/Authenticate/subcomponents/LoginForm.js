@@ -37,7 +37,7 @@ class LoginForm extends React.Component {
             })
             .then( data => {
                 alert(data.data)
-                document.location.replace("https://www.sword-point.com/")
+                document.location.replace("/profile")
             })
         }
     }

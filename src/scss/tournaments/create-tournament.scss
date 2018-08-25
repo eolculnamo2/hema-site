@@ -23,7 +23,6 @@
 .c-Tournament__form {
     width: 700px;
     border-right: 1px solid $light-gray2;
-    color: $darker3;
 
     &--top-border {
         border-top: 1px solid $light-gray2;
@@ -52,10 +51,16 @@
             background: $light-gray2;
         }
     }
+
+    &--add-event {
+        padding: 0;
+        padding-bottom: 1em;
+    }
 }
 
 .c-Tournament-white-bg {
     background: white;
+    color: $darker1;
 }
 
 .c-Tournament-input  {
