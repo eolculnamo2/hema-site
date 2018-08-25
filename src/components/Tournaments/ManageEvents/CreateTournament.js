@@ -53,7 +53,7 @@ class CreateTournament extends React.Component {
                 {/* Flexed Item 1*/}
                 <ManageLeftPanel name="Create Tournament" />
                 {/* Flexed Item 2*/}
-                <div className="c-Tournament-white-bg">
+                <div className="c-Tournament-white-bg tournaments__main-wrap--full-width">
                     <TopBar title="Create Tournament" buttons={[]}/>
                         <div className="c-Tournament__form">
 

@@ -59,6 +59,10 @@ a {
     text-decoration: underline;
 }
 
+.capitalize {
+    text-transform: capitalize;
+}
+
 .validation-error {
     display: none;
     color: $faded-red;
