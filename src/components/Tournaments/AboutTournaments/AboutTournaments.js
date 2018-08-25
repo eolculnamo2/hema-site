@@ -5,7 +5,7 @@ import TopBar from '../accessories/TopBar';
 let navButtons = [
     {
         text: "Host Event",
-        link: "/create-tournaments"
+        link: "/create-tournament"
     },
     {
         text: "Registration",

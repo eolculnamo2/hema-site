@@ -47,7 +47,15 @@ class RegisterForEvent extends React.Component {
             credentials: "same-origin"
             })
         .then(res => res.json())
-        .then(data => data.status ? alert("Registration Successful") : alert("Registration Failed. Please contact tournament admin."))
+        .then(data => {
+            if(data.status){
+                alert("Registration Successful")
+                document.location.replace("/profile")
+            }  
+            else {
+                alert("Registration Failed. Please contact tournament admin.")
+            } 
+        })
     }
     render() {
         return(
@@ -118,6 +126,8 @@ class RegisterForEvent extends React.Component {
                                     </h2>
                                     <input className="c-Tournament-input" id="age" />
                                 </div>
+                            </div>
+                            <div className="c-Tournament__section">
                                 <div>
                                     <h2 className="tournaments__event-headings">
                                         Gender

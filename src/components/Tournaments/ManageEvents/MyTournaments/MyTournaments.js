@@ -39,6 +39,9 @@ class MyTournaments extends React.Component {
         this.addEvent = this.addEvent.bind(this)
     }
     componentDidMount(){
+        this.getMyTournaments()
+    } 
+    getMyTournaments(){
         fetch('/tournaments/get-my-tournaments',{
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -46,11 +49,19 @@ class MyTournaments extends React.Component {
             })
         .then(res => res.json())
         .then(data => this.setState({myTournaments: data}))
-    } 
+    }
     selectedOption(){
-        if(this.state.selectedTournament !== '') {
-            return <MyEvents events={['Longsword', 'Sword and Buckler', 'Ringen']}
-                                card={dummyData[0]}
+        let cardData = {}
+
+        for(let x of this.state.myTournaments) {
+            if(x['_id'] === this.state.selectedTournament){
+                cardData = x
+                break
+            }
+        }
+        if(this.state.selectedTournament !== '' && cardData.name !== undefined) {
+            return <MyEvents events={cardData.events}
+                                card={cardData}
                                 addEvent={this.addEvent} />
         }
     }
@@ -67,7 +78,11 @@ class MyTournaments extends React.Component {
             credentials: "same-origin"
             })
         .then(res => res.json())
-        .then(data => alert('Event Added'))
+        .then(data => {
+            alert('Event Added')
+            this.getMyTournaments()
+            document.getElementById('event-name').value = ''
+        })
     }
     render(){
         return(

@@ -20,7 +20,7 @@ const MyEvents = props => {
             </h2>
             <div>
                 {props.events.map( x => {
-                   return (<h4> {x} </h4>)
+                   return (<h4> {x.name} </h4>)
                 })}
             </div>
 
