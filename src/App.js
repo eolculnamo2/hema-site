@@ -54,40 +54,42 @@ class App extends React.Component {
                         <link rel="icon" href="https://image.ibb.co/c76tRy/head_icon.png" sizes="16x16 32x32" type="image/png" /> 
                         <meta name="keywords" content="HEMA, ARMA, longsword, spear, sword, buckler, pike, staff, mma, martial arts, wrestling, grappling, boxing, fighting, fight, learn, gear, fencing" />
                     </Helmet>
-                    <Header />
-                    <Switch>
-                        <Route exact path='/' component={LandingPage} />
-                        <Route exact path='/articles' component={Articles} />
-                        <Route exact path='/contribute' component={Contribute} />
-                        <Route exact path='/profile' component={Profile} />
-                        <Route exact path='/register' component={Register} />
-                        <Route exact path='/login' component={Login} />
-                        <Route exact path='/about-tournaments' component={AboutTournaments} />
-                        {<Route exact path='/create-tournament' render={ props => (
-                            this.state.loggedIn ? <CreateTournament /> : <Redirect to="/login"/>
-                        )} />}
-                        {<Route exact path='/event-registration' render={ props => (
-                            this.state.loggedIn ? <RegisterForEvent /> : <Redirect to="/login"/>
-                        )} />}
-                        {<Route exact path='/manage-tournaments' render={ props => (
-                            this.state.loggedIn ? <MyTournaments /> : <Redirect to="/login"/>
-                        )} />}
-                        <Route exact path='/article/:article' render={ props => (
-                            <Article {...props} />
-                        )} />
-                        {<Route exact path='/profile/:profile' render={ props => (
-                            <Profile {...props} />
-                        )} />}
-                        {<Route exact path='/manage-tournaments/:event' render={ props => (
-                            this.state.loggedIn ? <MyEventView {...props} /> : <Redirect to="/login"/>
-                        )} />}
-                        <Route exact path='/admin' render={ () => (
-                            <Admin />
-                        )} />
-                        <Route component={FourOhFour}/>
-                    </Switch>
+                    <div class="footer-at-bottom"> 
+                        <Header />
+                        <Switch>
+                            <Route exact path='/' component={LandingPage} />
+                            <Route exact path='/articles' component={Articles} />
+                            <Route exact path='/contribute' component={Contribute} />
+                            <Route exact path='/profile' component={Profile} />
+                            <Route exact path='/register' component={Register} />
+                            <Route exact path='/login' component={Login} />
+                            <Route exact path='/about-tournaments' component={AboutTournaments} />
+                            {<Route exact path='/create-tournament' render={ props => (
+                                this.state.loggedIn ? <CreateTournament /> : <Redirect to="/login"/>
+                            )} />}
+                            {<Route exact path='/event-registration' render={ props => (
+                                this.state.loggedIn ? <RegisterForEvent /> : <Redirect to="/login"/>
+                            )} />}
+                            {<Route exact path='/manage-tournaments' render={ props => (
+                                this.state.loggedIn ? <MyTournaments /> : <Redirect to="/login"/>
+                            )} />}
+                            <Route exact path='/article/:article' render={ props => (
+                                <Article {...props} />
+                            )} />
+                            {<Route exact path='/profile/:profile' render={ props => (
+                                <Profile {...props} />
+                            )} />}
+                            {<Route exact path='/manage-tournaments/:event' render={ props => (
+                                this.state.loggedIn ? <MyEventView {...props} /> : <Redirect to="/login"/>
+                            )} />}
+                            <Route exact path='/admin' render={ () => (
+                                <Admin />
+                            )} />
+                            <Route component={FourOhFour}/>
+                        </Switch>
+                    </div>
                     <Footer />
-            </div>
+                </div>
             )
         }
         else {

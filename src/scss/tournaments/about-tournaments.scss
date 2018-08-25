@@ -152,3 +152,15 @@
     display: flex;
     justify-content: space-between;
 }
+
+.tournaments__event-list-item {
+    padding: 1em;
+    color: white;
+    margin: .5em 0;
+    background: $faded-blue;
+    cursor: pointer;
+    &:hover{
+        opacity: .7;
+        color: whitesmoke;
+    }
+}
