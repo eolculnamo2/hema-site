@@ -58,13 +58,16 @@ router.post('/get-my-tournaments',(req,res) => {
                 myTournaments.push(x)
             }
         })
-        console.log(myTournaments)
         res.send(myTournaments);
     })
 })
 
 router.post('/add-tournament-event', (req,res) => {
-    Tournament.findByIdAndUpdate({_id: req.body.tournamentId}, {$push: {events: req.body.event}}, (err,response)=> {
+    let event = {
+        name: req.body.event,
+        participants: []
+    }
+    Tournament.findByIdAndUpdate({_id: req.body.tournamentId}, {$push: {events: event}}, (err,response)=> {
         if(err) {
             console.log(err)
         }
@@ -72,6 +75,35 @@ router.post('/add-tournament-event', (req,res) => {
             res.send({updated: true})
         }
     })
+})
+
+router.post('/register-for-tournament', (req,res) => {
+    //TODO filter restrict duplicate registrations.
+    if(req.user){ 
+        let participant = req.body
+        participant.username = req.user.username
+     Tournament.findByIdAndUpdate({_id: req.body.tournamentId}, {$push: {registeredParticipants: participant}}, (err,response)=> {
+        if(err) {
+            console.log(err)
+            res.send({status: false})
+        }
+        else {
+            User.findByIdAndUpdate({_id: req.user['_id']}, {$push: {registeredFor: participant}},(err,info)=>{
+                if(err){
+                    console.log(err)
+                    res.send({status: false})
+                }
+                else {
+                    res.send({status: true})
+                }
+            })
+        }
+    })
+    }
+    else {
+        res.send({status: false})
+    }
+
 })
 
 module.exports = router;

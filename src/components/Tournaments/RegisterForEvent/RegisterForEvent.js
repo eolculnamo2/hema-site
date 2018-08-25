@@ -2,23 +2,6 @@ import React from 'react'
 import TournamentCard from '../accessories/TournamentCard'
 import TopBar from '../accessories/TopBar';
 
-let upcomingTournaments = [
-        {
-            name: "Combat Con, 2018",
-            location: "Las Vegas, NV, USA",
-            dates: "Aug 2nd -  Aug 5th",
-            image: "https://hemascorecard.com/includes/images/hemaa_logo_s.png",
-            cost: 50
-        },
-        {
-            name: "Combat Con, 2018",
-            location: "Las Vegas, NV, USA",
-            dates: "Aug 2nd -  Aug 5th",
-            image: "https://hemascorecard.com/includes/images/hemaa_logo_s.png",
-            cost: 75
-        }
-]
-
 class RegisterForEvent extends React.Component {
     constructor(){
         super()
@@ -35,6 +18,36 @@ class RegisterForEvent extends React.Component {
             })
         .then(res => res.json())
         .then(data => this.setState({tournaments: data}))
+    }
+    register(){
+        let chosenEvents = []
+
+        let checkboxes = document.getElementsByClassName('event-checkbox');
+        Array.prototype.forEach.call(checkboxes, x => {
+            if(x.checked){
+                chosenEvents.push(x.value)
+            }
+        })
+
+        //paid option to be false when not using payments on this site. (Can be manually updated by admin on Event Dashboard)
+        let payload = {
+            name: document.getElementById('full-name').value,
+            affiliation: document.getElementById('affiliation').value,
+            events: chosenEvents,
+            paid: true,
+            tournamentId: this.state.selectedEvent['_id'],
+            age: document.getElementById('age').value,
+            gender: document.getElementById('gender').value
+        }
+
+        fetch('/tournaments/register-for-tournament',{
+            method: "POST",
+            body: JSON.stringify(payload),
+            headers: { "Content-Type": "application/json" },
+            credentials: "same-origin"
+            })
+        .then(res => res.json())
+        .then(data => data.status ? alert("Registration Successful") : alert("Registration Failed. Please contact tournament admin."))
     }
     render() {
         return(
@@ -76,18 +89,43 @@ class RegisterForEvent extends React.Component {
                             <p>
                                 Registration Cost: ${this.state.selectedEvent.cost}
                             </p>
+
+                            {this.state.selectedEvent.name !== undefined ? this.state.selectedEvent.events.map( x => {
+                                return(
+                                    <div>
+                                        <input value={x.name} className="event-checkbox" type="checkbox" />
+                                        <span className="capitalize">{x.name}</span>
+                                    </div>)
+                            }) : null}
                             <div className="c-Tournament__section">
                                 <div>
                                     <h2 className="tournaments__event-headings">
                                         Full Name
                                     </h2>
-                                    <input className="c-Tournament-input" id="tournament-name" />
+                                    <input className="c-Tournament-input" id="full-name" />
                                 </div>
                                 <div>
                                     <h2 className="tournaments__event-headings">
                                         HEMA Affiliation/Club
                                     </h2>
-                                    <input className="c-Tournament-input" id="tournament-location" placeholder="If no affiliate, put 'none'" />
+                                    <input className="c-Tournament-input" id="affiliation" placeholder="If no affiliate, put 'none'" />
+                                </div>
+                            </div>
+                            <div className="c-Tournament__section">
+                                <div>
+                                    <h2 className="tournaments__event-headings">
+                                        Age
+                                    </h2>
+                                    <input className="c-Tournament-input" id="age" />
+                                </div>
+                                <div>
+                                    <h2 className="tournaments__event-headings">
+                                        Gender
+                                    </h2>
+                                    <select id="gender">
+                                        <option value="M">Male</option>
+                                        <option value="F">Female</option>
+                                    </select>
                                 </div>
                             </div>
 
@@ -110,7 +148,7 @@ class RegisterForEvent extends React.Component {
                                 <button type="button" className='c-Tournament-button c-Tournament-button--reset'>
                                     Reset
                                 </button>
-                                <button type="button" className='c-Tournament-button c-Tournament-button--submit'>
+                                <button type="button" onClick={this.register.bind(this)} className='c-Tournament-button c-Tournament-button--submit'>
                                     Register
                                 </button>
                             </div>
