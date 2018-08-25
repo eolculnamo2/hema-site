@@ -9,7 +9,9 @@ let buttons = [
     {
         link: '/manage-tournaments',
         name: 'My Tournaments'
-    },
+    }
+    /* 
+        FUTURE ADDITIONAL PANEL OPTIONS (FUTURE SPRINTS)
     {
         link: '/create-tournament',
         name: 'Tournament Stats'
@@ -21,8 +23,7 @@ let buttons = [
     {
         link: '/create-tournament',
         name: 'Delete Tournament'
-    },
-    
+    } */
 ]
 
 const ManageLeftPanel = props => {
