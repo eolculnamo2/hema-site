@@ -1,6 +1,6 @@
 import React from 'react'
 import Chart from 'chart.js'
-
+import TopBar from '../../accessories/TopBar'
 //var myChart = new Chart(ctx, {...});
 
 let participants = [
@@ -26,15 +26,21 @@ let participants = [
     }
 ]
 
+let buttons = [
+    {
+        text: "Add Participant",
+        link: ""
+    }
+]
+
 
 class MyEventView extends React.Component {
     //this.props.match.params.event
     constructor() {
         super()
         this.state = {
-            data: [1220, 1500, 1430, 1800, 700,1900,2300],
-            data2: [1000, 1800, 1630, 1300, 1000,1800,2000],
-            dates: ["Jan", "Feb", "Mar", "Apr", "May", "June", "July"]
+            data: [27,32],
+            dates: ["Paid", "Pending"]
         }
     }
     componentDidMount() {
@@ -44,49 +50,26 @@ class MyEventView extends React.Component {
         let ctx = document.getElementById('chart')
 
         let chart = new Chart(ctx, {
-            type: 'line',
+            type: 'doughnut',
             data: {
             labels: this.state.dates,
             datasets: [{
-              label: "New Business",
+              label: "Participants",
               fill: true,
-              borderColor: '#edad29',
+              borderColor: ['#c0e8b2','#f3ff99'],
               borderWidth: 1,
               pointRadius: 2,
-              backgroundColor: 'rgba(237, 128, 41, 0.2)',
+              backgroundColor: ['rgba(192, 232, 178, 1)','rgba(243, 255, 153, 1)'],
               data: this.state.data,
-            },
-            {
-              label: "Effective Business",
-              fill: true,
-              borderColor: '#1346a3',
-              borderWidth: 1,
-              pointRadius: 2,
-              backgroundColor: 'rgba(19, 70, 163, 0.2)',
-              data: this.state.data2,
             }]
             },
            options: {
              legend: {
+               position: 'bottom',
                labels: {
                   boxWidth: 12
                }
-             },
-                scales: {
-                  yAxes: [{
-                      ticks: {
-                        beginAtZero: true
-                        /*
-                        callback: function(value, index, values) {
-                                  return '$' + value;
-                              }
-                              */
-                      },
-                      gridLines: {
-                        display: true
-                      }
-                    }]
-                }
+             }
             }
         });
     }
@@ -94,7 +77,8 @@ class MyEventView extends React.Component {
         return(
             <div>
                 <h1 className="tournaments__heading">Combat Con 2018: Longsword</h1>
-                <div className="c-Tournament__section c-Tournament__section--no-wrap">
+                <TopBar buttons={buttons} />
+                <div className="c-Tournament__section c-Tournament__section--gray-bg c-Tournament__section--no-wrap">
                     <div className="tournaments__table-wrap">
                         <div className="tournaments__table-head tournament__table--full-width">
                             <div>

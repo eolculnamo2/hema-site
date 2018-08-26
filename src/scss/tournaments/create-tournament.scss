@@ -56,6 +56,10 @@
         padding: 0;
         padding-bottom: 1em;
     }
+
+    &--gray-bg {
+        background: $light-gray3;
+    }
 }
 
 .c-Tournament-white-bg {
