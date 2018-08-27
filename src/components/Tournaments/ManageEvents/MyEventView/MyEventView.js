@@ -1,7 +1,6 @@
 import React from 'react'
 import Chart from 'chart.js'
 import TopBar from '../../accessories/TopBar'
-//var myChart = new Chart(ctx, {...});
 
 let participants = [
     {
@@ -45,6 +44,9 @@ class MyEventView extends React.Component {
     }
     componentDidMount() {
         this.participantNumbers();
+    }
+    editParticipant(i){
+        //Will handle updating participants
     }
     participantNumbers() {
         let ctx = document.getElementById('chart')
@@ -92,9 +94,10 @@ class MyEventView extends React.Component {
                             </div>
                         </div>
                         <div className="tournaments__table-body">
-                            {participants.map( x => {
+                            {participants.map( (x,i) => {
                                 return (
-                                        <div className="c-Tournament__section c-Tournament__section--no-wrap c-Tournament__section--row tournament__table--full-width">
+                                        <div className="c-Tournament__section c-Tournament__section--no-wrap c-Tournament__section--row tournament__table--full-width"
+                                             onClick={this.editParticipant.bind(this,i)}>
                                             <div>
                                                 {x.name}
                                             </div>
@@ -107,6 +110,13 @@ class MyEventView extends React.Component {
                                         </div>
                                         )
                             })}
+                        </div>
+                        <div className="c-Tournament__section c-Tournament__section--flex-start">
+                            <button type="button"
+                                    className='c-Tournament-button c-Tournament-button--submit'
+                                    >
+                                Save Changes
+                            </button>
                         </div>
 
                     </div>
