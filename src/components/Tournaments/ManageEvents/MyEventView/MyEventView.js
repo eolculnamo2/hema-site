@@ -1,6 +1,7 @@
 import React from 'react'
 import Chart from 'chart.js'
 import TopBar from '../../accessories/TopBar'
+import EditModal from '../../accessories/EditModal';
 
 let participants = [
     {
@@ -39,12 +40,37 @@ class MyEventView extends React.Component {
         super()
         this.state = {
             data: [27,32],
-            dates: ["Paid", "Pending"]
+            dates: ["Paid", "Pending"],
+            showModal: false,
+            selectedUser: {
+                "name": "Robert Bertram",
+                "affiliation": "ARMA",
+                "events": [
+                    "Longsword"
+                ],
+                "paid": true,
+                "tournamentId": "5b7b6ed8d42d140c7d7f3014",
+                "age": "27",
+                "gender": "M",
+                "username": "rbertram8"
+            }
         }
+
+        this.hideModal = this.hideModal.bind(this)
     }
     componentDidMount() {
         this.participantNumbers();
     }
+    showModal() {
+        document.body.style.overflow = 'hidden'
+        this.setState({showModal: true})
+    }
+
+    hideModal() {
+        document.body.style.overflow = 'unset'
+        this.setState({showModal: false})
+    }
+
     editParticipant(i){
         //Will handle updating participants
     }
@@ -78,6 +104,9 @@ class MyEventView extends React.Component {
     render(){
         return(
             <div>
+                <EditModal hideModal={this.hideModal} 
+                           showModal={this.state.showModal} 
+                           user={this.state.selectedUser} />
                 <h1 className="tournaments__heading">Combat Con 2018: Longsword</h1>
                 <TopBar buttons={buttons} />
                 <div className="c-Tournament__section c-Tournament__section--gray-bg c-Tournament__section--no-wrap">
@@ -97,7 +126,7 @@ class MyEventView extends React.Component {
                             {participants.map( (x,i) => {
                                 return (
                                         <div className="c-Tournament__section c-Tournament__section--no-wrap c-Tournament__section--row tournament__table--full-width"
-                                             onClick={this.editParticipant.bind(this,i)}>
+                                             onClick={this.showModal.bind(this)}>
                                             <div>
                                                 {x.name}
                                             </div>
