@@ -92,7 +92,7 @@ class MyTournaments extends React.Component {
                 {/* Flexed Item 2*/}
                 <div className="c-Tournament-white-bg tournaments__main-wrap--full-width">
                 <TopBar title="My Tournaments" buttons={[]} />
-                    <em className="c-Tournament__section">Select an Event</em>
+                    <em className="c-Tournament__section">Select a Tournament</em>
                     <div className="c-Tournament__section c-Tournament__section--flex-start">
                         {this.state.myTournaments.map( x => {
                             return( <div>

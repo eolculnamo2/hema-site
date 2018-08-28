@@ -56,6 +56,10 @@
         padding: 0;
         padding-bottom: 1em;
     }
+
+    &--gray-bg {
+        background: $light-gray3;
+    }
 }
 
 .c-Tournament-white-bg {
@@ -84,6 +88,14 @@
     height: 200px;
 }
 
+.c-Tournament-flex-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+
 .c-Tournament-button {
     min-width: 150px;
     padding: 1em 2em;
@@ -99,6 +111,11 @@
     }
     &--submit {
         background: $fl-green;
+    }
+
+    &--block {
+        margin-right: 0;
+        display: block;
     }
 }
 

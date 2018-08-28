@@ -6,7 +6,7 @@ class RegisterForEvent extends React.Component {
     constructor(){
         super()
         this.state = {
-            selectedEvent: {},
+            selectedTournament: {},
             tournaments: []
         }
     }
@@ -35,7 +35,7 @@ class RegisterForEvent extends React.Component {
             affiliation: document.getElementById('affiliation').value,
             events: chosenEvents,
             paid: true,
-            tournamentId: this.state.selectedEvent['_id'],
+            tournamentId: this.state.selectedTournament['_id'],
             age: document.getElementById('age').value,
             gender: document.getElementById('gender').value
         }
@@ -76,10 +76,10 @@ class RegisterForEvent extends React.Component {
                 <div className="c-Tournament-white-bg tournaments__main-wrap--full-width">
                     <TopBar title="Upcoming Tournaments" buttons={[]}/>
                     <div className="tournaments__right-info">
-                        <em>Select An Event</em>
+                        <em>Select a Tournament</em>
                         <div className="tournaments__flex-cards">
                             {this.state.tournaments.map((x,i) => {
-                                return (<div onClick={()=>{this.setState({selectedEvent: x, selectedIndex: i})}} 
+                                return (<div onClick={()=>{this.setState({selectedTournament: x, selectedIndex: i})}} 
                                              className="c-Tournament-pointer">
                                              <TournamentCard card = {x}
                                                             selected={this.state.selectedIndex === i}/>
@@ -89,16 +89,16 @@ class RegisterForEvent extends React.Component {
                         </div>
 
                         <div className="c-Tournament__form c-Tournament__form--top-border"
-                             style={{display: this.state.selectedEvent.name !== undefined ? 'block' : 'none'}}>
+                             style={{display: this.state.selectedTournament.name !== undefined ? 'block' : 'none'}}>
 
                             <h2 className="tournaments__event-headings">
-                                {this.state.selectedEvent.name}
+                                {this.state.selectedTournament.name}
                             </h2>
                             <p>
-                                Registration Cost: ${this.state.selectedEvent.cost}
+                                Registration Cost: ${this.state.selectedTournament.cost}
                             </p>
-
-                            {this.state.selectedEvent.name !== undefined ? this.state.selectedEvent.events.map( x => {
+                            <span>Select your Events</span>
+                            {this.state.selectedTournament.name !== undefined ? this.state.selectedTournament.events.map( x => {
                                 return(
                                     <div>
                                         <input value={x.name} className="event-checkbox" type="checkbox" />
