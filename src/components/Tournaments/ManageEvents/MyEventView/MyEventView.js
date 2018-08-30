@@ -29,7 +29,7 @@ let participants = [
 let buttons = [
     {
         text: "Add Participant",
-        link: ""
+        fx: 'activateModal'
     }
 ]
 
@@ -57,22 +57,19 @@ class MyEventView extends React.Component {
         }
 
         this.hideModal = this.hideModal.bind(this)
+        this.showModal = this.showModal.bind(this)
     }
     componentDidMount() {
         this.participantNumbers();
     }
-    showModal() {
+    showModal(x) {
         document.body.style.overflow = 'hidden'
-        this.setState({showModal: true})
+        x && x === 'showModal' ? this.setState({showModal: true}) : this.setState({addApplicant: true})
     }
 
     hideModal() {
         document.body.style.overflow = 'unset'
-        this.setState({showModal: false})
-    }
-
-    editParticipant(i){
-        //Will handle updating participants
+        this.setState({showModal: false, addApplicant: false})
     }
     participantNumbers() {
         let ctx = document.getElementById('chart')
@@ -87,13 +84,13 @@ class MyEventView extends React.Component {
               borderColor: ['#c0e8b2','#f3ff99'],
               borderWidth: 1,
               pointRadius: 2,
-              backgroundColor: ['rgba(192, 232, 178, 1)','rgba(243, 255, 153, 1)'],
+              backgroundColor: ['rgba(192, 232, 178, 1)','rgba(255, 163, 163, 1)'],
               data: this.state.data,
             }]
             },
            options: {
              legend: {
-               position: 'bottom',
+               position: 'top',
                labels: {
                   boxWidth: 12
                }
@@ -106,9 +103,16 @@ class MyEventView extends React.Component {
             <div>
                 <EditModal hideModal={this.hideModal} 
                            showModal={this.state.showModal} 
-                           user={this.state.selectedUser} />
+                           user={this.state.selectedUser}
+                           edit={true}
+                           enableToggle={true} />
+                <EditModal hideModal={this.hideModal} 
+                           showModal={this.state.addApplicant}
+                           edit={false}
+                           user={this.state.selectedUser}
+                           enableToggle={true} />
                 <h1 className="tournaments__heading">Combat Con 2018: Longsword</h1>
-                <TopBar buttons={buttons} />
+                <TopBar buttons={buttons} activateModal={this.showModal} />
                 <div className="c-Tournament__section c-Tournament__section--gray-bg c-Tournament__section--no-wrap">
                     <div className="tournaments__table-wrap">
                         <div className="tournaments__table-head tournament__table--full-width">
@@ -126,7 +130,7 @@ class MyEventView extends React.Component {
                             {participants.map( (x,i) => {
                                 return (
                                         <div className="c-Tournament__section c-Tournament__section--no-wrap c-Tournament__section--row tournament__table--full-width"
-                                             onClick={this.showModal.bind(this)}>
+                                             onClick={this.showModal.bind(this, 'showModal')}>
                                             <div>
                                                 {x.name}
                                             </div>
