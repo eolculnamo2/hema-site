@@ -2,7 +2,7 @@ import React from 'react'
 
 class TopBar extends React.Component {
     passToParent(fx) {
-        this.props.activateModal('addParticipant')
+        this.props[fx].call();
     }
     render() {
         return (
@@ -16,7 +16,13 @@ class TopBar extends React.Component {
                     {this.props.buttons.map( x => {
                         return(
                             <a href={x.link ? x.link : null}>
-                                <button className="tournaments__description-button" onClick={x.fx ? this.passToParent.bind(this, x.fx) : x.link}>{x.text}</button>
+                                <button 
+                                        style={{background: x.bgColor ? x.bgColor : '',
+                                             color: x.txtColor ? x.txtColor : ''}} 
+                                        className="tournaments__description-button" 
+                                        onClick={x.fx ? this.passToParent.bind(this, x.fx) : x.link}>
+                                        {x.text}
+                                </button>
                             </a>
                     )
                     })}

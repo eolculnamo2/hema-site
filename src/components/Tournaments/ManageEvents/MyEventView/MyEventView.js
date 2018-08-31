@@ -30,6 +30,12 @@ let buttons = [
     {
         text: "Add Participant",
         fx: 'activateModal'
+    },
+    {
+        text: "Save Changes",
+        fx: 'saveChanges',
+        bgColor: '#c0e8b2',
+        txtColor: '#333'
     }
 ]
 
@@ -58,6 +64,7 @@ class MyEventView extends React.Component {
 
         this.hideModal = this.hideModal.bind(this)
         this.showModal = this.showModal.bind(this)
+        this.saveChanges = this.saveChanges.bind(this)
     }
     componentDidMount() {
         this.participantNumbers();
@@ -65,6 +72,10 @@ class MyEventView extends React.Component {
     showModal(x) {
         document.body.style.overflow = 'hidden'
         x && x === 'showModal' ? this.setState({showModal: true}) : this.setState({addApplicant: true})
+    }
+
+    saveChanges() {
+        alert("Save Function Called")
     }
 
     hideModal() {
@@ -81,8 +92,8 @@ class MyEventView extends React.Component {
             datasets: [{
               label: "Participants",
               fill: true,
-              borderColor: ['#c0e8b2','#f3ff99'],
-              borderWidth: 1,
+              borderColor: ['#87a37d','#a56f6f'],
+              borderWidth: 5,
               pointRadius: 2,
               backgroundColor: ['rgba(192, 232, 178, 1)','rgba(255, 163, 163, 1)'],
               data: this.state.data,
@@ -111,8 +122,10 @@ class MyEventView extends React.Component {
                            edit={false}
                            user={this.state.selectedUser}
                            enableToggle={true} />
-                <h1 className="tournaments__heading">Combat Con 2018: Longsword</h1>
-                <TopBar buttons={buttons} activateModal={this.showModal} />
+                <TopBar title="Combat Con 2018: Longsword" 
+                        buttons={buttons} 
+                        activateModal={this.showModal} 
+                        saveChanges={this.saveChanges} />
                 <div className="c-Tournament__section c-Tournament__section--gray-bg c-Tournament__section--no-wrap">
                     <div className="tournaments__table-wrap">
                         <div className="tournaments__table-head tournament__table--full-width">
@@ -144,14 +157,6 @@ class MyEventView extends React.Component {
                                         )
                             })}
                         </div>
-                        <div className="c-Tournament__section c-Tournament__section--flex-start">
-                            <button type="button"
-                                    className='c-Tournament-button c-Tournament-button--submit'
-                                    >
-                                Save Changes
-                            </button>
-                        </div>
-
                     </div>
                     <div className="tournaments__center-numbers">
                         <h3 className="tournaments__heading tournaments__heading--center">Participants</h3>
