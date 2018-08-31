@@ -1,16 +1,20 @@
-var path = require('path')
+const path = require('path')
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     entry: './src/Index.js',
     output: {
         path: path.resolve('./assets/dist'),
-        filename: '[name].[chunkhash].bundle.js'
+        filename: 'bundle.js'
     },
     optimization: {
         splitChunks: {
           chunks: 'all'
         }
     },
+    plugins: [
+              new CleanWebpackPlugin(['assets/dist'], {exclude: 'sitemap.xml'})
+            ],
     module: {
         rules: [
             {

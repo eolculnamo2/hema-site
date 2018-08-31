@@ -20,7 +20,7 @@ const MyEvents = props => {
             </h2>
             <div>
                 {props.events.map( x => {
-                   return (<Link to={'/manage-tournaments/'+x.name}><h4 className="tournaments__event-list-item"> {x.name} </h4></Link>)
+                   return (<Link to={'/manage-tournaments/'+props.card['_id']+'/'+x.name}><h4 className="tournaments__event-list-item"> {x.name} </h4></Link>)
                 })}
             </div>
 

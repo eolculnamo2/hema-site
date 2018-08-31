@@ -109,6 +109,7 @@
         background: $faded-blue;
         border-radius: 3px;
         color: $dark-navy;
+        white-space: nowrap;
         &:hover {
            background: $dark-navy;
            color: white;
