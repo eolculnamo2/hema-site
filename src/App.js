@@ -79,7 +79,7 @@ class App extends React.Component {
                             {<Route exact path='/profile/:profile' render={ props => (
                                 <Profile {...props} />
                             )} />}
-                            {<Route exact path='/manage-tournaments/:event' render={ props => (
+                            {<Route exact path='/manage-tournaments/:tId/:event' render={ props => (
                                 this.state.loggedIn ? <MyEventView {...props} /> : <Redirect to="/login"/>
                             )} />}
                             <Route exact path='/admin' render={ () => (

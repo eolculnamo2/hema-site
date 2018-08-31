@@ -4,22 +4,7 @@ const router = express.Router()
 const path = require('path')
 const Article = require('../models/Article')
 let recaptcha = new Recaptcha(process.env.CAP_SITE, process.env.CAP_SECRET)
-/* let routes = ['/',
-              '/articles',
-              '/article/:article',
-              '/profile/:profile',
-              '/contribute',
-              '/gear-list',
-              '/profile',
-              '/admin',
-              '/register',
-              '/login']
 
-routes.forEach( x => {
-    router.get(x,(req,res) => {
-        res.sendFile(path.join(__dirname,'..','/public/index.html'))
-    })
-}) */
 
 router.get('contribute',recaptcha.middleware.render, function(req, res){
     res.sendFile(path.join(__dirname,'..','/public/index.html'))

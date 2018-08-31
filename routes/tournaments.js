@@ -68,6 +68,15 @@ router.post('/get-my-tournaments',(req,res) => {
     }
 })
 
+router.post('/get-a-tournament', (req,res) => {
+    Tournament.findById({_id: req.body.tournamentId}, (err,info) => {
+        if(err) console.log(err)
+        else {
+            res.send(info)
+        }
+    })
+})
+
 router.post('/add-tournament-event', (req,res) => {
     let event = {
         name: req.body.event,

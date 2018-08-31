@@ -70,7 +70,7 @@ class Header extends React.Component {
                         <span id='dropdown-name'>Articles</span>
                         <ul className="dropdown-links">
                             <Link to='/articles'><li>View All</li></Link>
-                            <Link to='/contribute'><li>Contribute</li></Link>
+                            <Link to='/contribute'><li>Publish</li></Link>
                         </ul>
                     </span>
 
@@ -102,7 +102,7 @@ class Header extends React.Component {
                         <span id='dropdown-name'>Articles</span>
                         <ul className="dropdown-links">
                             <Link to='/articles'><li>View All</li></Link>
-                            <Link to='/contribute'><li>Contribute</li></Link>
+                            <Link to='/contribute'><li>Publish</li></Link>
                         </ul>
                     </span>
 
