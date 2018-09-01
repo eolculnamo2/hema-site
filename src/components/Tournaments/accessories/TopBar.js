@@ -2,6 +2,7 @@ import React from 'react'
 
 class TopBar extends React.Component {
     passToParent(fx) {
+        console.log(fx)
         this.props[fx].call();
     }
     render() {

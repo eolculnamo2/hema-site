@@ -97,14 +97,66 @@ router.post('/register-for-tournament', (req,res) => {
     if(req.user){ 
         let participant = req.body
         participant.username = req.user.username
-     Tournament.findByIdAndUpdate({_id: req.body.tournamentId}, {$push: {registeredParticipants: participant}}, (err,response)=> {
-        if(err) {
-            console.log(err)
-            res.send({status: false})
-        }
-        else {
-            User.findByIdAndUpdate({_id: req.user['_id']}, {$push: {registeredFor: participant}},(err,info)=>{
-                if(err){
+        participant.participantId = Math.floor(Math.random()*1000000000000)
+        Tournament.findById({_id: req.body.tournamentId}, (err,info) => {
+            //check for participantID duplicates
+            let participantError = false
+            for(x of info.registeredParticipants) {
+                if(x && x.participantId === participant.participantId) {
+                    participantError = true
+                }
+            }
+
+            if(err || participantError) {
+                console.log('error')
+                res.send({status: false})
+            }
+            else {
+                Tournament.findByIdAndUpdate({_id: req.body.tournamentId}, {$push: {registeredParticipants: participant}}, (err,response) => {
+                    if(err) {
+                        console.log(err)
+                        res.send({status: false})
+                    }
+                    else {
+                        User.findByIdAndUpdate({_id: req.user['_id']}, {$push: {registeredFor: participant}},(err,info) => {
+                            if(err){
+                                console.log(err)
+                                res.send({status: false})
+                            }
+                            else {
+                                res.send({status: true})
+                            }
+                        })
+                    }
+                })
+            }
+        })
+    }
+    else {
+        //TODO: Will need to set up redirect to login page...
+        console.log('Not logged in')
+        res.send({status: false})
+    }
+})
+
+router.post('/add-participant', (req,res) => {
+    let participant = Object.assign({},req.body)
+    participant.participantId = Math.floor(Math.random()*1000000000000)
+        Tournament.findById({_id: req.body.tournamentId}, (err,info) => {
+            //check for participantID duplicates
+            let participantError = false
+            for(x of info.registeredParticipants) {
+                if(x && x.participantId === participant.participantId) {
+                    participantError = true
+                }
+            }
+            if(err || participantError) {
+                console.log('participantError')
+                res.send({status: false})
+            }
+            else{
+            Tournament.findByIdAndUpdate({_id: req.body.tournamentId}, {$push: {registeredParticipants: participant}}, (err,response)=> {
+                if(err) {
                     console.log(err)
                     res.send({status: false})
                 }
@@ -114,22 +166,30 @@ router.post('/register-for-tournament', (req,res) => {
             })
         }
     })
-    }
-    else {
-        res.send({status: false})
-    }
 })
 
-router.post('/add-participant', (req,res) => {
-    let participant = Object.assign({},req.body)
-    
-    Tournament.findByIdAndUpdate({_id: req.body.tournamentId}, {$push: {registeredParticipants: participant}}, (err,response)=> {
+router.post('/update-participant', (req,res) => {
+    Tournament.findById({_id: req.body.tournamentId}, (err,info)=> {
         if(err) {
             console.log(err)
             res.send({status: false})
         }
         else {
-            res.send({status: true})
+            for(let i in info.registeredParticipants) {
+                if(info.registeredParticipants[i].participantId === req.body.participantId) {
+                    info.registeredParticipants[i] = req.body
+                    break
+                }
+            }
+            Tournament.findByIdAndUpdate({_id: req.body.tournamentId}, {registeredParticipants: info.registeredParticipants}, (err,response)=> {
+                if(err) {
+                    console.log(err)
+                    res.send({status: false})
+                }
+                else {
+                    res.send({status: true})
+                }
+            })
         }
     })
 })

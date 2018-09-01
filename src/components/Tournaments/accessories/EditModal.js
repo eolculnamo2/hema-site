@@ -34,9 +34,10 @@ class EditModal extends React.Component {
                 eventsArray.push(x.value)
             }   
         })
-        //Events can be more than one.. this needs fixed.
-        //paid to boolean
+        
+        //changes string paid to boolean
         let paid = document.getElementById('statusInput').value === 'true'
+
         let payload = {
             name: document.getElementById('nameInput').value.trim(),
             age: document.getElementById('ageInput').value.trim(),
@@ -62,12 +63,68 @@ class EditModal extends React.Component {
     }
 
     editParticipant() {
+        let userClone = Object.assign({}, this.props.user)
+        let state = this.state
 
+        //converts state inputs to keys used in db
+        let legend = {
+            nameInput: 'name',
+            ageInput: 'age',
+            genderInput: 'gender',
+            affiliationInput: 'affiliation',
+            statusInput: 'paid',
+            eventsInput: 'events'
+        }
+
+        for(let k of Object.keys(state)) {
+            let x = state[k]
+
+            if(x === true) {
+
+                if(k !== 'eventsInput' && k !== 'statusInput')
+                userClone[legend[k]] = document.getElementById(k).value.trim()
+
+                else if(k === 'eventsInput') {
+                    let events = document.getElementsByClassName('eventsInput')
+                    let eventsArray = []
+                    Array.prototype.forEach.call(events, x => {
+                        if(x.checked) {
+                            eventsArray.push(x.value)
+                        }   
+                    })
+
+                    userClone[legend[k]] = eventsArray
+                }
+
+                else if(k === 'statusInput'){
+                    userClone[legend[k]] = document.getElementById('statusInput').value === 'true'
+                }
+
+            }
+        }
+        //FETCH REQUEST GOES HERE ONCE CREATED PARTICIPANTIDS
+        fetch('/tournaments/update-participant',{
+            method: "POST",
+            body: JSON.stringify(userClone),
+            headers: { "Content-Type": "application/json" },
+            credentials: "same-origin"
+            })
+        .then( res => res.json())
+        .then( data => {
+            alert("Updated")
+            this.props.getEventDetails()
+            this.resetInputs()
+        })
     }
 
     toggleInput(x,state) {
         if(!this.state[state] && this.props.enableToggle){
-            return <span>{x}</span>
+            if(state !== 'eventsInput'){
+                return <span>{x}</span>
+            }
+            else {
+                return x.map( y => <div>{y}</div>)
+            }
         }
         else if(state === 'genderInput') {
             return (<select id={state}>
