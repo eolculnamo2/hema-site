@@ -5,16 +5,16 @@ import TopBar from '../accessories/TopBar'
 class CreateTournament extends React.Component {
     submitForm(){
         let payload = {
-            name: document.getElementById('tournament-name').value,
-            city: document.getElementById('tournament-city').value,
-            state: document.getElementById('tournament-state').value,
-            country: document.getElementById('tournament-country').value,
-            startDate: document.getElementById('start-date').value,
-            endDate: document.getElementById('end-date').value,
+            name: document.getElementById('tournament-name').value.trim(),
+            city: document.getElementById('tournament-city').value.trim(),
+            state: document.getElementById('tournament-state').value.trim(),
+            country: document.getElementById('tournament-country').value.trim(),
+            startDate: document.getElementById('start-date').value.trim(),
+            endDate: document.getElementById('end-date').value.trim(),
             useSPRegistration: document.querySelector('input[name="use-registration"]:checked').value,
             useKey: document.querySelector('input[name="use-key"]:checked').value,
-            cost: document.getElementById('registration-cost').value,
-            description: document.getElementById('description').value,
+            cost: document.getElementById('registration-cost').value.trim(),
+            description: document.getElementById('description').value.trim(),
             logo: document.getElementById('logo').value
         }
 

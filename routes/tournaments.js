@@ -118,7 +118,19 @@ router.post('/register-for-tournament', (req,res) => {
     else {
         res.send({status: false})
     }
-
 })
 
+router.post('/add-participant', (req,res) => {
+    let participant = Object.assign({},req.body)
+    
+    Tournament.findByIdAndUpdate({_id: req.body.tournamentId}, {$push: {registeredParticipants: participant}}, (err,response)=> {
+        if(err) {
+            console.log(err)
+            res.send({status: false})
+        }
+        else {
+            res.send({status: true})
+        }
+    })
+})
 module.exports = router;

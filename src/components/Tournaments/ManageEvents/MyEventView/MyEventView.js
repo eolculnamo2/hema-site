@@ -32,6 +32,7 @@ class MyEventView extends React.Component {
             participants: [],
             dates: ["Paid", "Pending"],
             showModal: false,
+            tournamentName: '',
             selectedUser: {
                 "name": "",
                 "affiliation": "",
@@ -49,6 +50,7 @@ class MyEventView extends React.Component {
         this.hideModal = this.hideModal.bind(this)
         this.showModal = this.showModal.bind(this)
         this.saveChanges = this.saveChanges.bind(this)
+        this.getEventDetails = this.getEventDetails.bind(this)
     }
     componentDidMount() {
         this.getEventDetails()
@@ -73,7 +75,7 @@ class MyEventView extends React.Component {
     }
 
     getEventDetails() {
-        let event = this.props.match.params.event
+        let event =this.props.match.params.event
         let tournamentId = this.props.match.params.tId
     
         fetch('/tournaments/get-a-tournament',{
@@ -95,10 +97,11 @@ class MyEventView extends React.Component {
             })
 
             let revenue = paidTotal * data.cost
-
+            console.log(data.name)
             this.setState({paidAndUnpaid: [paidTotal, unPaidTotal],
                            totalRevenue: revenue,
-                           participants: participants}, () => this.participantNumbers())
+                           participants: participants,
+                           tournamentName: data.name}, () => this.participantNumbers())
         })
     }
 
@@ -155,8 +158,10 @@ class MyEventView extends React.Component {
                            showModal={this.state.addApplicant}
                            edit={false}
                            user={this.state.selectedUser}
-                           enableToggle={true} />
-                <TopBar title="Combat Con 2018: Longsword" 
+                           tournamentId={this.props.match.params.tId}
+                           enableToggle={true}
+                           getEventDetails={this.getEventDetails} />
+                <TopBar title={this.state.tournamentName+': '+this.props.match.params.event} 
                         buttons={buttons} 
                         activateModal={this.showModal} 
                         saveChanges={this.saveChanges} />
