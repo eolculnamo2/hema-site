@@ -57,6 +57,20 @@ class RegisterForEvent extends React.Component {
             } 
         })
     }
+    resetRegisterForm() {
+
+            document.getElementById('full-name').value = ''
+            document.getElementById('affiliation').value = ''
+            document.getElementById('age').value = ''
+            document.getElementById('gender').value = 'M'
+
+            let checkboxes = document.getElementsByClassName('event-checkbox');
+            Array.prototype.forEach.call(checkboxes, x => {
+                x.checked = false
+            })
+        
+    }
+
     render() {
         return(
             <div className="tournaments__main-wrap tournaments__main-wrap--bg-gray">
@@ -105,7 +119,7 @@ class RegisterForEvent extends React.Component {
                                         <span className="capitalize">{x.name}</span>
                                     </div>)
                             }) : null}
-                            <div className="c-Tournament__section">
+                            <div className="c-Tournament__section c-Tournament__section--register-for-event">
                                 <div>
                                     <h2 className="tournaments__event-headings">
                                         Full Name
@@ -119,7 +133,7 @@ class RegisterForEvent extends React.Component {
                                     <input className="c-Tournament-input" id="affiliation" placeholder="If no affiliate, put 'none'" />
                                 </div>
                             </div>
-                            <div className="c-Tournament__section">
+                            <div className="c-Tournament__section c-Tournament__section--register-for-event">
                                 <div>
                                     <h2 className="tournaments__event-headings">
                                         Age
@@ -127,7 +141,7 @@ class RegisterForEvent extends React.Component {
                                     <input className="c-Tournament-input" id="age" />
                                 </div>
                             </div>
-                            <div className="c-Tournament__section">
+                            <div className="c-Tournament__section c-Tournament__section--register-for-event">
                                 <div>
                                     <h2 className="tournaments__event-headings">
                                         Gender
@@ -139,7 +153,7 @@ class RegisterForEvent extends React.Component {
                                 </div>
                             </div>
 
-                           {/*  <div className="c-Tournament__section">
+                           {/*  <div className="c-Tournament__section c-Tournament__section--register-for-event">
                                 <div>
                                     <h2 className="tournaments__event-headings">
                                         Credit Card Number
@@ -155,7 +169,7 @@ class RegisterForEvent extends React.Component {
                             </div> */}
 
                             <div className="c-Tournament__section c-Tournament__section--flex-start">
-                                <button type="button" className='c-Tournament-button c-Tournament-button--reset'>
+                                <button type="button" onClick={this.resetRegisterForm.bind(this)} className='c-Tournament-button c-Tournament-button--reset'>
                                     Reset
                                 </button>
                                 <button type="button" onClick={this.register.bind(this)} className='c-Tournament-button c-Tournament-button--submit'>
