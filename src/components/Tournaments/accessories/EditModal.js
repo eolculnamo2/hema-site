@@ -26,6 +26,45 @@ class EditModal extends React.Component {
         }
     }
 
+    addNewParticipant() {
+        let events = document.getElementsByClassName('eventsInput')
+        let eventsArray = []
+        Array.prototype.forEach.call(events, x => {
+            if(x.checked) {
+                eventsArray.push(x.value)
+            }   
+        })
+        //Events can be more than one.. this needs fixed.
+        //paid to boolean
+        let paid = document.getElementById('statusInput').value === 'true'
+        let payload = {
+            name: document.getElementById('nameInput').value.trim(),
+            age: document.getElementById('ageInput').value.trim(),
+            gender: document.getElementById('genderInput').value.trim(),
+            affiliation: document.getElementById('affiliationInput').value.trim(),
+            paid: paid,
+            events: eventsArray,
+            username: '',
+            tournamentId: this.props.tournamentId
+        }
+
+        fetch('/tournaments/add-participant',{
+            method: "POST",
+            body: JSON.stringify(payload),
+            headers: { "Content-Type": "application/json" },
+            credentials: "same-origin"
+            })
+        .then( res => res.json())
+        .then( data => {
+            alert("New Participant Added")
+            this.props.getEventDetails()
+        })
+    }
+
+    editParticipant() {
+
+    }
+
     toggleInput(x,state) {
         if(!this.state[state] && this.props.enableToggle){
             return <span>{x}</span>
@@ -45,12 +84,17 @@ class EditModal extends React.Component {
             )
         }
         else if(state === "eventsInput") {
-            return (
-                <select id={state}>
+            //TODO change to checkboxes
+            return (<div>
                     {this.props.user.events.map( x => {
-                       return <option value={x}>{x}</option>
+                       return (
+                            <label>
+                                <input type="checkbox" className="eventsInput" value={x} />
+                                {x}
+                            </label>
+                       )
                     })}
-                </select>
+                    </div>
             )
         }
         else {
@@ -117,7 +161,8 @@ class EditModal extends React.Component {
                             </span>
                         </p>
                         <div className="c-Tournament-flex-buttons">
-                            <button className="c-Tournament-button c-Tournament-button--submit c-Tournament-button--block">
+                            <button className="c-Tournament-button c-Tournament-button--submit c-Tournament-button--block"
+                            onClick={this.props.edit ? this.editParticipant.bind(this) : this.addNewParticipant.bind(this)}>
                                 Save Changes
                             </button>
                             <button className="c-Tournament-button c-Tournament-button--reset c-Tournament-button--block" 

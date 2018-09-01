@@ -68,7 +68,7 @@ class MyTournaments extends React.Component {
     addEvent(x) {
         let payload = {
             //event-name lives in MyEvent.js
-            event: document.getElementById('event-name').value,
+            event: document.getElementById('event-name').value.trim(),
             tournamentId: this.state.selectedTournament
         }
         fetch('/tournaments/add-tournament-event',{
