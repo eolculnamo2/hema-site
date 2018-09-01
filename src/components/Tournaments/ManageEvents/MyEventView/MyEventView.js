@@ -9,21 +9,20 @@ let buttons = [
         fx: 'activateModal'
     },
     {
-        text: "Save Changes",
+        text: "Refresh",
         fx: 'saveChanges',
         bgColor: '#c0e8b2',
         txtColor: '#333'
     },
     {
         text: "Delete Event",
-        fx: 'saveChanges',
+        fx: 'deleteEvent',
         bgColor: '#ffa3a3',
         txtColor: '#333'
     }
 ]
 
 class MyEventView extends React.Component {
-    //this.props.match.params.event
     constructor() {
         super()
         this.state = {
@@ -32,6 +31,7 @@ class MyEventView extends React.Component {
             participants: [],
             dates: ["Paid", "Pending"],
             showModal: false,
+            addApplicant: false,
             tournamentName: '',
             selectedUser: {
                 "name": "",
@@ -51,6 +51,7 @@ class MyEventView extends React.Component {
         this.showModal = this.showModal.bind(this)
         this.saveChanges = this.saveChanges.bind(this)
         this.getEventDetails = this.getEventDetails.bind(this)
+        this.deleteEvent = this.deleteEvent.bind(this)
     }
     componentDidMount() {
         this.getEventDetails()
@@ -97,17 +98,26 @@ class MyEventView extends React.Component {
             })
 
             let revenue = paidTotal * data.cost
-            console.log(data.name)
             this.setState({paidAndUnpaid: [paidTotal, unPaidTotal],
                            totalRevenue: revenue,
                            participants: participants,
-                           tournamentName: data.name}, () => this.participantNumbers())
+                           tournamentName: data.name,
+                           showModal: false,
+                           addApplicant: false}, () => this.participantNumbers())
         })
     }
 
     saveChanges() {
-        alert("Save Function Called")
         this.getEventDetails()
+    }
+
+    deleteEvent() {
+        let prompt = confirm('Are you sure you want to delete this event?')
+        let prompt2 = confirm('Once you delete your event, you cannot undo the change. Sword-Point does not handle refunds and updating participants. Sword-Point is not responsible for any consequences of a deleted event. Are you still sure you want to delete the event?')
+    
+        if(prompt === true && prompt2 === true) {
+            alert("This feature is not yet available. Please contact site admin to delete event.")
+        }
     }
 
     hideModal() {
@@ -153,7 +163,9 @@ class MyEventView extends React.Component {
                            showModal={this.state.showModal} 
                            user={this.state.selectedUser}
                            edit={true}
-                           enableToggle={true} />
+                           enableToggle={true}
+                           getEventDetails={this.getEventDetails} />
+
                 <EditModal hideModal={this.hideModal} 
                            showModal={this.state.addApplicant}
                            edit={false}
@@ -161,11 +173,14 @@ class MyEventView extends React.Component {
                            tournamentId={this.props.match.params.tId}
                            enableToggle={true}
                            getEventDetails={this.getEventDetails} />
+
                 <TopBar title={this.state.tournamentName+': '+this.props.match.params.event} 
                         buttons={buttons} 
                         activateModal={this.showModal} 
-                        saveChanges={this.saveChanges} />
-                <div className="c-Tournament__section c-Tournament__section--gray-bg c-Tournament__section--no-wrap">
+                        saveChanges={this.saveChanges}
+                        deleteEvent={this.deleteEvent} />
+
+                <div className="c-Tournament__section c-Tournament__section--gray-bg c-Tournament__section--no-wrap1">
                     <div className="tournaments__table-wrap">
                         <em>Click Participant to Edit</em>
                         <div className="tournaments__table-head tournament__table--full-width">

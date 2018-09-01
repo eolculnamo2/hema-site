@@ -26,6 +26,7 @@
 
     @media(max-width: 950px) {
         width: 100vw;
+        min-height: 0vh;
     }
 }
 
@@ -70,6 +71,10 @@
     &:hover {
         opacity: .7;
     }
+
+    @media (max-width: $medium) {
+        width: 150px;
+    }
 }
 
 //RIGHT INFO
@@ -105,6 +110,10 @@
     p {
         margin-bottom: 0;
     }
+
+    @media (max-width: $mediumSmall) {
+        justify-content: space-around;
+    }
 }
 .tournament__inner-card-flex {
     display: flex;
@@ -124,6 +133,10 @@
     border-top: 1px solid $light-gray2;
     align-items: center;
     padding: 0 .5em;
+    flex-wrap: wrap;
+    @media(max-width: $medium) {
+        justify-content: flex-start;
+    }
 }
 
 .tournaments__radio {
