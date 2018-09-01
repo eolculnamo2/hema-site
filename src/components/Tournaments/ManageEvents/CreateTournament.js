@@ -11,8 +11,10 @@ class CreateTournament extends React.Component {
             country: document.getElementById('tournament-country').value.trim(),
             startDate: document.getElementById('start-date').value.trim(),
             endDate: document.getElementById('end-date').value.trim(),
-            useSPRegistration: document.querySelector('input[name="use-registration"]:checked').value,
-            useKey: document.querySelector('input[name="use-key"]:checked').value,
+            /* useSPRegistration: document.querySelector('input[name="use-registration"]:checked').value,
+            useKey: document.querySelector('input[name="use-key"]:checked').value, */
+            useSPRegistration: false,
+            useKey: false,
             cost: document.getElementById('registration-cost').value.trim(),
             description: document.getElementById('description').value.trim(),
             logo: document.getElementById('logo').value
@@ -102,7 +104,7 @@ class CreateTournament extends React.Component {
                                 </div>
                             </div>
 
-                            <div className="c-Tournament__section">
+                            {/* <div className="c-Tournament__section">
                                 <div>
                                     <h2 className="tournaments__event-headings">
                                         Use Sword Point Registration
@@ -130,7 +132,7 @@ class CreateTournament extends React.Component {
                                     Registration keys are given to help you control user registration. If this option is chosen, you must provide the key to participants before registration. (i.e. you may want to provide the key only to those who have already paid registration fees.
                                     </p>
                                 </div>
-                            </div>
+                            </div> */}
 
                             <div className="c-Tournament__section">
                                 <div>
