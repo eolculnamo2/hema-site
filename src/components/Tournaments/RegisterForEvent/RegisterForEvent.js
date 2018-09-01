@@ -139,7 +139,7 @@ class RegisterForEvent extends React.Component {
                                 </div>
                             </div>
 
-                            <div className="c-Tournament__section">
+                           {/*  <div className="c-Tournament__section">
                                 <div>
                                     <h2 className="tournaments__event-headings">
                                         Credit Card Number
@@ -152,7 +152,7 @@ class RegisterForEvent extends React.Component {
                                     </h2>
                                     <input className="c-Tournament-input" id="tournament-location" placeholder="MM/YYYY" />
                                 </div>
-                            </div>
+                            </div> */}
 
                             <div className="c-Tournament__section c-Tournament__section--flex-start">
                                 <button type="button" className='c-Tournament-button c-Tournament-button--reset'>

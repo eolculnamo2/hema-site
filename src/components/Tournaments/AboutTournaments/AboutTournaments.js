@@ -21,6 +21,7 @@ const AboutTournaments = () => {
                 <h1 className="tournaments__heading">
                     Tournaments
                 </h1>
+
                 <p className="tournaments__description-text">
                     Whether you are organizing a 
                     HEMA tournament/event or are a 
@@ -29,18 +30,26 @@ const AboutTournaments = () => {
                     valuable real time tournament 
                     information.
                 </p>
+                <h3 className="tournaments__heading">
+                    Current features
+                </h3>
+                <ul>
+                    <li className="tournaments__description-listed-item">
+                        Data visualization and dashboard interfaces make managing your tournament’s online presence simple.
+                    </li>
+                    <li className="tournaments__description-listed-item">
+                        Build tournament rosters and manage registration to events.
+                    </li>
+                </ul>
+                <h3 className="tournaments__heading">
+                    Coming Soon
+                </h3>
                 <ul>
                     <li className="tournaments__description-listed-item">
                         Judge’s Table Interface for posting scores online and keeping tournament records
                     </li>
                     <li className="tournaments__description-listed-item">
                         HEMA competitors can view their tournament stats on their Sword Point profiles.
-                    </li>
-                    <li className="tournaments__description-listed-item">
-                        Data visualization and dashboard interfaces make managing your tournament’s online presence simple.
-                    </li>
-                    <li className="tournaments__description-listed-item">
-                        Build tournament rosters and manage registration to events.
                     </li>
                 </ul>
             </div>

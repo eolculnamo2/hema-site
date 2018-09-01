@@ -3,36 +3,36 @@ import TournamentCard from '../../accessories/TournamentCard'
 
 let activeEvents = [
     {
-        name: "Combat Con, 2018",
-        location: "Las Vegas, NV, USA",
-        dates: "Aug 2nd -  Aug 5th",
+        name: "Coming Soon",
+        location: "Coming Soon",
+        dates: "Coming Soon",
         image: "https://hemascorecard.com/includes/images/hemaa_logo_s.png"
     }
 ]
 
 let recentEvents = [
     {
-        name: "Combat Con, 2018",
-        location: "Las Vegas, NV, USA",
-        dates: "Aug 2nd -  Aug 5th",
+        name: "Coming Soon",
+        location: "Coming Soon",
+        dates: "Coming Soon",
         image: "https://hemascorecard.com/includes/images/hemaa_logo_s.png"
     },
     {
-        name: "Combat Con, 2018",
-        location: "Las Vegas, NV, USA",
-        dates: "Aug 2nd -  Aug 5th",
+        name: "Coming Soon",
+        location: "Coming Soon",
+        dates: "Coming Soon",
         image: "https://hemascorecard.com/includes/images/hemaa_logo_s.png"
     },
     {
-        name: "Combat Con, 2018",
-        location: "Las Vegas, NV, USA",
-        dates: "Aug 2nd -  Aug 5th",
+        name: "Coming Soon",
+        location: "Coming Soon",
+        dates: "Coming Soon",
         image: "https://hemascorecard.com/includes/images/hemaa_logo_s.png"
     },
     {
-        name: "Combat Con, 2018",
-        location: "Las Vegas, NV, USA",
-        dates: "Aug 2nd -  Aug 5th",
+        name: "Coming Soon",
+        location: "Coming Soon",
+        dates: "Coming Soon",
         image: "https://hemascorecard.com/includes/images/hemaa_logo_s.png"
     }
 ]
