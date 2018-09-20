@@ -41,7 +41,7 @@
 .article-preview2-flexing-wrap {
     display: flex;
     padding: 2em 140px;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-wrap: wrap;
 
     @media(max-width: $medium) {

@@ -1,11 +1,11 @@
 module.exports = [
     {
-        title: "Sword Point Launch",
+        title: "5 Drills for HEMA as a Martial Art",
         author: "Site Admin",
-        preview: "It’s official. Sword Point is now launched and members of the MARE/HEMA community have a place to read, post, and share. The mission of this website is to provide a platform that promotes education, community, and public awareness of the Martial Arts of Renaissance Europe (MARE) which is also commonly referred to as Historical European Martial Arts (HEMA).",
-        image: "https://image.ibb.co/fhe2KJ/polearms.jpg",
+        preview: "Historical European Martial Arts is often associated with sport. The other side of HEMA is purely martial arts. It focuses on fighting with and without weapons against one or many opponents. It’s ruthlessly practical and informed by the masters of Renaissance Europe who understood the need for combatants to maim or kill as efficiently as possible...",
+        image: "https://images2.imgbox.com/c2/a0/VksIRFxh_o.png",
         color: "#314455",
-        linkId: '5b53609c1886ab51b6b32247'
+        linkId: '5ba3169c1ded8578de5f318d'
     },
     {
         title: "HEMA Beginner's Guide",
