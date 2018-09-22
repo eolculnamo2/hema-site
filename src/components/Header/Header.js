@@ -1,4 +1,5 @@
 import React from 'react'
+import logo from '../../../assets/pictures/logo.png'
 import { BrowserRouter as Router, Link, Route, withRouter, Redirect } from 'react-router-dom'
 
 class Header extends React.Component {
@@ -135,7 +136,8 @@ class Header extends React.Component {
                     <div className="down-arrow down-arrow--down">
                     </div>
                 </div>
-                <div  class="half-way">
+                <div class="half-way">
+                    <a href='/'><img className='logo' src={logo} /></a>
                 </div>
                 {this.links()}
             </div>
