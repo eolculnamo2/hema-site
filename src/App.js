@@ -19,6 +19,7 @@ import RegisterForEvent from './components/Tournaments/RegisterForEvent/Register
 import MyTournaments from './components/Tournaments/ManageEvents/MyTournaments/MyTournaments'
 import MyEventView from './components/Tournaments/ManageEvents/MyEventView/MyEventView'
 import FourOhFour from './components/FourOhFour/FourOhFour'
+import 'fetch-everywhere';
 
 
 class App extends React.Component {
@@ -30,6 +31,7 @@ class App extends React.Component {
         }
     }
     componentWillMount(){
+        if(typeof window !== 'undefined')
         fetch('/authenticate/checkLogin',{
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -44,7 +46,8 @@ class App extends React.Component {
             })
     }
     render() {
-        if(this.state.loaded) {
+       //this.state.loaded 
+        if(true) {
             return(
                 <div>
                     <Helmet>
