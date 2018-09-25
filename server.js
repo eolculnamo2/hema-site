@@ -9,7 +9,7 @@ const mongoose = require('mongoose')
 app.use(helmet())
 
 //import routes 
-const pages = require('./routes/pages')
+import pages from './routes/pages'
 const posts = require('./routes/posts')
 const authenticate = require('./services/passportMain')
 const tournaments = require('./routes/tournaments')

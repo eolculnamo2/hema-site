@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "webpack && node server",
+    "server": "NODE_ENV=development node server.js",
     "dev": "webpack && nodemon server",
     "build": "npm install && webpack --mode=production",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,14 +13,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel-register": "^6.26.0",
     "body-parser": "^1.18.3",
     "chart.js": "^2.7.2",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "express-recaptcha": "^4.0.2",
     "express-session": "^1.15.6",
+    "fetch-everywhere": "^1.0.5",
     "helmet": "^3.12.1",
-    "moment": "^2.22.2",
     "mongoose": "^5.1.6",
     "nodemailer": "^4.6.7",
     "nodemon": "^1.17.5",
@@ -36,16 +38,18 @@
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.4",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
+    "autoprefixer": "^9.1.5",
+    "@babel/core": "^7.1.0",
+    "babel-loader": "^8.0.2",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
     "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^0.28.11",
+    "extract-text-webpack-plugin": "^3.0.2",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.3",
     "style-loader": "^0.21.0",
-    "url-loader": "^1.0.1",
+    "url-loader": "^1.1.1",
     "webpack": "^4.12.1",
     "webpack-cli": "^3.0.8"
   }
