@@ -4,21 +4,23 @@ class RegistrationForm extends React.Component {
     checkRequired(){
         //required validations.
        let validated = true;
-       let required = document.getElementsByClassName('register-required');
-       let validationError = document.getElementsByClassName('validation-error');
-       Array.prototype.forEach.call(required,(x,i) => {
-           if(x.value === '' || x.value === undefined || x.value === null) {
-                validationError[i].style.display = 'block';
-                validated = false;
-           }
-           else {
-            validationError[i].style.display = 'none';
-           }
-       })
+       if(typeof window !== 'undefined') {
+        let required = document.getElementsByClassName('register-required');
+        let validationError = document.getElementsByClassName('validation-error');
+        Array.prototype.forEach.call(required,(x,i) => {
+            if(x.value === '' || x.value === undefined || x.value === null) {
+                    validationError[i].style.display = 'block';
+                    validated = false;
+            }
+            else {
+                validationError[i].style.display = 'none';
+            }
+        })
+        }
        return validated;
     }
     createUser(){
-        if(this.checkRequired()){
+        if(this.checkRequired() && typeof window !== 'undefined'){
             let payload = {
                 username: document.getElementById('username').value.toLowerCase().trim(),
                 email: document.getElementById('email').value.trim(),

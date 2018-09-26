@@ -14,7 +14,7 @@ const posts = require('./routes/posts')
 const authenticate = require('./services/passportMain')
 const tournaments = require('./routes/tournaments')
 
-mongoose.connect(process.env.DB)
+mongoose.connect(process.env.DB, {useNewUrlParser: true })
 mongoose.connection.once('open',()=>{
     console.log("Connected to Mongo via Mongoose")
     }).on('error',(err)=>{

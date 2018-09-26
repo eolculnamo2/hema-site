@@ -6,22 +6,24 @@ class Row1 extends React.Component {
             username: this.props.user.username,
             image:this.props.user.profileImage
         }
-        fetch('/authenticate/add-contact',{
-            method: "POST",
-            body: JSON.stringify(payload),
-            headers: { "Content-Type": "application/json" },
-            credentials: "same-origin"
-            })
-            .then( res => res.json())
-            .then( data => {
-                if(data.data){
-                    alert("Added!")
-                }
-                else{
-                    alert("Add failed.. Make sure you're logged in!")
-                }
-                window.location.reload()
-            })
+        if(typeof window !== 'undefined'){
+            fetch('/authenticate/add-contact',{
+                method: "POST",
+                body: JSON.stringify(payload),
+                headers: { "Content-Type": "application/json" },
+                credentials: "same-origin"
+                })
+                .then( res => res.json())
+                .then( data => {
+                    if(data.data){
+                        alert("Added!")
+                    }
+                    else{
+                        alert("Add failed.. Make sure you're logged in!")
+                    }
+                    window.location.reload()
+                })
+            }
     }
     render(){
         return(

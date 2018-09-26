@@ -24,15 +24,17 @@ class Header extends React.Component {
             })
     }
     componentDidMount() {
-        window.addEventListener('click', e => {
-            if (window.innerWidth < 801) {
-                e.target.id === 'arrow-wrapper' || e.target.className.split(" ")[0] === 'down-arrow' ? this.menuVisible(true) : this.menuVisible(false)
-             }
-        })
- 
-        window.addEventListener('resize', () => {
-             window.innerWidth < 801 ? this.menuVisible(false) : this.menuVisible(true)
-        })
+        if(typeof window !== 'undefined'){
+            window.addEventListener('click', e => {
+                if (window.innerWidth < 801) {
+                    e.target.id === 'arrow-wrapper' || e.target.className.split(" ")[0] === 'down-arrow' ? this.menuVisible(true) : this.menuVisible(false)
+                }
+            })
+    
+            window.addEventListener('resize', () => {
+                window.innerWidth < 801 ? this.menuVisible(false) : this.menuVisible(true)
+            })
+        }
     }
     menuVisible(show) {
         if(show === true) {
@@ -50,17 +52,19 @@ class Header extends React.Component {
         }
     }
     logout(){
-        fetch('/authenticate/logout',{
-            method: "POST",
-            body: null,
-            headers: { "Content-Type": "application/json" },
-            credentials: "same-origin"
+        if(typeof window !== 'undefined'){
+            fetch('/authenticate/logout',{
+                method: "POST",
+                body: null,
+                headers: { "Content-Type": "application/json" },
+                credentials: "same-origin"
+                })
+            .then(res => res.json())
+            .then(data => {
+                alert(data.data)
+                window.location.reload()
             })
-        .then(res => res.json())
-        .then(data => {
-            alert(data.data)
-            window.location.reload()
-        })
+        }
     }
     links(){
         if(this.state.loggedIn) {

@@ -1,4 +1,5 @@
 const path = require('path')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 require('babel-register')({
     stage: 0
@@ -12,11 +13,26 @@ const browserConfig = {
     },
     optimization: {
         splitChunks: {
-          chunks: 'all'
+          chunks: 'all',
+          cacheGroups: {
+            styles: {
+              name: 'style',
+              test:  /\.s?css$/,
+              chunks: 'all',
+              enforce: true
+            }
+          }
+    
         }
     },
     plugins: [
-              new CleanWebpackPlugin(['assets/dist'], {exclude: 'sitemap.xml'})
+              new CleanWebpackPlugin(['assets/dist'], {exclude: 'sitemap.xml'}),
+              new MiniCssExtractPlugin({
+                // Options similar to the same options in webpackOptions.output
+                // both options are optional
+                filename: "style.css",
+                chunkFilename: "[name].css"
+              })
             ],
     module: {
         rules: [
@@ -35,8 +51,12 @@ const browserConfig = {
                 
             },
             {
-                test: /\.scss$/,
-                loader: 'style-loader!css-loader!sass-loader'
+                test: /\.(sa|sc|c)ss$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    'sass-loader',
+                  ],
             }
         ]
     }
@@ -59,14 +79,14 @@ const serverConfig = {
             
         },
         {
-            test: /\.scss$/,
-            loader: 'css-loader!sass-loader'
+            test: /\.(sa|sc|c)ss$/,
+            loader: 'css-loader/locals'
         },
         {
-          test: /js$/,
-          exclude: /(node_modules)/,
-          loader: "babel-loader",
-          query: { presets: ['@babel/preset-env','@babel/preset-react'] }
+            test: /js$/,
+            exclude: /(node_modules)/,
+            loader: "babel-loader",
+            query: { presets: ['@babel/preset-env','@babel/preset-react'] }
         }
       ]
     }
