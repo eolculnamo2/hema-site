@@ -5,7 +5,7 @@ class Row3 extends React.Component {
         this.state = {
             sending: false,
             sent: false,
-            addedElements: JSON.parse(sessionStorage.getItem('addedElements')) || [],
+            addedElements: [],
             items: [1],
             currentElement: 'p',
             imageType: 'full',
@@ -14,6 +14,7 @@ class Row3 extends React.Component {
         }
     }
     componentWillMount(){
+        if(typeof window !== 'undefined') {
         fetch('/authenticate/getUserProfile',{
             method: "POST",
             body: null,
@@ -26,9 +27,13 @@ class Row3 extends React.Component {
                     this.setState({userProfile: data.data})
                 }
             })         
+            if(sessionStorage.getItem('addedElements')) {
+                this.setState({addedElements: JSON.parse(sessionStorage.getItem('addedElements'))})
+            }
+        }
     }
     makeSubmission(){
-        if(this.state.userProfile.username) {
+        if(this.state.userProfile.username && typeof window !== 'undefined') {
             this.setState({sending: true})
     
             let payload = {
@@ -76,84 +81,86 @@ class Row3 extends React.Component {
         this.setState({items: arr})
     }
     showCurrentElement(){
-        if(this.state.currentElement === 'p'){
-            return(
-            <div>
-                <textarea class="new-p" />
-                <button className="add-el-button" type="button" onClick={this.addElement.bind(this,'p',document.getElementsByClassName('new-p'))}>
-                    Add Paragraph
-                </button>
-            </div>)
-        }
-        if(this.state.currentElement === 'h3'){
-            return(
-            <div>
-                <input class="sp-input new-h" />
-                <button className="add-el-button" type="button" onClick={this.addElement.bind(this,'h3',document.getElementsByClassName('new-h'))}>
-                    Add Header
-                </button>
-            </div>)
-        }
-        else if(this.state.currentElement === 'img') {
-            return( 
-            <div>
-                <p>
-                    Image Type: {this.state.imageType === 'full' ? "Full"
-                                    : this.state.imageType === 'float-right' ? "Float Right"
-                                        : "Float Left"}
-                </p>
-                <p>
-                    Image Width: {this.state.width + "%"} 
-                </p>
-                <input placeholder="Enter Image Url" className="sp-input new-img" /><br/>
-                <input className="sp-input" placeholder={"width: "+this.state.width} id="adjust-width" type="number" min="0" max="100" />
-                <button type="button" 
-                        className="blue-option-buttons"
-                        onClick={()=>{this.setState({width: parseInt(document.getElementById('adjust-width').value) !== NaN ? document.getElementById('adjust-width').value : 25})}}>
-                    Set Width
-                </button>
-                <br/>
-                <button type="button" 
-                        className={this.state.imageType === 'full' ? 'blue-option-buttons submission__selected-option' : 'blue-option-buttons'}
-                        onClick={()=>{this.setState({imageType: 'full'})}}>
-                    Full
-                </button>
-                <button type="button" 
-                        className={this.state.imageType === 'float-right' ? 'blue-option-buttons submission__selected-option' : 'blue-option-buttons'}
-                        onClick={()=>{this.setState({imageType: 'float-right'})}}>
-                    Float Right
-                </button>
-                <button type="button" 
-                        className={this.state.imageType === 'float-left' ? 'blue-option-buttons submission__selected-option' : 'blue-option-buttons'}
-                        onClick={()=>{this.setState({imageType: 'float-left'})}}>
-                    Float Left
-                </button>
-                <button className="add-el-button" type="button" onClick={this.addElement.bind(this,'img',document.getElementsByClassName('new-img'))}>
-                    Add Image
-                </button>
-            </div>)
-        }
-        else if(this.state.currentElement === 'li') {
-            return( 
-            <div>
-                { this.state.items.map( x => {
-                   return(<input className="sp-input new-li"/>)
-                })}
-                
-                <button className="blue-option-buttons" 
-                        type="button" 
-                        onClick={this.addOrDeleteListItem.bind(this,true)}>
-                    Add Item
-                </button>
-                <button type="button" 
-                        className="blue-option-buttons"
-                        onClick={this.addOrDeleteListItem.bind(this,false)}>
-                    Delete Item
-                </button>
-                <button className="add-el-button" type="button" onClick={this.addElement.bind(this,'li',document.getElementsByClassName('new-li'))}>
-                    Add List
-                </button>
-            </div>)
+        if(typeof window !== 'undefined'){
+            if(this.state.currentElement === 'p'){
+                return(
+                <div>
+                    <textarea class="new-p" />
+                    <button className="add-el-button" type="button" onClick={this.addElement.bind(this,'p',document.getElementsByClassName('new-p'))}>
+                        Add Paragraph
+                    </button>
+                </div>)
+            }
+            if(this.state.currentElement === 'h3'){
+                return(
+                <div>
+                    <input class="sp-input new-h" />
+                    <button className="add-el-button" type="button" onClick={this.addElement.bind(this,'h3',document.getElementsByClassName('new-h'))}>
+                        Add Header
+                    </button>
+                </div>)
+            }
+            else if(this.state.currentElement === 'img') {
+                return( 
+                <div>
+                    <p>
+                        Image Type: {this.state.imageType === 'full' ? "Full"
+                                        : this.state.imageType === 'float-right' ? "Float Right"
+                                            : "Float Left"}
+                    </p>
+                    <p>
+                        Image Width: {this.state.width + "%"} 
+                    </p>
+                    <input placeholder="Enter Image Url" className="sp-input new-img" /><br/>
+                    <input className="sp-input" placeholder={"width: "+this.state.width} id="adjust-width" type="number" min="0" max="100" />
+                    <button type="button" 
+                            className="blue-option-buttons"
+                            onClick={()=>{this.setState({width: parseInt(document.getElementById('adjust-width').value) !== NaN ? document.getElementById('adjust-width').value : 25})}}>
+                        Set Width
+                    </button>
+                    <br/>
+                    <button type="button" 
+                            className={this.state.imageType === 'full' ? 'blue-option-buttons submission__selected-option' : 'blue-option-buttons'}
+                            onClick={()=>{this.setState({imageType: 'full'})}}>
+                        Full
+                    </button>
+                    <button type="button" 
+                            className={this.state.imageType === 'float-right' ? 'blue-option-buttons submission__selected-option' : 'blue-option-buttons'}
+                            onClick={()=>{this.setState({imageType: 'float-right'})}}>
+                        Float Right
+                    </button>
+                    <button type="button" 
+                            className={this.state.imageType === 'float-left' ? 'blue-option-buttons submission__selected-option' : 'blue-option-buttons'}
+                            onClick={()=>{this.setState({imageType: 'float-left'})}}>
+                        Float Left
+                    </button>
+                    <button className="add-el-button" type="button" onClick={this.addElement.bind(this,'img',document.getElementsByClassName('new-img'))}>
+                        Add Image
+                    </button>
+                </div>)
+            }
+            else if(this.state.currentElement === 'li') {
+                return( 
+                <div>
+                    { this.state.items.map( x => {
+                    return(<input className="sp-input new-li"/>)
+                    })}
+                    
+                    <button className="blue-option-buttons" 
+                            type="button" 
+                            onClick={this.addOrDeleteListItem.bind(this,true)}>
+                        Add Item
+                    </button>
+                    <button type="button" 
+                            className="blue-option-buttons"
+                            onClick={this.addOrDeleteListItem.bind(this,false)}>
+                        Delete Item
+                    </button>
+                    <button className="add-el-button" type="button" onClick={this.addElement.bind(this,'li',document.getElementsByClassName('new-li'))}>
+                        Add List
+                    </button>
+                </div>)
+            }
         }
     }
     resetArticle(){
@@ -164,36 +171,38 @@ class Row3 extends React.Component {
     }
 
     previewUI(){
-        sessionStorage.setItem("addedElements", JSON.stringify(this.state.addedElements));
-        return(
-            <div className="preview__wrap"
-                 style={{display: this.state.addedElements.length === 0 ? 'none' : 'block'}}
-                 contenteditable="true">
-            {this.state.addedElements.map( (x,i) => {
-                if(x.type === 'img') {
-                    return (<img
-                                style={{width: x.imageWidth+'%'}} 
-                                className={x.imageType+' preview__item'} 
-                                src={x.value}/>)
-                }
-                else if(x.type === 'p'){
-                    return (<p className="preview__item">{x.value}</p>)
-                }
-                else if(x.type === 'h3'){
-                    return (<h3 className="preview__item">{x.value}</h3>)
-                }
-                else if(x.type === 'li'){
-                    return(
-                    <ul className="preview__item">
-                        {x.values.map(y => {
-                            return ( <li>{y}</li>)
-                        })}
-                    </ul>
-                    )
-                }
-            })}
-            </div>
-        )
+        if(typeof window  !== 'undefined') {
+            sessionStorage.setItem("addedElements", JSON.stringify(this.state.addedElements));
+            return(
+                <div className="preview__wrap"
+                    style={{display: this.state.addedElements.length === 0 ? 'none' : 'block'}}
+                    contenteditable="true">
+                {this.state.addedElements.map( (x,i) => {
+                    if(x.type === 'img') {
+                        return (<img
+                                    style={{width: x.imageWidth+'%'}} 
+                                    className={x.imageType+' preview__item'} 
+                                    src={x.value}/>)
+                    }
+                    else if(x.type === 'p'){
+                        return (<p className="preview__item">{x.value}</p>)
+                    }
+                    else if(x.type === 'h3'){
+                        return (<h3 className="preview__item">{x.value}</h3>)
+                    }
+                    else if(x.type === 'li'){
+                        return(
+                        <ul className="preview__item">
+                            {x.values.map(y => {
+                                return ( <li>{y}</li>)
+                            })}
+                        </ul>
+                        )
+                    }
+                })}
+                </div>
+            )
+        }
     }
     render(){
         return(

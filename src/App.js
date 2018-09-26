@@ -31,7 +31,7 @@ class App extends React.Component {
         }
     }
     componentWillMount(){
-        if(typeof window !== 'undefined')
+        if(typeof window !== 'undefined') {
         fetch('/authenticate/checkLogin',{
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -44,6 +44,7 @@ class App extends React.Component {
                 }
                 this.setState({loaded: true})
             })
+        }
     }
     render() {
        //this.state.loaded 
@@ -51,7 +52,7 @@ class App extends React.Component {
             return(
                 <div>
                     <Helmet>
-                        <title>Sword Point </title>
+                        <title>Sword Point</title>
                         <script src='https://www.google.com/recaptcha/api.js'></script>
                         <meta name="description" content="Read, share, discuss, and publish about Historical European Martials Arts (HEMA) also known as the Martial Arts of Renaissance Europe. Getting started with HEMA?  Check out our beginner's guides? Experienced renaissance martial artist? Why not submit an article?" />
                         <link rel="icon" href="https://image.ibb.co/c76tRy/head_icon.png" sizes="16x16 32x32" type="image/png" /> 

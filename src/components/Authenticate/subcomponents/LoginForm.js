@@ -2,13 +2,16 @@ import React from 'react'
 
 class LoginForm extends React.Component {
     componentWillMount(){
-        window.addEventListener('keypress', e => {
-            if (e.which === 13 || e.keyCode === 13) {
-                this.login()
-            }
-        })
+        if(typeof window !== 'undefined') {
+            window.addEventListener('keypress', e => {
+                if (e.which === 13 || e.keyCode === 13) {
+                    this.login()
+                }
+            })
+        }
     }
     login(){
+        if(typeof window !== 'undefined') {
         //need to add front end validations
         let payload = {
             username: document.getElementById('username').value.toLowerCase().trim(),
@@ -39,6 +42,7 @@ class LoginForm extends React.Component {
                 alert(data.data)
                 document.location.replace("/profile")
             })
+        }
         }
     }
     render(){

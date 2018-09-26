@@ -11,7 +11,7 @@ class Profile extends React.Component {
         }
     }
     componentWillMount(){
-        if(!this.props.match.params.profile){
+        if(!this.props.match.params.profile && typeof window !== 'undefined'){
         fetch('/authenticate/getUserProfile',{
             method: "POST",
             body: null,
@@ -28,7 +28,7 @@ class Profile extends React.Component {
                 }
             })
         }
-        else if(this.props.match.params.profile) {
+        else if(this.props.match.params.profile && typeof window !== 'undefined') {
             fetch('/authenticate/getProfile',{
                 method: "POST",
                 body: JSON.stringify({profile: this.props.match.params.profile}),

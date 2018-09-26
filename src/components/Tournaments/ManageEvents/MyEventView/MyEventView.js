@@ -78,33 +78,35 @@ class MyEventView extends React.Component {
     getEventDetails() {
         let event =this.props.match.params.event
         let tournamentId = this.props.match.params.tId
-    
-        fetch('/tournaments/get-a-tournament',{
-            method: "POST",
-            body: JSON.stringify({tournamentId: tournamentId}),
-            headers: { "Content-Type": "application/json" },
-            credentials: "same-origin"
-            })
-        .then(res => res.json())
-        .then(data => {
-            let paidTotal = 0
-            let unPaidTotal = 0
-            let participants = []
-            data.registeredParticipants.forEach( x => {
-                if(x.events.indexOf(event) > -1) {
-                    participants.push(x)
-                    x.paid ? paidTotal ++ : unPaidTotal ++
-                }
-            })
+        
+        if(typeof window !== 'undefined') {
+            fetch('/tournaments/get-a-tournament',{
+                method: "POST",
+                body: JSON.stringify({tournamentId: tournamentId}),
+                headers: { "Content-Type": "application/json" },
+                credentials: "same-origin"
+                })
+            .then(res => res.json())
+            .then(data => {
+                let paidTotal = 0
+                let unPaidTotal = 0
+                let participants = []
+                data.registeredParticipants.forEach( x => {
+                    if(x.events.indexOf(event) > -1) {
+                        participants.push(x)
+                        x.paid ? paidTotal ++ : unPaidTotal ++
+                    }
+                })
 
-            let revenue = paidTotal * data.cost
-            this.setState({paidAndUnpaid: [paidTotal, unPaidTotal],
-                           totalRevenue: revenue,
-                           participants: participants,
-                           tournamentName: data.name,
-                           showModal: false,
-                           addApplicant: false}, () => this.participantNumbers())
-        })
+                let revenue = paidTotal * data.cost
+                this.setState({paidAndUnpaid: [paidTotal, unPaidTotal],
+                            totalRevenue: revenue,
+                            participants: participants,
+                            tournamentName: data.name,
+                            showModal: false,
+                            addApplicant: false}, () => this.participantNumbers())
+            })
+        }
     }
 
     saveChanges() {
@@ -125,36 +127,37 @@ class MyEventView extends React.Component {
         this.setState({showModal: false, addApplicant: false})
     }
     participantNumbers() {
+        if(typeof window !== 'undefined') {
         let ctx = document.getElementById('chart')
-
-        let chart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-            labels: this.state.dates,
-            datasets: [{
-              label: "Participants",
-              fill: true,
-              borderColor: ['#87a37d','#a56f6f'],
-              borderWidth: 5,
-              pointRadius: 2,
-              backgroundColor: ['rgba(192, 232, 178, 1)','rgba(255, 163, 163, 1)'],
-              data: this.state.paidAndUnpaid,
-            }]
-            },
-           options: {
-            title: {
-                display: true,
-                text: 'Paid vs Pending',
-                fontSize: 16
-            },
-             legend: {
-               position: 'top',
-               labels: {
-                  boxWidth: 12
-               }
-             }
-            }
-        });
+            let chart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                labels: this.state.dates,
+                datasets: [{
+                label: "Participants",
+                fill: true,
+                borderColor: ['#87a37d','#a56f6f'],
+                borderWidth: 5,
+                pointRadius: 2,
+                backgroundColor: ['rgba(192, 232, 178, 1)','rgba(255, 163, 163, 1)'],
+                data: this.state.paidAndUnpaid,
+                }]
+                },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Paid vs Pending',
+                    fontSize: 16
+                },
+                legend: {
+                position: 'top',
+                labels: {
+                    boxWidth: 12
+                }
+                }
+                }
+            });
+        }
     }
     render(){
         return(

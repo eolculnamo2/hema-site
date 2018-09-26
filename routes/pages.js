@@ -42,13 +42,15 @@ router.get('*',(req,res) => {
         <link rel="icon" href="https://image.ibb.co/c76tRy/head_icon.png" sizes="16x16 32x32" type="image/png"> 
         <meta name="keywords" content="HEMA, ARMA, longsword, spear, sword, buckler, pike, staff, mma, martial arts, wrestling, grappling, boxing, fighting, fight, learn, gear, fencing">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="/style.css">
         <title>Sword Point</title>
     </head>
     <body>
         <div id="app">
         ${reactDom}
         </div>
-        <script src="/0.bundle.js"></script>
+        <script src="/1.bundle.js"></script>
+        <script src="/2.bundle.js"></script>
         <script src="/bundle.js"></script>
     </body>
     </html>
