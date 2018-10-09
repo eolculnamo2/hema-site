@@ -36,6 +36,14 @@ router.get('*',(req,res) => {
     <!DOCTYPE html>
     <html lang="en">
     <head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127175903-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-127175903-1');
+        </script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Read, share, discuss, and publish about Historical European Martials Arts (HEMA) also known as the Martial Arts of Renaissance Europe. Getting started with HEMA?  Check out our beginner's guides? Experienced renaissance martial artist? Why not submit an article?">
@@ -49,8 +57,8 @@ router.get('*',(req,res) => {
         <div id="app">
         ${reactDom}
         </div>
+        <script src="/0.bundle.js"></script>
         <script src="/1.bundle.js"></script>
-        <script src="/2.bundle.js"></script>
         <script src="/bundle.js"></script>
     </body>
     </html>
