@@ -19,6 +19,7 @@ import App from '../src/App.js'
   });  */
 
 router.get('/sitemap',(req,res) => {
+   // console.log(path.join(__dirname,'..','/assets/dist/sitemap.xml'));
     res.sendFile(path.join(__dirname,'..','/assets/dist/sitemap.xml'))
 })
 
