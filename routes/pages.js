@@ -9,14 +9,14 @@ import { StaticRouter } from "react-router-dom";
 import App from '../src/App.js'
 //let recaptcha = new Recaptcha(process.env.CAP_SITE, process.env.CAP_SECRET)
 
-
-/* router.get('contribute',recaptcha.middleware.render, function(req, res){
+/* 
+ router.get('contribute',recaptcha.middleware.render, function(req, res){
     res.sendFile(path.join(__dirname,'..','/public/index.html'))
 })
 
  app.get('/', recaptcha.middleware.render, function(req, res){
     res.render('login', { captcha:res.recaptcha });
-  }); 
+  });  */
 
 router.get('/sitemap',(req,res) => {
     res.sendFile(path.join(__dirname,'..','/assets/dist/sitemap.xml'))
@@ -24,7 +24,7 @@ router.get('/sitemap',(req,res) => {
 
 router.get('/googleae3ac4f178c3c8ea.html', (req,res) => {
     res.sendFile(path.join(__dirname,'..','/public/googleae3ac4f178c3c8ea.html'))
-}) */
+})
 
 router.get('*',(req,res) => {
     let context = {}
@@ -57,8 +57,8 @@ router.get('*',(req,res) => {
         <div id="app">
         ${reactDom}
         </div>
-        <script src="/0.bundle.js"></script>
         <script src="/1.bundle.js"></script>
+        <script src="/2.bundle.js"></script>
         <script src="/bundle.js"></script>
     </body>
     </html>
