@@ -33,7 +33,8 @@ router.get('*',(req,res) => {
     <StaticRouter context = {context} location={req.url}>
     <App />
     </StaticRouter>)
-    res.send(`
+    //insert with into ReactDOM string with Mongoose;
+    let htmlString = `
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -63,7 +64,44 @@ router.get('*',(req,res) => {
         <script src="/bundle.js"></script>
     </body>
     </html>
-        `)
+        `
+    
+    if(req.url.split('/article/').length > 1){
+        let articleId = req.url.split('/article/')[1]
+
+        Article.findById({_id: articleId}, (err,info) => {
+            if(err) {
+                console.log(err);
+            }
+            else if(info.type === 'HTML') {
+                let sentHtml =  `
+                <h3 class="title title--article">5 Drills for HEMA as a Martial Art</h3>
+                <div className="flex-body">
+                <div></div>
+                <div className="article-body-wrap">
+                ` +info.body[0] + `</div></div>`;
+
+                let head = `<head><title>`+info.title+`</title>
+                <meta name="description" content='`+info.body[0].slice(0,100)+`' /> 
+                <meta name="keywords" content='`+info.title+`,hema, arma, longsword, renaissance, knights, fighting, martial arts, buying, first' />
+                `//</head> is already there.
+
+            //^Could add keyworeds to Article Model
+
+                let splitStr = htmlString.split('<div id="the-main-article-wrap"></div>')
+                splitStr.splice(1,0,sentHtml)
+                htmlString = splitStr.join("")
+
+                let headStr = htmlString.split("<head>")
+                headStr.splice(1,0,head)
+                htmlString = headStr.join("");
+            }
+            res.send(htmlString)
+        })
+    }
+    else {
+        res.send(htmlString)
+    }
 })
 
 export default router
