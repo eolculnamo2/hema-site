@@ -62,7 +62,7 @@ class Article extends React.Component {
         )
         }
         else{
-            return (<div></div>)
+            return (<div><div id="the-main-article-wrap"></div></div>)
         }
     }
 }
