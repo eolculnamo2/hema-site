@@ -9,13 +9,13 @@ let buttons = [
     {
         link: '/manage-tournaments',
         name: 'My Tournaments'
-    }
+    },
+    {
+        link: '/judges-table',
+        name: 'Judge\'s Table'
+    },
     /* 
         FUTURE ADDITIONAL PANEL OPTIONS (FUTURE SPRINTS)
-    {
-        link: '/create-tournament',
-        name: 'Tournament Stats'
-    },
     {
         link: '/create-tournament',
         name: 'Edit Profile'

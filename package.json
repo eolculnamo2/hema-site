@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "webpack && node server",
+    "start":  "NODE_ENV=dev webpack-dev-server --progress --mode development --config webpack.config.js",
     "server": "NODE_ENV=development node server.js",
     "dev": "webpack && nodemon server",
     "build": "npm install && webpack --mode=production",
@@ -52,6 +52,7 @@
     "style-loader": "^0.21.0",
     "url-loader": "^1.1.1",
     "webpack": "^4.12.1",
-    "webpack-cli": "^3.0.8"
+    "webpack-cli": "^3.0.8",
+    "webpack-dev-server": "^3.1.9"
   }
 }

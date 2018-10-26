@@ -8,25 +8,40 @@ require('babel-register')({
 const browserConfig = {
     entry: './src/Index.js',
     output: {
-        path: path.resolve('./assets/dist'),
+        path: path.resolve('assets/dist/'),
+        publicPath: '/',
         filename: 'bundle.js'
     },
     optimization: {
         splitChunks: {
           chunks: 'all',
           cacheGroups: {
+            vendors: {
+                test: /[\\/]node_modules[\\/]/,
+                name: 'vendors',
+                chunks: 'all'
+            },
             styles: {
               name: 'style',
               test:  /\.s?css$/,
               chunks: 'all',
               enforce: true
             }
-          }
-    
         }
+    }
     },
+    devServer: {
+        contentBase: path.join(__dirname, 'public'),
+        compress: true,
+        inline: true,
+        port: 3000,
+        publicPath: '/',
+        proxy: {
+            '/': 'http://127.0.0.1:8080/'
+          }
+      },
     plugins: [
-              new CleanWebpackPlugin(['assets/dist'], {exclude: 'sitemap.xml'}),
+              new CleanWebpackPlugin(['assets/dist/'], {exclude: 'sitemap.xml'}),
               new MiniCssExtractPlugin({
                 // Options similar to the same options in webpackOptions.output
                 // both options are optional
@@ -92,4 +107,5 @@ const serverConfig = {
     }
   };
 
-module.exports = [browserConfig, serverConfig];
+module.exports = browserConfig;
+//module.exports = [browserConfig, serverConfig];
