@@ -9,13 +9,13 @@ let buttons = [
     {
         link: '/manage-tournaments',
         name: 'My Tournaments'
-    }
+    },
+    {
+        link: '/judges-table',
+        name: 'Judge\'s Table'
+    },
     /* 
         FUTURE ADDITIONAL PANEL OPTIONS (FUTURE SPRINTS)
-    {
-        link: '/create-tournament',
-        name: 'Tournament Stats'
-    },
     {
         link: '/create-tournament',
         name: 'Edit Profile'
@@ -34,7 +34,7 @@ const ManageLeftPanel = props => {
             </h1>
             <div className="tournaments__description-button-wrap">
                 {buttons.map( x => {
-                    return(<Link to={x.link}>
+                    return(<Link key={x.name+'manage-events-link'} to={x.link}>
                                 <button className={x.name === props.name ? "c-Tournament__manage-button c-Tournament__manage-button--selected" : "c-Tournament__manage-button"}>
                                     {x.name}
                                 </button>

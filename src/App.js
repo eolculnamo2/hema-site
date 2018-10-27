@@ -18,6 +18,7 @@ import CreateTournament from './components/Tournaments/ManageEvents/CreateTourna
 import RegisterForEvent from './components/Tournaments/RegisterForEvent/RegisterForEvent'
 import MyTournaments from './components/Tournaments/ManageEvents/MyTournaments/MyTournaments'
 import MyEventView from './components/Tournaments/ManageEvents/MyEventView/MyEventView'
+import JudgesTable from './components/Tournaments/Judges/JudgesTable'
 import FourOhFour from './components/FourOhFour/FourOhFour'
 import 'fetch-everywhere';
 
@@ -58,7 +59,7 @@ class App extends React.Component {
                         <link rel="icon" href="https://image.ibb.co/c76tRy/head_icon.png" sizes="16x16 32x32" type="image/png" /> 
                         <meta name="keywords" content="HEMA, ARMA, longsword, spear, sword, buckler, pike, staff, mma, martial arts, wrestling, grappling, boxing, fighting, fight, learn, gear, fencing" />
                     </Helmet>
-                    <div class="footer-at-bottom"> 
+                    <div className="footer-at-bottom"> 
                         <Header />
                         <Switch>
                             <Route exact path='/' component={LandingPage} />
@@ -67,6 +68,7 @@ class App extends React.Component {
                             <Route exact path='/profile' component={Profile} />
                             <Route exact path='/register' component={Register} />
                             <Route exact path='/login' component={Login} />
+                            <Route exact path='/judges-table' component={JudgesTable} />
                             <Route exact path='/about-tournaments' component={AboutTournaments} />
                             {<Route exact path='/create-tournament' render={ props => (
                                 this.state.loggedIn ? <CreateTournament /> : <Redirect to="/login"/>

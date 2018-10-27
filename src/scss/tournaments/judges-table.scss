@@ -1,0 +1,82 @@
+.c-Judges-button-main-wrap {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+    border-bottom: 1px solid $light-gray2;
+    flex-wrap: wrap;
+}
+
+.c-Judge-buttons-flex-end {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.c-Judges-button {
+    width: 120px;
+    margin: .5em;
+    font-size: 16px;
+    padding: .5em;
+    border: 0;
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+
+    &--blue {
+        color: white;
+        background-color: $blue-team;
+    }
+
+    &--red {
+        color: white;
+        background-color: $red-team;
+    }
+
+    &:hover{
+        opacity: .8;
+    }
+}
+
+.c-Judges-fighters-details-main-wrap {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em 2em;
+    flex-wrap: wrap;
+}
+
+.c-Judges-competitor-name{
+    margin-bottom: 0;
+    font-weight: 500;
+    font-size: 40px;
+}
+
+.c-Judges-club-name {
+    margin: 0;
+    font-weight: 500;
+
+    &--blue {
+        border-bottom: 3px solid $blue-team;
+    }
+
+    &--red {
+        border-bottom: 3px solid $red-team;
+    }
+}
+
+.c-Judges-score {
+   display: flex;
+   font-size: 100px;
+   margin: .5em 0;
+
+   &--blue {
+    margin-left: 1.5em;
+    color: $blue-team;
+   }
+
+   &--red {
+       color: $red-team;
+   }
+}
+
+.c-Judges-penalties {
+    display: inline;
+}

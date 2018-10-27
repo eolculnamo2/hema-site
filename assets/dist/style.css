@@ -1021,6 +1021,73 @@
   background: #fafafa;
   max-width: 584px; }
 
+.c-Tournament-flex-inputs {
+  display: flex;
+  align-items: flex-end; }
+  .c-Tournament-flex-inputs div {
+    margin-right: 1em; }
+
+.c-Judges-button-main-wrap {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+  border-bottom: 1px solid #dadada;
+  flex-wrap: wrap; }
+
+.c-Judge-buttons-flex-end {
+  display: flex;
+  justify-content: flex-end; }
+
+.c-Judges-button {
+  width: 120px;
+  margin: .5em;
+  font-size: 16px;
+  padding: .5em;
+  border: 0;
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer; }
+  .c-Judges-button--blue {
+    color: white;
+    background-color: #003BFF; }
+  .c-Judges-button--red {
+    color: white;
+    background-color: #FF0000; }
+  .c-Judges-button:hover {
+    opacity: .8; }
+
+.c-Judges-fighters-details-main-wrap {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em 2em;
+  flex-wrap: wrap; }
+
+.c-Judges-competitor-name {
+  margin-bottom: 0;
+  font-weight: 500;
+  font-size: 40px; }
+
+.c-Judges-club-name {
+  margin: 0;
+  font-weight: 500; }
+  .c-Judges-club-name--blue {
+    border-bottom: 3px solid #003BFF; }
+  .c-Judges-club-name--red {
+    border-bottom: 3px solid #FF0000; }
+
+.c-Judges-score {
+  display: flex;
+  font-size: 100px;
+  margin: .5em 0; }
+  .c-Judges-score--blue {
+    margin-left: 1.5em;
+    color: #003BFF; }
+  .c-Judges-score--red {
+    color: #FF0000; }
+
+.c-Judges-penalties {
+  display: inline; }
+
 body {
   margin: 0;
   font-family: "Helvetica Neue"; }

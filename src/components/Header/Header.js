@@ -140,7 +140,7 @@ class Header extends React.Component {
                     <div className="down-arrow down-arrow--down">
                     </div>
                 </div>
-                <div class="half-way">
+                <div className="half-way">
                     <a href='/'><img className='logo' src={logo} /></a>
                 </div>
                 {this.links()}
