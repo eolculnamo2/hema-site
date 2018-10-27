@@ -23,25 +23,39 @@ const MyEvents = props => {
                    return (<Link to={'/manage-tournaments/'+props.card['_id']+'/'+x.name}><h4 className="tournaments__event-list-item"> {x.name} </h4></Link>)
                 })}
             </div>
-
-            <div className="c-Tournament__section c-Tournament__section--add-event">
-                <div>
-                    <h2 className="tournaments__event-headings">
-                        Add Event
-                    </h2>
-                    <p>
-                        Event Name
-                    </p>
-                    <input className="c-Tournament-input" id="event-name" />
+            <div className="c-Tournament-flex-inputs">
+                <div className="c-Tournament__section c-Tournament__section--add-event">
+                    <div>
+                        <h2 className="tournaments__event-headings">
+                            Add Event
+                        </h2>
+                        <input placeholder="Event Name" className="c-Tournament-input" id="event-name" />
+                    </div>
                 </div>
-            </div>
-            <div className="c-Tournament__section c-Tournament__section--add-event c-Tournament__section--flex-start">
-                <button type="button"
-                        onClick={props.addEvent} 
-                        className='c-Tournament-button c-Tournament-button--submit'
-                        >
-                    Add Event
-                </button>
+                <div className="c-Tournament__section c-Tournament__section--add-event c-Tournament__section--flex-start">
+                    <button type="button"
+                            onClick={props.addEvent} 
+                            className='c-Tournament-button c-Tournament-button--submit'
+                            >
+                        Add Event
+                    </button>
+                </div>
+
+                <div className="c-Tournament__section c-Tournament__section--add-event">
+                    <div>
+                        <h2 className="tournaments__event-headings">
+                            Add Judge
+                        </h2>
+                        <input placeholder="Judge's Username" className="c-Tournament-input" id="event-name" />
+                    </div>
+                </div>
+                <div className="c-Tournament__section c-Tournament__section--add-event c-Tournament__section--flex-start">
+                    <button type="button" 
+                            className='c-Tournament-button c-Tournament-button--submit'
+                            >
+                        Add Judge
+                    </button>
+                </div>
             </div>
         </div>
     )

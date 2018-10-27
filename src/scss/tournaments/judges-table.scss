@@ -12,12 +12,13 @@
 }
 
 .c-Judges-button {
-    width:120px;
+    width: 120px;
     margin: .5em;
     font-size: 16px;
     padding: .5em;
     border: 0;
     border-radius: 3px;
+    outline: none;
     cursor: pointer;
 
     &--blue {
@@ -51,6 +52,14 @@
 .c-Judges-club-name {
     margin: 0;
     font-weight: 500;
+
+    &--blue {
+        border-bottom: 3px solid $blue-team;
+    }
+
+    &--red {
+        border-bottom: 3px solid $red-team;
+    }
 }
 
 .c-Judges-score {

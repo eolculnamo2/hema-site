@@ -19,10 +19,12 @@ const browserConfig = {
             vendors: {
                 test: /[\\/]node_modules[\\/]/,
                 name: 'vendors',
+                filename: 'vendors.js',
                 chunks: 'all'
             },
             styles: {
               name: 'style',
+              filename: 'style.js',
               test:  /\.s?css$/,
               chunks: 'all',
               enforce: true
@@ -107,5 +109,5 @@ const serverConfig = {
     }
   };
 
-module.exports = browserConfig;
-//module.exports = [browserConfig, serverConfig];
+//module.exports = browserConfig;
+module.exports = [browserConfig, serverConfig];

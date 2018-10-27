@@ -59,8 +59,8 @@ router.get('*',(req,res) => {
         <div id="app">
         ${reactDom}
         </div>
-        <script src="/style.bundle.js"></script>
-        <script src="/vendors.bundle.js"></script>
+        <script src="/style.js"></script>
+        <script src="/vendors.js"></script>
         <script src="/bundle.js"></script>
     </body>
     </html>

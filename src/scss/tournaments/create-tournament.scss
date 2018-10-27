@@ -150,3 +150,12 @@
     background: #fafafa;
     max-width: 584px;
 }
+
+.c-Tournament-flex-inputs {
+    display: flex;
+    align-items: flex-end;
+    
+    div {
+        margin-right: 1em;
+    }
+}

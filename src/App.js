@@ -59,7 +59,7 @@ class App extends React.Component {
                         <link rel="icon" href="https://image.ibb.co/c76tRy/head_icon.png" sizes="16x16 32x32" type="image/png" /> 
                         <meta name="keywords" content="HEMA, ARMA, longsword, spear, sword, buckler, pike, staff, mma, martial arts, wrestling, grappling, boxing, fighting, fight, learn, gear, fencing" />
                     </Helmet>
-                    <div class="footer-at-bottom"> 
+                    <div className="footer-at-bottom"> 
                         <Header />
                         <Switch>
                             <Route exact path='/' component={LandingPage} />

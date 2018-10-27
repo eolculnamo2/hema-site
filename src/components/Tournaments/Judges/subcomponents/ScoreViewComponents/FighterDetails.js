@@ -7,12 +7,13 @@ const FighterDetails = props => {
                 <h1 className="c-Judges-competitor-name">
                     {props.name}
                 </h1>
-                <h3 className="c-Judges-club-name">
+                <h3   className={props.team === 'blue' ? 
+                 'c-Judges-club-name c-Judges-club-name--blue' :
+                 'c-Judges-club-name c-Judges-club-name--red'}>
                     {props.club}
                 </h3>
             </div>
-            <div className="c-Judges-score"
-                 className={props.team === 'blue' ? 
+            <div className={props.team === 'blue' ? 
                  'c-Judges-score c-Judges-score--blue' :
                  'c-Judges-score c-Judges-score--red'}>
                 <div>{props.score}</div>
