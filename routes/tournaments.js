@@ -1,3 +1,5 @@
+const userNameExists = require( './helpers/backend-helpers');
+
 const express = require('express');
 const router = express.Router()
 const bodyParser = require('body-parser')
@@ -90,6 +92,33 @@ router.post('/add-tournament-event', (req,res) => {
             res.send({updated: true})
         }
     })
+})
+
+router.post('/add-tournament-judge', (req,res) => {
+    let judge = {
+        username: req.body.username,
+        club: req.body.club
+    }
+    Tournament.findById({_id: req.body.tournamentId}, (err1,response1) => {
+        let userNotAlreadyJudge = response1.judges.every(x => x.username !== judge.username )
+
+        //Not already listed as judge
+        //TODOCheck user name exists
+
+        if(userNotAlreadyJudge === false || userNameExists === false) {
+            return res.send({updated: false})
+        }
+
+        Tournament.findByIdAndUpdate({_id: req.body.tournamentId}, {$push: {judges: judge}}, (err,response)=> {
+            if(err) {
+                console.log(err)
+            }
+            else {
+                return res.send({updated: true})
+            }
+        })
+    })
+
 })
 
 router.post('/register-for-tournament', (req,res) => {

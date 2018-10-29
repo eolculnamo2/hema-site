@@ -34,7 +34,7 @@ const MyEvents = props => {
                 </div>
                 <div className="c-Tournament__section c-Tournament__section--add-event c-Tournament__section--flex-start">
                     <button type="button"
-                            onClick={props.addEvent} 
+                            onClick={props.addEvent}
                             className='c-Tournament-button c-Tournament-button--submit'
                             >
                         Add Event
@@ -46,11 +46,12 @@ const MyEvents = props => {
                         <h2 className="tournaments__event-headings">
                             Add Judge
                         </h2>
-                        <input placeholder="Judge's Username" className="c-Tournament-input" id="event-name" />
+                        <input placeholder="Judge's Username" className="c-Tournament-input" id="judge-name" />
                     </div>
                 </div>
                 <div className="c-Tournament__section c-Tournament__section--add-event c-Tournament__section--flex-start">
-                    <button type="button" 
+                    <button type="button"
+                            onClick={props.addJudge}
                             className='c-Tournament-button c-Tournament-button--submit'
                             >
                         Add Judge

@@ -15,7 +15,8 @@ var Tournament = new Schema({
     logoUrl: String,
     adminProfile: String,
     registeredParticipants: Array,
-    events: Array
+    events: Array,
+    judges: Array
 })
 
 module.exports = mongoose.model('tournaments', Tournament)
