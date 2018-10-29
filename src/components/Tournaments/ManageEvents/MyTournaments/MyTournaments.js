@@ -37,6 +37,7 @@ class MyTournaments extends React.Component {
             myTournaments: []
         }
         this.addEvent = this.addEvent.bind(this)
+        this.addJudge = this.addJudge.bind(this)
     }
     componentDidMount(){
         this.getMyTournaments()
@@ -62,10 +63,11 @@ class MyTournaments extends React.Component {
         if(this.state.selectedTournament !== '' && cardData.name !== undefined) {
             return <MyEvents events={cardData.events}
                                 card={cardData}
-                                addEvent={this.addEvent} />
+                                addEvent={this.addEvent}
+                                addJudge={this.addJudge} />
         }
     }
-    addEvent(x) {
+    addEvent() {
         let payload = {
             //event-name lives in MyEvent.js
             event: document.getElementById('event-name').value.trim(),
@@ -83,6 +85,35 @@ class MyTournaments extends React.Component {
             this.getMyTournaments()
             document.getElementById('event-name').value = ''
         })
+    }
+    addJudge(username, club) {
+        let payload = {
+            username: document.getElementById('judge-name').value,
+            tournamentId: this.state.selectedTournament
+        }
+
+        if(club) {
+            payload.club = club;
+        }
+
+        fetch('/tournaments/add-tournament-judge',{
+            method: "POST",
+            body: JSON.stringify(payload),
+            headers: { "Content-Type": "application/json" },
+            credentials: "same-origin"
+            })
+        .then(res => res.json())
+        .then(data => {
+            if(data.updated) {
+                alert(payload.username+' added as judge.')
+                this.getMyTournaments()
+                document.getElementById('judge-name').value = ''
+            }
+            else {
+                alert("Judge not added. Please check to ensure that the username is correct and that it is not already listed as a judge. Otherwise retry or contact us.")
+            }
+        })
+
     }
     render(){
         return(
