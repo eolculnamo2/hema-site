@@ -5,36 +5,16 @@ import MyEvents from './subcomponents/MyEvents'
 import MyParticipants from './subcomponents/MyParticipants'
 import MyDetails from './subcomponents/MyDetails'
 
-let dummyData = [
-    {
-        name: "Combat Con, 2018",
-        location: "Las Vegas, NV, USA",
-        dates: "Aug 2nd -  Aug 5th",
-        image: "https://hemascorecard.com/includes/images/hemaa_logo_s.png",
-        _id: '232903293' 
-    },
-    {
-        name: "Super Event",
-        location: "Las Vegas, NV, USA",
-        dates: "Aug 2nd -  Aug 5th",
-        image: "https://hemascorecard.com/includes/images/hemaa_logo_s.png",
-        _id: '232312132132131'
-    },
-    {
-        name: "Super Event 2",
-        location: "Las Vegas, NV, USA",
-        dates: "Aug 2nd -  Aug 5th",
-        image: "https://hemascorecard.com/includes/images/hemaa_logo_s.png",
-        _id: 'if329if392233'
-    }
-]
-
 class MyTournaments extends React.Component {
     constructor(){
         super()
         this.state = {
             selectedTournament: '',
-            myTournaments: []
+            myTournaments: [],
+            judges: {
+                heading: "Judges",
+                names: ["swordguy123", "sworder77"]
+            }
         }
         this.addEvent = this.addEvent.bind(this)
         this.addJudge = this.addJudge.bind(this)
@@ -64,7 +44,9 @@ class MyTournaments extends React.Component {
             return <MyEvents events={cardData.events}
                                 card={cardData}
                                 addEvent={this.addEvent}
-                                addJudge={this.addJudge} />
+                                addJudge={this.addJudge}
+                                judges = {this.state.judges}
+                                 />
         }
     }
     addEvent() {
@@ -124,7 +106,7 @@ class MyTournaments extends React.Component {
                 <div className="c-Tournament-white-bg tournaments__main-wrap--full-width">
                 <TopBar title="My Tournaments" buttons={[]} />
                     <em className="c-Tournament__section">Select a Tournament</em>
-                    <div className="c-Tournament__section c-Tournament__section--flex-start">
+                    <div className="c-Tournament__section c-Tournament__section--flex-start c-Tournament__border-bottom">
                         {this.state.myTournaments.map( x => {
                             return( <div>
                                         <input  type="radio" 

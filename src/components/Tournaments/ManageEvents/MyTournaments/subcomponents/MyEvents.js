@@ -1,12 +1,17 @@
 import React from 'react'
 import TournamentCard from '../../../accessories/TournamentCard'
 import { BrowserRouter as Router, Link, Route, withRouter, Redirect } from 'react-router-dom'
+import NamesList from './NamesList';
 
 
 const MyEvents = props => {
     return(
         <div className="tournament__my-event">
+            <div className="c-Tournament__section">
             <TournamentCard card={props.card} />
+            <NamesList heading = {props.judges.heading}
+                       names= {props.judges.names}/>
+            </div>
             <div>
                 <p>
                     Events are the different competitions that will exist in your tournament.
@@ -29,7 +34,7 @@ const MyEvents = props => {
                         <h2 className="tournaments__event-headings">
                             Add Event
                         </h2>
-                        <input placeholder="Event Name" className="c-Tournament-input" id="event-name" />
+                        <input placeholder="Event Name" className="c-Tournament-input c-Tournament-input--smaller" id="event-name" />
                     </div>
                 </div>
                 <div className="c-Tournament__section c-Tournament__section--add-event c-Tournament__section--flex-start">
@@ -46,7 +51,7 @@ const MyEvents = props => {
                         <h2 className="tournaments__event-headings">
                             Add Judge
                         </h2>
-                        <input placeholder="Judge's Username" className="c-Tournament-input" id="judge-name" />
+                        <input placeholder="Judge's Username" className="c-Tournament-input c-Tournament-input--smaller" id="judge-name" />
                     </div>
                 </div>
                 <div className="c-Tournament__section c-Tournament__section--add-event c-Tournament__section--flex-start">
