@@ -97,6 +97,10 @@
     &--radio {
         width: 50px;
     }
+
+    &--smaller {
+        width: 200px;
+    }
 }
 
 .c-Tournament-description {
@@ -154,8 +158,13 @@
 .c-Tournament-flex-inputs {
     display: flex;
     align-items: flex-end;
-    
+    flex-wrap: wrap;
+
     div {
         margin-right: 1em;
     }
+}
+
+.c-Tournament__border-bottom {
+    border-bottom: 1px dashed $light-gray2;
 }
