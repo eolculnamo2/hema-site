@@ -113,7 +113,13 @@
 
 .footer {
   height: 10vh;
-  background: #644E5B; }
+  background: #644E5B;
+  color: white;
+  display: flex;
+  align-items: center;
+  font-size: 10px;
+  padding: 0 2em;
+  justify-content: center; }
 
 .row1-wrapper {
   color: #707070;
