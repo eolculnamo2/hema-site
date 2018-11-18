@@ -82,8 +82,11 @@ const browserConfig = {
 const serverConfig = {
     entry: "./server.js",
     target: "node",
+    node: {
+        __dirname: false
+    },
     output: {
-      path: __dirname,
+      path: path.resolve(__dirname),
       filename: "index.js",
       libraryTarget: "commonjs2"
     },
