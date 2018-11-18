@@ -19,12 +19,11 @@ import App from '../src/App.js'
   });  */
 
 router.get('/sitemap',(req,res) => {
-   // console.log(path.join(__dirname,'..','/assets/dist/sitemap.xml'));
-    res.sendFile(path.join(__dirname,'..','/assets/dist/sitemap.xml'))
+    res.sendFile(path.join(__dirname,'/assets/dist/sitemap.xml'))
 })
 
 router.get('/googleae3ac4f178c3c8ea.html', (req,res) => {
-    res.sendFile(path.join(__dirname,'..','/public/googleae3ac4f178c3c8ea.html'))
+    res.sendFile(path.join(__dirname,'/public/googleae3ac4f178c3c8ea.html'))
 })
 
 router.get('*',(req,res) => {
