@@ -587,6 +587,11 @@
     #html-article a:hover {
       color: #314455; }
 
+.image {
+  display: block;
+  width: 375px;
+  margin: auto; }
+
 .flex-start {
   display: flex;
   justify-content: flex-start;
