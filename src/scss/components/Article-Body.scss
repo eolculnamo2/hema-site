@@ -179,6 +179,6 @@
 
 .image {
     display: block;
-    width: 375px;
-    margin: auto;
+    float: none !important;
+    border: 0;
 }
