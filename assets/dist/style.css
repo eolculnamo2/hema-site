@@ -589,8 +589,8 @@
 
 .image {
   display: block;
-  width: 375px;
-  margin: auto; }
+  float: none !important;
+  border: 0; }
 
 .flex-start {
   display: flex;
