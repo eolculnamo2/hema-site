@@ -36,6 +36,9 @@
     border: 1px solid $darker3;
     padding: 10px 20px;
     margin: 0 40px;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
 
     img {
         border: 5px solid $light-gray;
@@ -48,6 +51,7 @@
 
     h4 {
         max-width: 200px;
+        margin-top: .5em;
 
         @media(max-width: $medium) {
             max-width: none;
