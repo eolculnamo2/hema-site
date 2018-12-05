@@ -614,9 +614,7 @@
   width: 200px; }
   @media (max-width: 800px) {
     .article-books-book {
-      width: 100%; }
-      .article-books-book a {
-        width: 100%; } }
+      width: 100%; } }
   .article-books-book:hover {
     background: #c0e8b2;
     text-decoration: underline;
