@@ -186,3 +186,35 @@
     float: none !important;
     border: 0;
 }
+
+.article-books-flex-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.article-books-book {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid $light-gray2;
+    padding: 1em;
+    border-radius: 5px;
+    justify-content: space-between;
+    
+    &:hover {
+        background: $fl-green;
+        text-decoration: underline;
+    }
+
+    img {
+        float: none;
+        width: initial;
+        border: 5px solid #efefef;
+        margin: 0;
+    }
+    
+    .book-title {
+        font-size: 1.25em;
+    }
+}
