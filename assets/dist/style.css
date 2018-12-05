@@ -597,6 +597,30 @@
   float: none !important;
   border: 0; }
 
+.article-books-flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; }
+
+.article-books-book {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #dadada;
+  padding: 1em;
+  border-radius: 5px;
+  justify-content: space-between; }
+  .article-books-book:hover {
+    background: #c0e8b2;
+    text-decoration: underline; }
+  .article-books-book img {
+    float: none;
+    width: initial;
+    border: 5px solid #efefef;
+    margin: 0; }
+  .article-books-book .book-title {
+    font-size: 1.25em; }
+
 .flex-start {
   display: flex;
   justify-content: flex-start;
