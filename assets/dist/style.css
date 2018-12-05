@@ -617,7 +617,8 @@
       width: 100%; } }
   .article-books-book:hover {
     background: #c0e8b2;
-    text-decoration: underline; }
+    text-decoration: underline;
+    color: black; }
   .article-books-book img {
     float: none;
     width: initial;
