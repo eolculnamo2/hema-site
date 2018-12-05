@@ -480,7 +480,11 @@
   color: #707070;
   border: 1px solid #707070;
   padding: 10px 20px;
-  margin: 0 40px; }
+  margin: 0 40px;
+  position: -webkit-sticky;
+  /* Safari */
+  position: sticky;
+  top: 0; }
   .recommended-wrap img {
     border: 5px solid #efefef;
     width: 200px; }
@@ -489,7 +493,8 @@
         width: 95%;
         padding: 0 5px; } }
   .recommended-wrap h4 {
-    max-width: 200px; }
+    max-width: 200px;
+    margin-top: .5em; }
     @media (max-width: 800px) {
       .recommended-wrap h4 {
         max-width: none;
