@@ -16,11 +16,11 @@ module.exports = [
         linkId: '5b54246e5be0224195a7d1f4'
     },
     {
-        title: "Unarmed VS Armed Combat Training: A Case For The Sword",
-        author: "Tal Silver",
-        preview: "Every martial art has an emphasis on one or two aspects of combat. Some focus on grappling while others focus on striking. Some focus on sword, others focus on fist and so on. However, all aspects of martial arts are important. One cannot learn one aspect without learning the other or else the art is incomplete. Though it is important to train in all aspects, armed combat (especially with the long sword either single edged or double edged) should be the focus of all martial arts training.",
-        image: "https://image.ibb.co/ef0ReJ/tal_armor.jpg",
+        title: "HEMA Books Guide",
+        author: "Sword Point",
+        preview: "Books for Historical European Martial Arts are essential. The goal of this guide is to show you what is available. My suggestion is to not buy many books at first -- There are many free resources online such as Wiktenauer. With that said, it’s difficult to bring Wiktenauer with you to training. Trying to follow Wiktenauer from your phone or tablet just doesn’t work well - it slows down training. That’s where books come to play...",
+        image: "https://images.pexels.com/photos/1438044/pexels-photo-1438044.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
         color: "#C96567",
-        linkId: '5b4d77587aa48327c70d581c'
+        linkId: '5c076a8070656b50cda6cde3'
     }  
 ]
