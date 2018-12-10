@@ -88,48 +88,53 @@ class PushMenu extends React.Component {
   }
 
   render() {
-    return (
-      <div
-        className={
-          this.state.open
-            ? "pos__wrapper-main pos__wrapper-animation-open"
-            : this.state.open === false
-            ? "pos__wrapper-main pos__wrapper-animation-close"
-            : "pos__wrapper-main"
-        }
-      >
-      {/*MENU HEADER*/}
-      <h3 className="mobile-menu-header">Sword Point</h3>
-        {this.state.links.map(x => {
-          {/*ONE WRAPS WITH LINK, THE OTHER DOES NOT*/}
-          if(x.link){
-            return(
-              <Link onClick={this.closeMenu} key={x.name} to={x.link}>
+    if(this.state.open) {
+      return (
+        <div
+          className={
+            this.state.open
+              ? "pos__wrapper-main pos__wrapper-animation-open"
+              : this.state.open === false
+              ? "pos__wrapper-main pos__wrapper-animation-close"
+              : "pos__wrapper-main"
+          }
+        >
+        {/*MENU HEADER*/}
+        <h3 className="mobile-menu-header">Sword Point</h3>
+          {this.state.links.map(x => {
+            {/*ONE WRAPS WITH LINK, THE OTHER DOES NOT*/}
+            if(x.link){
+              return(
+                <Link onClick={this.closeMenu} key={x.name} to={x.link}>
+                  <div
+                      onClick={this.selectLink.bind(this, x.name)}
+                      className="pos-link-item"
+                    >
+                      {x.name}
+                      {this.subLinks(x.name, x.subcategories)}
+                  </div>
+                </Link>
+              )
+            }
+            else {
+            return (
                 <div
-                    onClick={this.selectLink.bind(this, x.name)}
-                    className="pos-link-item"
-                  >
-                    {x.name}
-                    {this.subLinks(x.name, x.subcategories)}
+                  onClick={this.selectLink.bind(this, x.name)}
+                  className="pos-link-item"
+                  key={x.name}
+                >
+                  {x.name}
+                  {this.subLinks(x.name, x.subcategories)}
                 </div>
-              </Link>
-            )
-          }
-          else {
-          return (
-              <div
-                onClick={this.selectLink.bind(this, x.name)}
-                className="pos-link-item"
-                key={x.name}
-              >
-                {x.name}
-                {this.subLinks(x.name, x.subcategories)}
-              </div>
-            );
-          }
-        })}
-      </div>
-    );
+              );
+            }
+          })}
+        </div>
+      );
+    }
+    else {
+      return <div style={{display: 'none'}}></div>;
+    }
   }
 }
 
