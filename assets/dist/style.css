@@ -1217,6 +1217,9 @@ body {
   font-family: "Helvetica Neue";
   overflow-x: hidden; }
 
+#main-site-body-wrap {
+  overflow-x: hidden; }
+
 iframe {
   max-width: 100%; }
 
