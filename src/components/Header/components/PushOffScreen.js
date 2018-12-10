@@ -47,10 +47,11 @@ class PushMenu extends React.Component {
     if(window){
      //toggle value
      //resize sets it to null to avoid flashing menu
+     let bodyWrap = document.getElementById('main-site-body-wrap');
      let toggledValue =
      resize ? null : this.state.open === false || this.state.open === null;
       //lock body
-      document.body.style = toggledValue === true ? "overflow: hidden;" : "";
+      bodyWrap.style = toggledValue === true ? "overflow: hidden;" : "";
       this.setState({ open: toggledValue });
     }
   }

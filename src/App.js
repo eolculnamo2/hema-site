@@ -51,7 +51,7 @@ class App extends React.Component {
        //this.state.loaded 
         if(true) {
             return(
-                <div>
+                <div id="main-site-body-wrap">
                     <Helmet>
                         <title>Sword Point</title>
                         <script src='https://www.google.com/recaptcha/api.js'></script>
