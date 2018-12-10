@@ -1,6 +1,9 @@
 import React from 'react'
-import logo from '../../../assets/pictures/logo.png'
 import { BrowserRouter as Router, Link, Route, withRouter, Redirect } from 'react-router-dom'
+import PushOffScreen from './components/PushOffScreen';
+import mobileConfig from './js/MobileMenuConfig';
+import logo from '../../../assets/pictures/logo.png'
+
 
 class Header extends React.Component {
     constructor(){
@@ -24,13 +27,7 @@ class Header extends React.Component {
             })
     }
     componentDidMount() {
-        if(typeof window !== 'undefined'){
-            window.addEventListener('click', e => {
-                if (window.innerWidth < 801) {
-                    e.target.id === 'arrow-wrapper' || e.target.className.split(" ")[0] === 'down-arrow' ? this.menuVisible(true) : this.menuVisible(false)
-                }
-            })
-    
+        if(typeof window !== 'undefined'){    
             window.addEventListener('resize', () => {
                 window.innerWidth < 801 ? this.menuVisible(false) : this.menuVisible(true)
             })
@@ -134,13 +131,14 @@ class Header extends React.Component {
     render(){
         return(
             <div className='header'>
+                <PushOffScreen menu={mobileConfig} />
                 <div id="arrow-wrapper">
                     <div className="down-arrow down-arrow--up">
                     </div>
                     <div className="down-arrow down-arrow--down">
                     </div>
                 </div>
-                <div className="half-way">
+                <div>
                     <a href='/'><img className='logo' src={logo} /></a>
                 </div>
                 {this.links()}

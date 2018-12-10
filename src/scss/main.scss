@@ -6,6 +6,11 @@
 body {
     margin: 0;
     font-family: $font1;
+    overflow-x: hidden;
+}
+
+iframe {
+    max-width: 100%;
 }
 
 a {

@@ -1,3 +1,63 @@
+.mobile-menu-header {
+  margin: 0;
+  background: #9E5A63;
+  color: white;
+  text-align: center;
+  padding: 1em; }
+
+/* dependency css */
+#pos-push-link {
+  cursor: pointer; }
+
+.pos__wrapper-main {
+  height: 100vh;
+  width: 300px;
+  z-index: 9001;
+  right: -300px;
+  border-left: 1px solid black;
+  top: 0;
+  background: #fafafa;
+  position: absolute; }
+
+.pos__wrapper-animation-open {
+  animation-name: toggleMenu;
+  animation-duration: 0.1s;
+  right: 0; }
+
+.pos__wrapper-animation-close {
+  animation-name: closeMenu;
+  animation-duration: 0.1s;
+  right: -300px; }
+
+.pos-link-item {
+  cursor: pointer;
+  padding: 0.75em;
+  border-bottom: 1px solid #333; }
+
+.pos-sub-link-item {
+  margin-left: 1em;
+  padding: 0.5em 0; }
+
+.pos-body {
+  overflow: hidden; }
+
+.pos-dark-bg {
+  z-index: 9000;
+  background-color: rgba(51, 51, 51, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vh; }
+
+@keyframes toggleMenu {
+  0% {
+    right: -300px; } }
+
+@keyframes closeMenu {
+  0% {
+    right: 0; } }
+
 .header {
   background-color: #314455;
   display: flex;
@@ -5,18 +65,15 @@
   padding: 25px 20px;
   align-items: center; }
   .header .logo {
-    width: 125px;
-    margin-left: 5em; }
+    width: 125px; }
     @media (max-width: 800px) {
       .header .logo {
-        display: none; } }
+        width: 75px;
+        padding: 0 1.5em; } }
   @media (max-width: 800px) {
     .header {
-      flex-direction: column; } }
-
-@media (max-width: 800px) {
-  .half-way {
-    display: none; } }
+      flex-direction: row-reverse;
+      align-items: space-between; } }
 
 .links {
   color: white;
@@ -40,8 +97,7 @@
       color: #97AABD; }
 
 #arrow-wrapper {
-  margin: auto;
-  padding: 5px 50px;
+  padding: .75em 1.5em;
   cursor: pointer; }
   @media (min-width: 800px) {
     #arrow-wrapper {
@@ -1158,7 +1214,11 @@
 
 body {
   margin: 0;
-  font-family: "Helvetica Neue"; }
+  font-family: "Helvetica Neue";
+  overflow-x: hidden; }
+
+iframe {
+  max-width: 100%; }
 
 a {
   color: inherit;

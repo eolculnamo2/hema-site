@@ -1,3 +1,5 @@
+@import './PushOffScreen';
+
 .header {
     background-color: $dark-navy;
     display: flex;
@@ -7,20 +9,15 @@
 
     .logo {
         width: 125px;
-        margin-left: 5em;
         @media (max-width: $medium) {
-            display: none;
+            width: 75px;
+            padding: 0 1.5em;
         }
     }
 
     @media (max-width: $medium){
-        flex-direction: column;
-    }
-}
-
-.half-way {
-    @media (max-width: $medium) {
-        display: none;
+        flex-direction: row-reverse;
+        align-items: space-between;
     }
 }
 
@@ -50,8 +47,7 @@
 }
 
 #arrow-wrapper {
-    margin: auto;
-    padding: 5px 50px;
+    padding: .75em 1.5em;
     cursor: pointer;
     @media (min-width: $medium) {
         display: none;
