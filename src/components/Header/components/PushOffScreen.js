@@ -47,7 +47,7 @@ class PushMenu extends React.Component {
     if(window){
      //toggle value
      //resize sets it to null to avoid flashing menu
-     let bodyWrap = document.getElementById('main-site-body-wrap');
+     let bodyWrap = document.getElementById('app');
      let toggledValue =
      resize ? null : this.state.open === false || this.state.open === null;
       //lock body
