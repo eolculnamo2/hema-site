@@ -1215,11 +1215,9 @@
 body {
   margin: 0;
   font-family: "Helvetica Neue";
-  overflow-x: hidden;
   max-width: 100%; }
 
 #app {
-  overflow-x: hidden;
   max-width: 100%; }
 
 iframe {

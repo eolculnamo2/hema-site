@@ -48,10 +48,9 @@ class App extends React.Component {
         }
     }
     render() {
-       //this.state.loaded 
-        if(true) {
+       // if(this.state.loaded) {
             return(
-                <div id="main-site-body-wrap">
+                <div>
                     <Helmet>
                         <title>Sword Point</title>
                         <script src='https://www.google.com/recaptcha/api.js'></script>
@@ -98,10 +97,9 @@ class App extends React.Component {
                 </div>
             )
         }
-        else {
-            return <div></div>
-        }
-    }
+        // else {
+        //     return <div></div>
+        // }
 }
 
 export default App
