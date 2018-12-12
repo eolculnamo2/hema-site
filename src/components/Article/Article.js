@@ -20,7 +20,7 @@ class Article extends React.Component {
     }
 
     updateArticle() {
-        let payload = {id: this.props.match.params.article}
+        let payload = {url: this.props.match.params.article}
 
         fetch('/posts/get-article',{
             method: "POST",

@@ -5,6 +5,7 @@ let Article = new Schema({
     title: String,
     author: String,
     imgUrl: String,
+    url: String,
     body: Array,
     date_written: String,
     comments: Array,

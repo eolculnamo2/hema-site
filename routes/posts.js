@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const Article = require('../models/Article')
 const User = require('../models/User')
 const mailer = require('../services/mailer')
+const redirects = require('./helpers/redirects');
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: true}));
@@ -16,6 +17,7 @@ router.post('/new-article', (req,res) => {
             author: req.body.author,
             username: req.body.username,
             imgUrl: req.body.imgUrl,
+            url: req.body.url,
             body: req.body.body,
             date_written: new Date(),
             comments: [],
@@ -34,9 +36,13 @@ router.post('/new-article', (req,res) => {
 })
 
 router.post('/get-article', (req,res) => {
+    if(redirects[req.body.url]) {
+        return res.redirect(301, 'https://www.sword-point.com/article/'+redirects[req.body.url]);
+    }
+    let url = redirects[req.body.url] || req.body.url;
     //http://imgbox.com/g/XQnl4EGpOv
     if(req.body != undefined) {
-        Article.findOne({_id: req.body.id}, (err,response) => {
+        Article.findOne({url: url}, (err,response) => {
             if (err) {
                 return res.send('Invalid URLs')
             }

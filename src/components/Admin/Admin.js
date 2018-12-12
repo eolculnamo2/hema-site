@@ -9,6 +9,7 @@ class Admin extends React.Component {
             title: document.getElementById('title').value,
             author: document.getElementById('author').value,
             username: document.getElementById('username').value,
+            url: document.getElementById('url').value,
             image: document.getElementById('imgUrl').value,
             body: document.getElementById('body').value
         }
@@ -29,10 +30,12 @@ class Admin extends React.Component {
                     <input id='title' />
                     <h4>Author</h4>
                     <input id='author' />
-                    <h4>Author</h4>
+                    <h4>Username</h4>
                     <input id='username' />
                     <h4>Image URL</h4>
                     <input id='imgUrl' />
+                    <h4>Page URL</h4>
+                    <input id='url' />
                     <h4>Body(New Paragraphs separated by **P**)</h4>
                     <textarea id='body' />
                     <br/>

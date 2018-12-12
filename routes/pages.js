@@ -3,9 +3,10 @@ const Recaptcha = require('express-recaptcha').Recaptcha
 const router = express.Router()
 const path = require('path')
 const Article = require('../models/Article')
-import React from 'react';
-import {renderToString} from 'react-dom/server';
-import { StaticRouter } from "react-router-dom";
+const redirects = require('./helpers/redirects')
+import React from 'react'
+import {renderToString} from 'react-dom/server'
+import { StaticRouter } from "react-router-dom"
 import App from '../src/App.js'
 //let recaptcha = new Recaptcha(process.env.CAP_SITE, process.env.CAP_SECRET)
 
@@ -27,6 +28,12 @@ router.get('/googleae3ac4f178c3c8ea.html', (req,res) => {
 })
 
 router.get('*',(req,res) => {
+    //redirects
+    let articleUrl = req.url.split('/')[2];
+    if(redirects[articleUrl]) {
+        return res.redirect(301, 'https://www.sword-point.com/article/'+redirects[articleUrl]);
+    }
+
     let context = {}
     let reactDom = renderToString(
     <StaticRouter context = {context} location={req.url}>
