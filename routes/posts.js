@@ -22,6 +22,7 @@ router.post('/new-article', (req,res) => {
             date_written: new Date(),
             comments: [],
             likes: 0,
+            structuredData: "",
             type: ""
         }).save((err,article) => {
             console.log(JSON.stringify(article))

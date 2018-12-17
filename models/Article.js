@@ -11,6 +11,7 @@ let Article = new Schema({
     comments: Array,
     likes: Number,
     type: String
+    //structuredData: String
 })
 
 module.exports = mongoose.model('articles', Article)

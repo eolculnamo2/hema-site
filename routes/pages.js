@@ -4,7 +4,9 @@ const router = express.Router()
 const path = require('path')
 const Article = require('../models/Article')
 const redirects = require('./helpers/redirects')
+
 import React from 'react'
+import { Helmet } from 'react-helmet'
 import {renderToString} from 'react-dom/server'
 import { StaticRouter } from "react-router-dom"
 import App from '../src/App.js'
@@ -39,6 +41,7 @@ router.get('*',(req,res) => {
     <StaticRouter context = {context} location={req.url}>
     <App />
     </StaticRouter>)
+     const helmet = Helmet.renderStatic();
     //insert with into ReactDOM string with Mongoose;
     let htmlString = `
     <!DOCTYPE html>
@@ -59,6 +62,10 @@ router.get('*',(req,res) => {
         <meta name="keywords" content="HEMA, ARMA, longsword, spear, sword, buckler, pike, staff, mma, martial arts, wrestling, grappling, boxing, fighting, fight, learn, gear, fencing">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="/style.css">
+        <link rel="canonical" href=${'"'+'https://www.sword-point.com'+req.url+'"'} />
+            ${helmet.title.toString()}
+            ${helmet.meta.toString()}
+            ${helmet.link.toString()}
         <title>Sword Point</title>
     </head>
     <body>

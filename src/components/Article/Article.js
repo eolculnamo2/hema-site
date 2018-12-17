@@ -38,8 +38,9 @@ class Article extends React.Component {
                 <Helmet>
                     <title>{this.state.currentArticle.title}</title>
                     <meta name="description" content={'An article by ' + this.state.currentArticle.author} />
-                    <link rel="icon" href="https://image.ibb.co/c76tRy/head_icon.png" sizes="16x16 32x32" type="image/png" /> 
                     <meta name="keywords" content={this.state.currentArticle.title+',hema, arma, longsword, renaissance, knights, fighting, martial arts'} />
+                    {/*<script className='structured-data-list' type="application/ld+json">{this.state.currentArticle.structuredData}</script>*/}
+                    <link rel="canonical" href={"https://www.sword-point.com/article/"+this.state.currentArticle.url} />
                 </Helmet>
                 <TitleRow title={this.state.currentArticle.title} />
                 <div className="flex-body">
