@@ -31,10 +31,10 @@ router.get('/googleae3ac4f178c3c8ea.html', (req,res) => {
 
 router.get('*',(req,res) => {
     //redirects
-    let articleUrl = req.url.split('/')[2];
-    if(redirects[articleUrl]) {
-        return res.redirect(301, 'https://www.sword-point.com/article/'+redirects[articleUrl]);
-    }
+    // let articleUrl = req.url.split('/')[2];
+    // if(redirects[articleUrl]) {
+    //     return res.redirect(301, 'https://www.sword-point.com/article/'+redirects[articleUrl]);
+    // }
 
     let context = {}
     let reactDom = renderToString(
