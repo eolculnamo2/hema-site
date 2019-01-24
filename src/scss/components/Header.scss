@@ -1,11 +1,17 @@
 @import './PushOffScreen';
 
+
 .header {
     background-color: $dark-navy;
     display: flex;
     justify-content: space-between;
-    padding: 25px 20px;
+    padding: 25px 40px;
     align-items: center;
+    box-shadow: 0 4px 4px #333;
+    position: sticky;
+    top: 0;
+    transition: padding .2s;
+    z-index: 8000;
 
     .logo {
         width: 125px;
@@ -15,7 +21,15 @@
         }
     }
 
+    .header-smaller {
+        width:75px;
+        @media (max-width: $medium) {
+            width: 50px;
+        }
+    }
+
     @media (max-width: $medium){
+        padding: 25px 20px;
         flex-direction: row-reverse;
         align-items: space-between;
     }

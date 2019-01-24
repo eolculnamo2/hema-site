@@ -13,6 +13,7 @@ import Profile from './components/Profile/Profile'
 import Admin from './components/Admin/Admin'
 import Register from './components/Authenticate/Register'
 import Login from './components/Authenticate/Login'
+import mobileConfig from './components/Header/js/mobileMenuConfig'
 import AboutTournaments from './components/Tournaments/AboutTournaments/AboutTournaments'
 import CreateTournament from './components/Tournaments/ManageEvents/CreateTournament'
 import RegisterForEvent from './components/Tournaments/RegisterForEvent/RegisterForEvent'
@@ -21,6 +22,7 @@ import MyEventView from './components/Tournaments/ManageEvents/MyEventView/MyEve
 import JudgesTable from './components/Tournaments/Judges/JudgesTable'
 import FourOhFour from './components/FourOhFour/FourOhFour'
 import 'fetch-everywhere';
+import PushOffScreen from './components/Header/components/PushOffScreen'
 
 
 class App extends React.Component {
@@ -60,6 +62,7 @@ class App extends React.Component {
                     </Helmet>
                     <div className="footer-at-bottom"> 
                         <Header />
+                        <PushOffScreen menu={mobileConfig} />
                         <Switch>
                             <Route exact path='/' component={LandingPage} />
                             <Route exact path='/articles' component={Articles} />

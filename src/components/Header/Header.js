@@ -31,6 +31,18 @@ class Header extends React.Component {
             window.addEventListener('resize', () => {
                 window.innerWidth < 801 ? this.menuVisible(false) : this.menuVisible(true)
             })
+
+            const h = document.getElementsByClassName('header')[0];
+            const l = document.getElementsByClassName('logo')[0];
+            window.addEventListener('scroll', () => {
+                if(window.pageYOffset > 200) {
+                    window.innerWidth < 800 ? h.style.padding="5px 20px" : h.style.padding="5px 40px";
+                    l.classList.add('header-smaller');
+                } else if(window.pageYOffset < 100) {
+                    window.innerWidth < 800 ? h.style.padding="25px 20px" : h.style.padding="25px 40px";
+                    l.classList.remove('header-smaller');
+                }
+            })
         }
     }
     menuVisible(show) {
@@ -131,7 +143,6 @@ class Header extends React.Component {
     render(){
         return(
             <div className='header'>
-                <PushOffScreen menu={mobileConfig} />
                 <div id="arrow-wrapper">
                     <div className="down-arrow down-arrow--up">
                     </div>

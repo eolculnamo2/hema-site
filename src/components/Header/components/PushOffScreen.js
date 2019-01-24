@@ -24,10 +24,13 @@ class PushMenu extends React.Component {
       pushLink.addEventListener("click", () => {
        
         this.toggleBody();
+        let menuVar = document.getElementsByClassName('pos__wrapper-main')[0];
+        menuVar.style.top=window.pageYOffset+'px';
         //add background div
         let bgDiv = document.createElement("DIV");
         bgDiv.classList.add("pos-dark-bg");
         bgDiv.id = "dark-bg";
+        bgDiv.style.top = window.pageYOffset+'px';
         bgDiv.onclick = this.closeMenu;
         document.body.appendChild(bgDiv);
         this.setState({ selectedLink: "" });
@@ -47,7 +50,7 @@ class PushMenu extends React.Component {
     if(window){
      //toggle value
      //resize sets it to null to avoid flashing menu
-     let bodyWrap = document.getElementById('app');
+     let bodyWrap = document.body//document.getElementById('app');
      let toggledValue =
      resize ? null : this.state.open === false || this.state.open === null;
       //lock body
