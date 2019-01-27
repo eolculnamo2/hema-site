@@ -23,6 +23,7 @@ import JudgesTable from './components/Tournaments/Judges/JudgesTable'
 import FourOhFour from './components/FourOhFour/FourOhFour'
 import 'fetch-everywhere';
 import PushOffScreen from './components/Header/components/PushOffScreen'
+import LiveView from './components/Tournaments/LiveView/LiveView';
 
 
 class App extends React.Component {
@@ -72,6 +73,7 @@ class App extends React.Component {
                             <Route exact path='/login' component={Login} />
                             <Route exact path='/judges-table' component={JudgesTable} />
                             <Route exact path='/about-tournaments' component={AboutTournaments} />
+                            <Route exact path='/live-view' component={LiveView} />
                             {<Route exact path='/create-tournament' render={ props => (
                                 this.state.loggedIn ? <CreateTournament /> : <Redirect to="/login"/>
                             )} />}

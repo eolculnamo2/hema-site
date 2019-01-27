@@ -19,21 +19,37 @@ class ScoreView extends React.Component {
                 penalties: 0
             }
         }
+        this.socket = undefined;
         this.changeScore = this.changeScore.bind(this)
         this.changePenalties = this.changePenalties.bind(this)
     }
-
+    componentDidMount(){
+        if(io) {
+            this.socket = io()
+            this.socket.on('score', data => console.log(data))
+        }    else {
+            alert("IO failed to connect")
+        }
+    }
     changeScore(team, action) {
         let info = this.state[team]
         info.score += action
-        team === "blue" ? this.setState({blue: info}) : this.setState({red: info})
+        team === "blue" ? this.setState({blue: info}, ()=> this.emitData()) 
+                        : this.setState({red: info}, ()=> this.emitData())
+    }
+
+    emitData() {
+        this.socket.emit('score', {
+            data: this.state
+        })
     }
 
     changePenalties(team, action) {
         let info = this.state[team]
         if(info.penalties + action >= 0) {
             info.penalties += action
-            team === "blue" ? this.setState({blue: info}) : this.setState({red: info})
+            team === "blue" ? this.setState({blue: info}, this.emitData()) 
+                            : this.setState({red: info}, this.emitData())
         }
     }
 
