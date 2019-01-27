@@ -1,7 +1,8 @@
 import React from 'react'
 import ManageLeftPanel from '../ManageEvents/ManageLeftPanel'
-import TopBar from '../accessories/TopBar';
-import ScoreView from './subcomponents/ScoreView';
+import TopBar from '../accessories/TopBar'
+import ScoreView from './subcomponents/ScoreView'
+
 
 class JudgesTable extends React.Component {
     render(){
