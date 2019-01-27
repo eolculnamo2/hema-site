@@ -1,15 +1,12 @@
 require('dotenv').config()
-require('socket.io-client')
 const express = require('express')
 const helmet = require('helmet')
 const passport = require('passport')
 const session = require('express-session')
 const app = express()
 const mongoose = require('mongoose')
-//const socket = require('socket.io')
 const http = require('http').Server(app);
 const io = require('socket.io')(http, { serveClient: false });
-
 
 app.use(helmet())
 

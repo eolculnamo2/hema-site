@@ -1,0 +1,31 @@
+.Live-view-wrap {
+    padding: 1em 3em;
+}
+
+.Live-view-flex-wrap {
+    display: flex;
+    justify-content: center;
+}
+
+.Live-view-box {
+    margin-right: 1em;
+    padding: 1em;
+    width: 300px;
+}
+.Live-view-box-blue {
+    border: 2px solid $blue-team;
+    background: $blue-team-light;
+}
+
+.Live-view-box-red {
+    border: 2px solid $red-team;
+    background: $red-team-light;
+}
+
+.Live-view-no-mtop {
+    margin-top: 0;
+}
+
+.Live-view-no-mbot {
+    margin-bottom: 0;
+}
