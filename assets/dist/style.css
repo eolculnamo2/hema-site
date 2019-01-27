@@ -37,7 +37,8 @@
 
 .pos-sub-link-item {
   margin-left: 1em;
-  padding: 0.5em 0; }
+  padding: 0.5em 0;
+  border-bottom: 1px dashed #999; }
 
 .pos-body {
   overflow: hidden; }
@@ -84,7 +85,6 @@
   @media (max-width: 800px) {
     .header {
       padding: 25px 20px;
-      flex-direction: row-reverse;
       align-items: space-between; } }
 
 .links {
@@ -108,13 +108,6 @@
     .links span:hover {
       color: #97AABD; }
 
-#arrow-wrapper {
-  padding: .75em 1.5em;
-  cursor: pointer; }
-  @media (min-width: 800px) {
-    #arrow-wrapper {
-      display: none; } }
-
 .down-arrow {
   color: white;
   border: 10px solid white;
@@ -132,14 +125,7 @@
       display: none; } }
   .down-arrow--up {
     display: none;
-    border-width: 3px 0 0 3px;
-    animation-name: turn;
-    animation-duration: 1s;
-    animation-iteration-count: 1; }
-  .down-arrow--down {
-    animation-name: turn;
-    animation-duration: 1s;
-    animation-iteration-count: 1; }
+    border-width: 3px 0 0 3px; }
 
 #dropdown-wrap {
   position: relative; }
@@ -163,6 +149,22 @@
     .dropdown-links li:hover {
       background: #314455;
       color: white; }
+
+#arrow-wrapper {
+  padding: .75em 1.5em;
+  cursor: pointer;
+  right: 20px;
+  position: absolute; }
+  @media (min-width: 800px) {
+    #arrow-wrapper {
+      display: none; } }
+
+.hamburger {
+  width: 30px;
+  background: white;
+  height: 3px;
+  display: block;
+  margin-top: .5em; }
 
 @keyframes slide {
   from {

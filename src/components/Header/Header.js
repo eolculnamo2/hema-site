@@ -27,7 +27,7 @@ class Header extends React.Component {
             })
     }
     componentDidMount() {
-        if(typeof window !== 'undefined'){    
+        if(typeof window !== 'undefined'){
             window.addEventListener('resize', () => {
                 window.innerWidth < 801 ? this.menuVisible(false) : this.menuVisible(true)
             })
@@ -48,16 +48,9 @@ class Header extends React.Component {
     menuVisible(show) {
         if(show === true) {
              document.getElementsByClassName('links')[0].style.display = 'flex'
-
-
-             document.getElementsByClassName('down-arrow--down')[0].style.display = 'none'
-             document.getElementsByClassName('down-arrow--up')[0].style.display = 'block'
-            
         }
         else {
              document.getElementsByClassName('links')[0].style.display = 'none'
-             document.getElementsByClassName('down-arrow--up')[0].style.display = 'none'
-             document.getElementsByClassName('down-arrow--down')[0].style.display = 'block'
         }
     }
     logout(){
@@ -144,10 +137,9 @@ class Header extends React.Component {
         return(
             <div className='header'>
                 <div id="arrow-wrapper">
-                    <div className="down-arrow down-arrow--up">
-                    </div>
-                    <div className="down-arrow down-arrow--down">
-                    </div>
+                    <div className="hamburger hamburger-line1"></div>
+                    <div className="hamburger hamburger-line2"></div>
+                    <div className="hamburger hamburger-line3"></div>
                 </div>
                 <div>
                     <a href='/'><img className='logo' src={logo} /></a>
