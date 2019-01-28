@@ -2,8 +2,9 @@ import React from 'react'
 import Chart from 'chart.js'
 import TopBar from '../../accessories/TopBar'
 import EditModal from '../../accessories/EditModal';
+import Match from './subcomponents/Match';
 
-let buttons = [
+const buttons = [
     {
         text: "Add Participant",
         fx: 'activateModal'
@@ -29,6 +30,32 @@ class MyEventView extends React.Component {
             paidAndUnpaid: [0,0],
             totalRevenue: 0,
             participants: [],
+            matches: [
+                {
+                    fighter1: "Joe",
+                    fighter1Club: "Sword Fighters School",
+                    fighter2: "Steve",
+                    fighter2Club: "Meyer's Guild"
+                },
+                {
+                    fighter1: "Joe",
+                    fighter1Club: "Sword Fighters School",
+                    fighter2: "Steve",
+                    fighter2Club: "Meyer's Guild"
+                },
+                {
+                    fighter1: "Joe",
+                    fighter1Club: "Sword Fighters School",
+                    fighter2: "Steve",
+                    fighter2Club: "Meyer's Guild"
+                },
+                {
+                    fighter1: "Joe",
+                    fighter1Club: "Sword Fighters School",
+                    fighter2: "Steve",
+                    fighter2Club: "Meyer's Guild"
+                },
+            ],
             dates: ["Paid", "Pending"],
             showModal: false,
             addApplicant: false,
@@ -52,6 +79,7 @@ class MyEventView extends React.Component {
         this.saveChanges = this.saveChanges.bind(this)
         this.getEventDetails = this.getEventDetails.bind(this)
         this.deleteEvent = this.deleteEvent.bind(this)
+        this.updateRounds = this.updateRounds.bind(this);
     }
     componentDidMount() {
         this.getEventDetails()
@@ -159,6 +187,17 @@ class MyEventView extends React.Component {
             });
         }
     }
+
+    updateRounds(fighter1,fighter2, index) {
+        const f1 = this.state.participants.find( x => x.participantId === +fighter1);
+        const f2 = this.state.participants.find( x => x.participantId === +fighter2);
+        
+        const matches = this.state.matches
+        matches[index] = {fighter1: f1.name, fighter1Club: f1.affiliation,
+                          fighter2: f2.name, fighter2Club: f2.affiliation}
+        this.setState({matches})
+    }
+
     render(){
         return(
             <div>
@@ -225,6 +264,12 @@ class MyEventView extends React.Component {
                     <div className="c-Tournament__chart-container">
                         <canvas id="chart" height="400px" width="536px"></canvas>
                     </div>
+                </div>
+                <div className="c-Tournament__matches-wrap">
+                    {this.state.matches.map((x,i) => <Match index={i} 
+                                                            info={x}
+                                                            updateRounds={this.updateRounds}
+                                                            participants={this.state.participants} />)}
                 </div>
   
             </div>
