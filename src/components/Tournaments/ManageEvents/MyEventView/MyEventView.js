@@ -30,32 +30,7 @@ class MyEventView extends React.Component {
             paidAndUnpaid: [0,0],
             totalRevenue: 0,
             participants: [],
-            matches: [
-                {
-                    fighter1: "Joe",
-                    fighter1Club: "Sword Fighters School",
-                    fighter2: "Steve",
-                    fighter2Club: "Meyer's Guild"
-                },
-                {
-                    fighter1: "Joe",
-                    fighter1Club: "Sword Fighters School",
-                    fighter2: "Steve",
-                    fighter2Club: "Meyer's Guild"
-                },
-                {
-                    fighter1: "Joe",
-                    fighter1Club: "Sword Fighters School",
-                    fighter2: "Steve",
-                    fighter2Club: "Meyer's Guild"
-                },
-                {
-                    fighter1: "Joe",
-                    fighter1Club: "Sword Fighters School",
-                    fighter2: "Steve",
-                    fighter2Club: "Meyer's Guild"
-                },
-            ],
+            matches: [],
             dates: ["Paid", "Pending"],
             showModal: false,
             addApplicant: false,
@@ -118,19 +93,23 @@ class MyEventView extends React.Component {
             .then(data => {
                 let paidTotal = 0
                 let unPaidTotal = 0
+                let matches = []
                 let participants = []
                 data.registeredParticipants.forEach( x => {
                     if(x.events.indexOf(event) > -1) {
-                        participants.push(x)
-                        x.paid ? paidTotal ++ : unPaidTotal ++
+                        participants.push(x);
+                        x.paid ? paidTotal ++ : unPaidTotal ++;
                     }
                 })
+
+                const thisEvent = data.events.find( x => x.name === this.props.match.params.event )
 
                 let revenue = paidTotal * data.cost
                 this.setState({paidAndUnpaid: [paidTotal, unPaidTotal],
                             totalRevenue: revenue,
                             participants: participants,
                             tournamentName: data.name,
+                            matches: thisEvent.matches || [],
                             showModal: false,
                             addApplicant: false}, () => this.participantNumbers())
             })
@@ -195,7 +174,16 @@ class MyEventView extends React.Component {
         const matches = this.state.matches
         matches[index] = {fighter1: f1.name, fighter1Club: f1.affiliation,
                           fighter2: f2.name, fighter2Club: f2.affiliation}
-        this.setState({matches})
+        this.setState({matches},() => {
+            fetch('/tournaments/update-matches',{
+                method: "POST",
+                body: JSON.stringify({matches, 
+                                      tournamentId: f1.tournamentId, 
+                                      eventName: this.props.match.params.event }),
+                headers: { "Content-Type": "application/json" },
+                credentials: "same-origin"
+            })
+        })
     }
 
     render(){
