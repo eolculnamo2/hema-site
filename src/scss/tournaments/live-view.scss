@@ -5,12 +5,17 @@
 .Live-view-flex-wrap {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .Live-view-box {
     margin-right: 1em;
     padding: 1em;
     width: 300px;
+
+    @media (max-width: 800px) {
+        margin-top: 1em;
+    }
 }
 .Live-view-box-blue {
     border: 2px solid $blue-team;
