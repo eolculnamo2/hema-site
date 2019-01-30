@@ -39,7 +39,9 @@ class LoginForm extends React.Component {
                 }
             })
             .then( data => {
-                alert(data.data)
+                if(data.data !== "Login Successful!") {
+                    alert(data.data)
+                }
                 document.location.replace("/profile")
             })
         }

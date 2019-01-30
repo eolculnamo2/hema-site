@@ -257,7 +257,8 @@ class MyEventView extends React.Component {
                     {this.state.matches.map((x,i) => <Match index={i} 
                                                             info={x}
                                                             updateRounds={this.updateRounds}
-                                                            participants={this.state.participants} />)}
+                                                            participants={this.state.participants}
+                                                            editable={true} />)}
                 </div>
   
             </div>

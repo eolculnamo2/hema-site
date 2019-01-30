@@ -9,9 +9,10 @@ class Match extends React.Component {
             fighter1: "", //For update only. Saved fighter data comes via props. This tracks participant ID for updates
             fighter2: ""
         }
-        this.edit = this.edit.bind(this)
+
         this.setEditFalse = this.setEditFalse.bind(this)
         this.saveChanges = this.saveChanges.bind(this)
+        this.handleClick = this.handleClick.bind(this)
     }
 
     handleUpdate(fighter, event) {
@@ -39,10 +40,18 @@ class Match extends React.Component {
         }
     }
 
+    handleClick() {
+        if(this.props.editable) {
+            this.edit();
+        } else {
+            this.props.handleClick;
+        }
+    }
+
     render() {
         if(this.state.editMode === false) {
             return (
-                <div className="c-Tournament__card-wrap" onClick={this.edit}>
+                <div className="c-Tournament__card-wrap" onClick={this.handleClick}>
                     <h2 className="c-Tournament__card-round">Round {this.props.index+1}</h2>
                     <div className="c-Tournament__card-flex">
                         <div>

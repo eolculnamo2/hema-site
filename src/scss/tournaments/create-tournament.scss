@@ -180,6 +180,13 @@
     flex-wrap: wrap;
     padding: 1em;
     border-top: 1px solid $darker1;
+
+    &--flex-start {
+        justify-content: flex-start;
+        .c-Tournament__card-wrap {
+            margin-right: 2em;
+        }
+    }
 }
 
 .c-Tournament__card-wrap {

@@ -24,6 +24,7 @@ import FourOhFour from './components/FourOhFour/FourOhFour'
 import 'fetch-everywhere';
 import PushOffScreen from './components/Header/components/PushOffScreen'
 import LiveView from './components/Tournaments/LiveView/LiveView';
+import MatchList from './components/Tournaments/accessories/MatchList';
 
 
 class App extends React.Component {
@@ -71,7 +72,7 @@ class App extends React.Component {
                             <Route exact path='/profile' component={Profile} />
                             <Route exact path='/register' component={Register} />
                             <Route exact path='/login' component={Login} />
-                            <Route exact path='/judges-table' component={JudgesTable} />
+                            <Route exact path='/judges-table' component={MatchList} />
                             <Route exact path='/about-tournaments' component={AboutTournaments} />
                             <Route exact path='/live-view' component={LiveView} />
                             {<Route exact path='/create-tournament' render={ props => (
