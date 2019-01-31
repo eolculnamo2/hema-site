@@ -1145,6 +1145,9 @@
   .c-Tournament-button--block {
     margin-right: 0;
     display: block; }
+  .c-Tournament-button--card-btn {
+    width: 100%;
+    margin-top: .5em; }
   @media (max-width: 800px) {
     .c-Tournament-button {
       width: 100%;
@@ -1166,6 +1169,38 @@
 
 .c-Tournament__border-bottom {
   border-bottom: 1px dashed #dadada; }
+
+.c-Tournament__matches-wrap {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 1em;
+  border-top: 1px solid #333; }
+
+.c-Tournament__card-wrap {
+  padding: 1em;
+  width: 275px;
+  border: 1px dashed #707070;
+  background: #efefef;
+  box-shadow: 0 2px 7px #707070;
+  margin-top: 1em; }
+  @media (max-width: 620px) {
+    .c-Tournament__card-wrap {
+      width: 100%; } }
+  .c-Tournament__card-wrap h3 {
+    padding-top: .5em;
+    margin: 0; }
+  .c-Tournament__card-wrap em {
+    display: block; }
+
+.c-Tournament__card-flex {
+  display: flex;
+  justify-content: space-between; }
+
+.c-Tournament__card-round {
+  border-bottom: 1px solid #dadada;
+  margin: 0;
+  padding-bottom: .5em; }
 
 .c-Judges-button-main-wrap {
   display: flex;
@@ -1227,6 +1262,108 @@
 
 .c-Judges-penalties {
   display: inline; }
+
+.Loading-view-center {
+  margin-top: 6em;
+  display: none;
+  justify-content: center;
+  align-items: center; }
+  @media (min-width: 800px) {
+    .Loading-view-center {
+      display: flex; } }
+
+.Loading-view-sword-wrap {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  transition: all .2s;
+  width: 300px;
+  animation-name: cut;
+  animation-duration: 1s;
+  animation-iteration-count: infinite; }
+
+.Loading-view-sword2 {
+  animation-name: cut2;
+  animation-duration: 1s;
+  animation-iteration-count: infinite; }
+
+.Loading-view-pommel {
+  height: 15px;
+  width: 15px;
+  border: 3px solid #777;
+  border-radius: 50%;
+  z-index: 1;
+  background-image: linear-gradient(#555, white); }
+
+.Loading-view-handle {
+  width: 50px;
+  height: 10px;
+  background: #662a2d;
+  align-self: center;
+  margin-left: -2px; }
+
+.Loading-view-cross {
+  height: 50px;
+  width: 10px;
+  border: 1px solid #777;
+  background-image: linear-gradient(#555, white); }
+
+.Loading-view-blade {
+  width: 200px;
+  height: 12px;
+  border-radius: 0 100px 100px 0;
+  border: 1px solid #777;
+  background-image: linear-gradient(#555, white); }
+
+.Loading-view-loading-text {
+  text-align: center;
+  color: #314455; }
+
+@keyframes cut {
+  0% {
+    transform: rotate(0deg); }
+  80% {
+    transform: rotate(-90deg); }
+  100% {
+    transform: rotate(0deg); } }
+
+@keyframes cut2 {
+  0% {
+    transform: rotate(180deg); }
+  80% {
+    transform: rotate(270deg); }
+  100% {
+    transform: rotate(180deg); } }
+
+.Live-view-wrap {
+  padding: 1em 3em; }
+
+.Live-view-flex-wrap {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; }
+
+.Live-view-box {
+  margin-right: 1em;
+  padding: 1em;
+  width: 300px; }
+  @media (max-width: 800px) {
+    .Live-view-box {
+      margin-top: 1em; } }
+
+.Live-view-box-blue {
+  border: 2px solid #003BFF;
+  background: #69aaff; }
+
+.Live-view-box-red {
+  border: 2px solid #FF0000;
+  background: #ffa287; }
+
+.Live-view-no-mtop {
+  margin-top: 0; }
+
+.Live-view-no-mbot {
+  margin-bottom: 0; }
 
 body {
   margin: 0;

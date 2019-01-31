@@ -2,8 +2,9 @@ import React from 'react'
 import Chart from 'chart.js'
 import TopBar from '../../accessories/TopBar'
 import EditModal from '../../accessories/EditModal';
+import Match from './subcomponents/Match';
 
-let buttons = [
+const buttons = [
     {
         text: "Add Participant",
         fx: 'activateModal'
@@ -29,6 +30,7 @@ class MyEventView extends React.Component {
             paidAndUnpaid: [0,0],
             totalRevenue: 0,
             participants: [],
+            matches: [],
             dates: ["Paid", "Pending"],
             showModal: false,
             addApplicant: false,
@@ -52,6 +54,7 @@ class MyEventView extends React.Component {
         this.saveChanges = this.saveChanges.bind(this)
         this.getEventDetails = this.getEventDetails.bind(this)
         this.deleteEvent = this.deleteEvent.bind(this)
+        this.updateRounds = this.updateRounds.bind(this);
     }
     componentDidMount() {
         this.getEventDetails()
@@ -90,19 +93,23 @@ class MyEventView extends React.Component {
             .then(data => {
                 let paidTotal = 0
                 let unPaidTotal = 0
+                let matches = []
                 let participants = []
                 data.registeredParticipants.forEach( x => {
                     if(x.events.indexOf(event) > -1) {
-                        participants.push(x)
-                        x.paid ? paidTotal ++ : unPaidTotal ++
+                        participants.push(x);
+                        x.paid ? paidTotal ++ : unPaidTotal ++;
                     }
                 })
+
+                const thisEvent = data.events.find( x => x.name === this.props.match.params.event )
 
                 let revenue = paidTotal * data.cost
                 this.setState({paidAndUnpaid: [paidTotal, unPaidTotal],
                             totalRevenue: revenue,
                             participants: participants,
                             tournamentName: data.name,
+                            matches: thisEvent.matches || [],
                             showModal: false,
                             addApplicant: false}, () => this.participantNumbers())
             })
@@ -159,6 +166,26 @@ class MyEventView extends React.Component {
             });
         }
     }
+
+    updateRounds(fighter1,fighter2, index) {
+        const f1 = this.state.participants.find( x => x.participantId === +fighter1);
+        const f2 = this.state.participants.find( x => x.participantId === +fighter2);
+        
+        const matches = this.state.matches
+        matches[index] = {fighter1: f1.name, fighter1Club: f1.affiliation,
+                          fighter2: f2.name, fighter2Club: f2.affiliation}
+        this.setState({matches},() => {
+            fetch('/tournaments/update-matches',{
+                method: "POST",
+                body: JSON.stringify({matches, 
+                                      tournamentId: f1.tournamentId, 
+                                      eventName: this.props.match.params.event }),
+                headers: { "Content-Type": "application/json" },
+                credentials: "same-origin"
+            })
+        })
+    }
+
     render(){
         return(
             <div>
@@ -225,6 +252,12 @@ class MyEventView extends React.Component {
                     <div className="c-Tournament__chart-container">
                         <canvas id="chart" height="400px" width="536px"></canvas>
                     </div>
+                </div>
+                <div className="c-Tournament__matches-wrap">
+                    {this.state.matches.map((x,i) => <Match index={i} 
+                                                            info={x}
+                                                            updateRounds={this.updateRounds}
+                                                            participants={this.state.participants} />)}
                 </div>
   
             </div>

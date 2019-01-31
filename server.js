@@ -5,6 +5,8 @@ const passport = require('passport')
 const session = require('express-session')
 const app = express()
 const mongoose = require('mongoose')
+const http = require('http').Server(app);
+const io = require('socket.io')(http, { serveClient: false });
 
 app.use(helmet())
 
@@ -40,6 +42,12 @@ app.use('/posts', posts)
 app.use('/authenticate', authenticate)
 app.use('/tournaments', tournaments)
 
-app.listen(8080,() => {
-    console.log("ON")
-})
+if(io) {
+    io.on('connection', socket => {
+        socket.on('score', data => io.sockets.emit('score',data) )
+    })
+} else {
+    console.log("IO not defined")
+}
+
+http.listen(8080,() => console.log("ON") )

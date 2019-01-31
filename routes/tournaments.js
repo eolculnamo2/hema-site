@@ -222,4 +222,31 @@ router.post('/update-participant', (req,res) => {
         }
     })
 })
+
+router.post('/update-matches',(req,res) => {
+    Tournament.findById({_id: req.body.tournamentId}, (err,response) => {
+        if(err) {
+            console.log(err)
+            return;
+        }
+        let replaceIndex = null;
+        const updateObj = response.events.find((x,i) => {
+            replaceIndex = i;
+            return x.name === req.body.eventName 
+        })
+        if(replaceIndex !== null) {
+            updateObj.matches = req.body.matches
+            response.events.splice(replaceIndex, 1, updateObj)
+            
+            Tournament.findByIdAndUpdate({_id: req.body.tournamentId}, {events: response.events}, (err1, response1) => {
+                if(err1) {
+                    console.log(err1)
+                    return;
+                }
+                console.log("Events updated")
+            })
+        }
+        
+    })
+})
 module.exports = router;

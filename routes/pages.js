@@ -62,6 +62,7 @@ router.get('*',(req,res) => {
         <meta name="keywords" content="HEMA, ARMA, longsword, spear, sword, buckler, pike, staff, mma, martial arts, wrestling, grappling, boxing, fighting, fight, learn, gear, fencing">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="/style.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
         <link rel="canonical" href=${'"'+'https://www.sword-point.com'+req.url+'"'} />
             ${helmet.title.toString()}
             ${helmet.meta.toString()}
