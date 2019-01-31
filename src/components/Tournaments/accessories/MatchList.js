@@ -41,8 +41,8 @@ class MatchList extends React.Component {
         this.selectTournament = this.selectTournament.bind(this)
     }
 
-    selectTournament() {
-        //TODO 
+    selectTournament(matchIndex) {
+        alert(matchIndex)
     }
 
     render() {

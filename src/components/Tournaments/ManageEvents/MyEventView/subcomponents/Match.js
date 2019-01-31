@@ -44,7 +44,7 @@ class Match extends React.Component {
         if(this.props.editable) {
             this.edit();
         } else {
-            this.props.handleClick;
+            this.props.handleClick(this.props.index);
         }
     }
 
