@@ -1,14 +1,14 @@
 /* eslint-disable no-console */
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
-const mongoose = require('mongoose');
-const session = require('express-session');
+// const mongoose = require('mongoose');
+// const session = require('express-session');
 const bodyParser = require('body-parser');
 const express = require('express');
 
 const router = express.Router();
-const Strategy = require('passport-local').Strategy;
-const mailer = require('./mailer');
+// const Strategy = require('passport-local').Strategy;
+// const mailer = require('./mailer');
 // models
 const User = require('../models/User');
 
@@ -51,7 +51,7 @@ router.post('/register', (req, res) => {
 });
 
 // Login
-router.post('/login', passport.authenticate('local'),(req, res) => {
+router.post('/login', passport.authenticate('local'), (req, res) => {
   if (!req.user) {
     res.send({
       name: 'invalid-credentials',
