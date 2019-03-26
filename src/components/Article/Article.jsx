@@ -13,7 +13,7 @@ class Article extends React.Component {
     super();
     this.state = {
       currentArticle: {},
-    };      
+    };
   }
 
   componentWillMount() {
