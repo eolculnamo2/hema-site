@@ -25,7 +25,7 @@ class ArticleBody extends React.Component {
           </a>
           <img src={image} alt={title} />
           <div>
-            {body.map(x => <p>{x}</p>)}
+            {body.map(x => <p key={x.substring(0, 10)}>{x}</p>)}
           </div>
         </>
       );
