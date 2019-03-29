@@ -71,7 +71,7 @@ class LoginForm extends React.Component {
             <div className="registration__input">
               <p>Username</p>
               <input
-                onInput={() => this.handleInput('username', event)}
+                onInput={() => this.handleInput(event, 'username')}
                 value={username}
                 className="sp-input sp-input--maintain-width"
               />
@@ -79,7 +79,7 @@ class LoginForm extends React.Component {
             <div className="registration__input">
               <p>Password</p>
               <input
-                onInput={() => this.handleInput('password', event)}
+                onInput={() => this.handleInput(event, 'password')}
                 value={password}
                 className="sp-input sp-input--maintain-width"
                 type="password"

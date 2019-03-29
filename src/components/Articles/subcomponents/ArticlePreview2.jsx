@@ -2,15 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ArticlePreview2 = (props) => {
-  const { author, title, url } = props;
+  const { content } = props;
   return (
     <div className="article-preview2-wrap">
-      <a href={`/article/${url}`}>
+      <a href={`/article/${content.url}`}>
         <div className="preview-header">
-          {title}
+          {content.title}
         </div>
         <div className="text-wrap">
-          <p>{author}</p>
+          <p>{content.author}</p>
         </div>
       </a>
     </div>
@@ -18,15 +18,12 @@ const ArticlePreview2 = (props) => {
 };
 
 ArticlePreview2.defaultProps = {
-  author: '',
-  title: '',
-  url: '',
+  content: {},
 };
 
 ArticlePreview2.propTypes = {
-  author: PropTypes.string,
-  title: PropTypes.string,
-  url: PropTypes.string,
+  // eslint-disable-next-line react/forbid-prop-types
+  content: PropTypes.object,
 };
 
 export default ArticlePreview2;
