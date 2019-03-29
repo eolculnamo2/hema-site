@@ -1,5 +1,4 @@
 const express = require('express')
-const minify = require('html-minifier').minify;
 const Recaptcha = require('express-recaptcha').Recaptcha
 const router = express.Router()
 const path = require('path')
@@ -117,12 +116,7 @@ router.get('*',(req,res) => {
     // else {
     //     res.send(htmlString)
     // }
-
-    const min = minify(htmlString, {
-        removeAttributeQuotes: true,
-    });
-
-    res.send(min);
+    res.send(htmlString)
 })
 
-export default router;
+export default router
