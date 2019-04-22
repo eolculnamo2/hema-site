@@ -1,6 +1,6 @@
-import React from 'react'
-import Row1 from './subcomponents/Row1'
-import ProfileBody from './subcomponents/ProfileBody'
+import React from 'react';
+import Row1 from './subcomponents/Row1';
+import ProfileBody from './subcomponents/ProfileBody';
 
 class Profile extends React.Component {
     constructor(){
