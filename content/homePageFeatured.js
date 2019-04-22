@@ -3,7 +3,7 @@ module.exports = [
     title: '5 Drills for HEMA as a Martial Art',
     author: 'Sword Point',
     preview: 'Historical European Martial Arts is often associated with sport. The other side of HEMA is purely martial arts. It focuses on fighting with and without weapons against one or many opponents. It’s ruthlessly practical and informed by the masters of Renaissance Europe who understood the need for combatants to maim or kill as efficiently as possible...',
-    image: 'https://images2.imgbox.com/c2/a0/VksIRFxh_o.png',
+    image: 'http://imgbox.com/N6ci1feC',
     color: '#314455',
     linkId: '5-hema-drills',
   },
