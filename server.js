@@ -10,6 +10,7 @@ const helmet = require('helmet');
 const passport = require('passport');
 const session = require('express-session');
 const mongoose = require('mongoose');
+const compression = require('compression');
 
 const app = express();
 const http = require('http').Server(app);
@@ -17,6 +18,7 @@ const io = require('socket.io')(http, {
   serveClient: false,
 });
 
+app.use(compression());
 app.use(helmet());
 
 const posts = require('./routes/posts');
