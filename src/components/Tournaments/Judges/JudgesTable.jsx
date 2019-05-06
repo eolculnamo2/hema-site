@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import ManageLeftPanel from '../ManageEvents/ManageLeftPanel';
 import TopBar from '../accessories/TopBar';
 import ScoreView from './subcomponents/ScoreView';
+import SelectView from './subcomponents/SelectView';
 
 
 function JudgesTable() {
   const [view, setView] = useState({
-    view: 'select-tournament',
+    view: 'select',
   });
   return (
     <div className="tournaments__main-wrap tournaments__main-wrap--bg-gray">
@@ -16,6 +17,7 @@ function JudgesTable() {
       <div className="c-Tournament-white-bg tournaments__main-wrap--full-width">
         <TopBar title="Judge's Table" buttons={[]} />
         {view.view === 'score' && <ScoreView />}
+        {view.view === 'select' && <SelectView />}
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 //Shows two contestants competing.
 import React from 'react'
+import StaticMatch from '../../../accessories/StaticMatch';
 
 class Match extends React.Component {
     constructor() {
@@ -19,7 +20,7 @@ class Match extends React.Component {
         const updateObj = {}
         updateObj[fighter] = event.target.value;
         this.setState(updateObj);
-    } 
+    }
 
     edit() {
         this.setState({editMode: true})
@@ -51,19 +52,11 @@ class Match extends React.Component {
     render() {
         if(this.state.editMode === false) {
             return (
-                <div className="c-Tournament__card-wrap" onClick={this.handleClick}>
-                    <h2 className="c-Tournament__card-round">Round {this.props.index+1}</h2>
-                    <div className="c-Tournament__card-flex">
-                        <div>
-                            <h3>{this.props.info.fighter1}</h3>
-                            <em>{this.props.info.fighter1Club}</em>
-                        </div>
-                        <div>
-                            <h3>{this.props.info.fighter2}</h3>
-                            <em>{this.props.info.fighter2Club}</em>
-                        </div>
-                    </div>
-                </div>
+                <StaticMatch
+                    index={this.props.index}
+                    info={this.props.info}
+                    onClick={this.handleClick}
+                />
             )
         } else { //EDIT VIEW
             return (
@@ -73,7 +66,7 @@ class Match extends React.Component {
                         <div>
                             <h3>{this.props.info.fighter1}</h3>
                             <em>{this.props.info.fighter1Club}</em>
-                            <select value={this.state.fighter1} 
+                            <select value={this.state.fighter1}
                                     onChange={this.handleUpdate.bind(this,"fighter1")}>
                                     <option selected value="">Select</option>
                                     {this.props.participants.map( x => <option value={x.participantId}>{x.name}</option>)}
