@@ -9,7 +9,7 @@ import React from 'react'
 import { Helmet } from 'react-helmet'
 import {renderToString} from 'react-dom/server'
 import { StaticRouter } from "react-router-dom"
-import App from '../src/App.js'
+import App from '../src/App'
 //let recaptcha = new Recaptcha(process.env.CAP_SITE, process.env.CAP_SECRET)
 
 /* 
@@ -57,7 +57,7 @@ router.get('*',(req,res) => {
         </script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Read, share, discuss, and publish about Historical European Martials Arts (HEMA) also known as the Martial Arts of Renaissance Europe. Getting started with HEMA?  Check out our beginner's guides? Experienced renaissance martial artist? Why not submit an article?">
+        <meta name="description" content="Read, share, discuss, and publish about Historical European Martial Arts (HEMA) also known as the Martial Arts of Renaissance Europe. Getting started with HEMA?  Check out our beginner's guides? Experienced renaissance martial artist? Why not submit an article?">
         <link rel="icon" href="https://image.ibb.co/c76tRy/head_icon.png" sizes="16x16 32x32" type="image/png"> 
         <meta name="keywords" content="HEMA, ARMA, longsword, spear, sword, buckler, pike, staff, mma, martial arts, wrestling, grappling, boxing, fighting, fight, learn, gear, fencing">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">

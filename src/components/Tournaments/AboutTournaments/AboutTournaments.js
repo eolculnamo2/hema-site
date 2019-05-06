@@ -1,6 +1,7 @@
 import React from 'react'
 import RightInfo from './subcomponents/RightInfo'
 import TopBar from '../accessories/TopBar';
+import HemaGuy from './subcomponents/HemaGuy';
 
 let navButtons = [
     {
@@ -56,6 +57,10 @@ const AboutTournaments = () => {
             {/* Flexed Panel Two */}
             <div>
                 <TopBar buttons={navButtons}/>
+                <div className="tournaments__flex-h1-svg">
+                    <h1>Welcome to Sword-Point Tournaments</h1>
+                    <HemaGuy/>
+                </div>
                 <div className="tournaments__right-info">
                     <RightInfo />
                 </div>
